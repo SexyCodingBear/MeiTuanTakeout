@@ -16,7 +16,28 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    // 创建Window并给属性赋值
+    _window = [[UIWindow alloc] init];
+    
+    // 创建店铺控制器
+    MeiTuanShopController * shopController = [[MeiTuanShopController alloc] init];
+    
+    // 创建导航控制器
+    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:shopController];
+    
+    // 给window添加根控制器
+    _window.rootViewController = navigationController;
+    
+    // 使window成位置窗口并可视
+    [_window makeKeyAndVisible];
+    
+    
+    
+    
+    
+    
+    
     return YES;
 }
 
