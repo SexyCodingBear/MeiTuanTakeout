@@ -46,6 +46,9 @@
 		D88565CE1F2E414B00E4FC2A /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D88565A81F2E414B00E4FC2A /* UIView+WebCacheOperation.m */; };
 		D88565CF1F2E414B00E4FC2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D88565AB1F2E414B00E4FC2A /* AppDelegate.m */; };
 		D88565D41F2E415B00E4FC2A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D88565D01F2E415B00E4FC2A /* Info.plist */; };
+		D88565D91F2E42AB00E4FC2A /* UIColor+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D88565D61F2E42AB00E4FC2A /* UIColor+Addition.m */; };
+		D88565DA1F2E42AB00E4FC2A /* UILabel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D88565D81F2E42AB00E4FC2A /* UILabel+Addition.m */; };
+		D88565DD1F2E432500E4FC2A /* NSAttributedString+Additon.m in Sources */ = {isa = PBXBuildFile; fileRef = D88565DC1F2E432500E4FC2A /* NSAttributedString+Additon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +136,12 @@
 		D88565AB1F2E414B00E4FC2A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D88565D11F2E415B00E4FC2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		D88565D31F2E415B00E4FC2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Base; path = Base.lproj/main.m; sourceTree = "<group>"; };
+		D88565D51F2E42AB00E4FC2A /* UIColor+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Addition.h"; sourceTree = "<group>"; };
+		D88565D61F2E42AB00E4FC2A /* UIColor+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Addition.m"; sourceTree = "<group>"; };
+		D88565D71F2E42AB00E4FC2A /* UILabel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Addition.h"; sourceTree = "<group>"; };
+		D88565D81F2E42AB00E4FC2A /* UILabel+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Addition.m"; sourceTree = "<group>"; };
+		D88565DB1F2E432500E4FC2A /* NSAttributedString+Additon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Additon.h"; sourceTree = "<group>"; };
+		D88565DC1F2E432500E4FC2A /* NSAttributedString+Additon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Additon.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +228,12 @@
 		D88565571F2E414B00E4FC2A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D88565DB1F2E432500E4FC2A /* NSAttributedString+Additon.h */,
+				D88565DC1F2E432500E4FC2A /* NSAttributedString+Additon.m */,
+				D88565D51F2E42AB00E4FC2A /* UIColor+Addition.h */,
+				D88565D61F2E42AB00E4FC2A /* UIColor+Addition.m */,
+				D88565D71F2E42AB00E4FC2A /* UILabel+Addition.h */,
+				D88565D81F2E42AB00E4FC2A /* UILabel+Addition.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -418,6 +433,7 @@
 				D88565B81F2E414B00E4FC2A /* NSArray+MASAdditions.m in Sources */,
 				D88565BD1F2E414B00E4FC2A /* NSData+ImageContentType.m in Sources */,
 				D88565C51F2E414B00E4FC2A /* SDWebImageManager.m in Sources */,
+				D88565DD1F2E432500E4FC2A /* NSAttributedString+Additon.m in Sources */,
 				D88565C21F2E414B00E4FC2A /* SDWebImageDecoder.m in Sources */,
 				D88565AD1F2E414B00E4FC2A /* AFNetworkReachabilityManager.m in Sources */,
 				D88565B71F2E414B00E4FC2A /* MASViewConstraint.m in Sources */,
@@ -437,11 +453,13 @@
 				D88565B21F2E414B00E4FC2A /* MASCompositeConstraint.m in Sources */,
 				D88565BE1F2E414B00E4FC2A /* NSImage+WebCache.m in Sources */,
 				D88565C31F2E414B00E4FC2A /* SDWebImageDownloader.m in Sources */,
+				D88565DA1F2E42AB00E4FC2A /* UILabel+Addition.m in Sources */,
 				D88565B91F2E414B00E4FC2A /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D88565B41F2E414B00E4FC2A /* MASConstraintMaker.m in Sources */,
 				D88565C91F2E414B00E4FC2A /* UIImage+MultiFormat.m in Sources */,
 				D88565C71F2E414B00E4FC2A /* UIButton+WebCache.m in Sources */,
 				D88565B11F2E414B00E4FC2A /* AFURLSessionManager.m in Sources */,
+				D88565D91F2E42AB00E4FC2A /* UIColor+Addition.m in Sources */,
 				D88565BC1F2E414B00E4FC2A /* MKAnnotationView+WebCache.m in Sources */,
 				D88565C41F2E414B00E4FC2A /* SDWebImageDownloaderOperation.m in Sources */,
 				D88565AF1F2E414B00E4FC2A /* AFURLRequestSerialization.m in Sources */,
