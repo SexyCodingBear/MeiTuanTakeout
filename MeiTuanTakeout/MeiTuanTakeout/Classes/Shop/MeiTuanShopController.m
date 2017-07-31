@@ -179,8 +179,9 @@
     
     // 设置导航条标题颜色为跟随随头部视图高度的范围改变
     self.meiTuanNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.4 alpha:alpha]};
-    
-    // 计算白色分享按钮的白色值
+
+#warning mark - 注意：使用的高度值
+    // 计算白色分享按钮的白色值，参考值可以使用_shopHeaderView.bounds.size.height，也可以使用(offset.y + _shopHeaderView.bounds.size.height)，变化很小，基本没有区别，一种理论认为：此时的_shopHeaderView.bounds.size.height = offset.y + _shopHeaderView.bounds.size.height，是移动以后的高度。
     CGFloat white = [@(_shopHeaderView.bounds.size.height) resultWithValue1:WDYValueMake(KShopHeaderViewMinHeight, 0.4) andValue2:WDYValueMake(KShopHeaderViewMaxHeight, 1)];
     
     // 根据计算出的白色值，给分享按钮赋值
