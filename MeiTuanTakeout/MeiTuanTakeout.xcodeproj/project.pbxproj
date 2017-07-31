@@ -54,6 +54,7 @@
 		D885673F1F2E53A700E4FC2A /* MeiTuanShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = D885673E1F2E53A700E4FC2A /* MeiTuanShopController.m */; };
 		D88567421F2EA06800E4FC2A /* MeiTuanBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88567411F2EA06800E4FC2A /* MeiTuanBaseController.m */; };
 		D88567461F2EF49400E4FC2A /* MeiTuanNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D88567451F2EF49400E4FC2A /* MeiTuanNavigationBar.m */; };
+		D885674A1F2F031F00E4FC2A /* NSObject+LinearEquation.m in Sources */ = {isa = PBXBuildFile; fileRef = D88567491F2F031F00E4FC2A /* NSObject+LinearEquation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +159,9 @@
 		D88567431F2EB15D00E4FC2A /* MeiTuanTakeoutPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeiTuanTakeoutPrefixHeader.pch; sourceTree = "<group>"; };
 		D88567441F2EF49400E4FC2A /* MeiTuanNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanNavigationBar.h; sourceTree = "<group>"; };
 		D88567451F2EF49400E4FC2A /* MeiTuanNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanNavigationBar.m; sourceTree = "<group>"; };
+		D88567471F2F016A00E4FC2A /* Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Additions.h; sourceTree = "<group>"; };
+		D88567481F2F031F00E4FC2A /* NSObject+LinearEquation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LinearEquation.h"; sourceTree = "<group>"; };
+		D88567491F2F031F00E4FC2A /* NSObject+LinearEquation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LinearEquation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +256,9 @@
 				D88566BB1F2E519100E4FC2A /* UIColor+Addition.m */,
 				D88566BC1F2E519100E4FC2A /* UILabel+Addition.h */,
 				D88566BD1F2E519100E4FC2A /* UILabel+Addition.m */,
+				D88567481F2F031F00E4FC2A /* NSObject+LinearEquation.h */,
+				D88567491F2F031F00E4FC2A /* NSObject+LinearEquation.m */,
+				D88567471F2F016A00E4FC2A /* Additions.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -496,6 +503,7 @@
 				D885671C1F2E519100E4FC2A /* AFURLResponseSerialization.m in Sources */,
 				D885671D1F2E519100E4FC2A /* AFURLSessionManager.m in Sources */,
 				D88567181F2E519100E4FC2A /* AFHTTPSessionManager.m in Sources */,
+				D885674A1F2F031F00E4FC2A /* NSObject+LinearEquation.m in Sources */,
 				D885671F1F2E519100E4FC2A /* MASConstraint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

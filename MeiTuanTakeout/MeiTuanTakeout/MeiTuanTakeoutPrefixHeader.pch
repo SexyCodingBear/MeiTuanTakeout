@@ -12,12 +12,13 @@
 
 #ifdef __OBJC__ // 只有OC文件才有下面的东西
 
-
 #import "UIImageView+WebCache.h"
 
 #import "AFNetworking.h"
 
 #import "Masonry.h"
+
+#import "Additions.h"
 
 
 #endif /* MeiTuanTakeoutPrefixHeader_pch */

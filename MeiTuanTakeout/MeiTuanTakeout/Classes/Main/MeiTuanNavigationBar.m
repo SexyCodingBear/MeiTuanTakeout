@@ -10,10 +10,11 @@
 
 @implementation MeiTuanNavigationBar
 
+#pragma mark - 重写初始化方法
 // 重写初始化方法
 - (instancetype)initWithFrame:(CGRect)frame{
 
-    
+    // 初始化父类属性
     if (self = [super initWithFrame:frame]) {
         
         // 去掉导航条阴影线

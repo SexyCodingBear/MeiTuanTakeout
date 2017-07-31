@@ -9,18 +9,25 @@
 #import "MeiTuanShopController.h"
 #import "MeiTuanBaseController.h"
 
-#define KShopHeaderViewMinHeight 64
-#define KShopHeaderViewMaxHeight 180
+#define KShopHeaderViewMinHeight 64.0
+#define KShopHeaderViewMaxHeight 180.0
 
 
 @interface MeiTuanShopController ()
 
+// 将头部视图声明为属性，方便数据传递
 @property (weak, nonatomic) UIView *shopHeaderView;
+
+// 右侧分享按钮
+@property (strong,nonatomic) UIBarButtonItem *rightButtonItem;
 
 @end
 
+
+
 @implementation MeiTuanShopController
 
+#pragma mark - 生命周期方法
 - (void)viewDidLoad {
     
     // 为了防止头部视图遮盖住导航条，将头部视图在[super viewDidLoad]之前调用，viewDidLoad中创建的导航条就在头部视图上面了。
@@ -30,18 +37,32 @@
     [super viewDidLoad];
     
     // 设置控制器view背景颜色
-    self.view.backgroundColor = [UIColor orangeColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    // 设置导航条和状态栏的颜色
-    self.meiTuanNavigationBar.barTintColor = [UIColor greenColor];
+//    // 设置导航条和状态栏的颜色
+//    self.meiTuanNavigationBar.barTintColor = [UIColor greenColor];
     
     // 给导航条添加标题
     self.meiTuanNavigationItem.title = @"香河肉饼";
     
+    // 设置导航条标题颜色为完全透明
+    self.meiTuanNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.4 alpha:0]};
+    
+    // 设置导航条背景视图颜色完全透明
+    self.meiTuanNavigationBar.backgroundImageView.alpha = 0;
+    
+    // 添加右侧分享按钮
+    _rightButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_share"] style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    // 将右侧按钮赋值给navigationItem的rightBarButtonItem
+    self.meiTuanNavigationItem.rightBarButtonItem = _rightButtonItem;
     
     
-    
+    // 设置导航条的颜色
+    self.meiTuanNavigationBar.tintColor = [UIColor whiteColor];
+
 }
+
 
 - (void)setupUI{
 
@@ -49,7 +70,7 @@
     UIView *shopHeaderView = [[UIView alloc] init];
     
     // 设置背景颜色
-    shopHeaderView.backgroundColor = [UIColor darkGrayColor];
+    shopHeaderView.backgroundColor = [UIColor orangeColor];
     
     // 添加到父视图
     [self.view addSubview:shopHeaderView];
@@ -78,8 +99,8 @@
 
 }
 
-
-// 触发手势方法
+#pragma mark - 平移手势方法
+// 平移手势方法
 - (void)panGesture:(UIPanGestureRecognizer *)panGesture{
     
     // 计算手势偏移量
@@ -96,20 +117,15 @@
             make.height.offset(KShopHeaderViewMinHeight);
             
             
-            
         }else if ((offset.y + _shopHeaderView.bounds.size.height) >= KShopHeaderViewMaxHeight ) {// 如果手势偏移量+头部视图原来高度小大于等于最大高度
             
             // 将头部视图的高度固定在最大高度
             make.height.offset(KShopHeaderViewMaxHeight);
-                
-           
             
         }else{// 如果手势偏移量+头部视图原来高度在最小高度和最大高度之间
             
             // 头部视图的高度随手势偏移量和头部视图原来高度变化
             make.height.offset(offset.y + _shopHeaderView.bounds.size.height);
-            
-            
             
         }
         
@@ -145,10 +161,45 @@
     // 设置透明度值，使透明度的值随头部视图高度的范围改变
 //    CGFloat alpha = (- 1 * (offset.y + _shopHeaderView.bounds.size.height) / 116.0) + (45 / 29.0);
     
-    CGFloat alpha = [self resultWithConsult:(offset.y + _shopHeaderView.bounds.size.height) andConsult1:KShopHeaderViewMinHeight andResult1:1 andConsult2:KShopHeaderViewMaxHeight andresult2:0];
+    
+    // 将线形方程计算方法抽取到分类之后直接调用方法
+//    CGFloat alpha = [self resultWithConsult:(offset.y + _shopHeaderView.bounds.size.height) andConsult1:KShopHeaderViewMinHeight andResult1:1 andConsult2:KShopHeaderViewMaxHeight andresult2:0];
+    
+    
+    // 将线形方程计算方法抽取到分类之后直接调用方法
+//    CGFloat alpha = [@(offset.y + _shopHeaderView.bounds.size.height) resultWithValue1:WDYValueMake(KShopHeaderViewMinHeight,1) andValue2:WDYValueMake(KShopHeaderViewMaxHeight,0)];
+    
+    
+    // 将线形方程计算方法抽取到分类之后直接调用方法
+    CGFloat alpha = [self resultWithConsult:(_shopHeaderView.bounds.size.height) andValue1:WDYValueMake(KShopHeaderViewMinHeight,1) andValue2:WDYValueMake(KShopHeaderViewMaxHeight,0)];
+    
     
     // 设置导航条的背景图片的透明度
     self.meiTuanNavigationBar.backgroundImageView.alpha = alpha;
+    
+    // 设置导航条标题颜色为跟随随头部视图高度的范围改变
+    self.meiTuanNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.4 alpha:alpha]};
+    
+    // 计算白色分享按钮的白色值
+    CGFloat white = [@(_shopHeaderView.bounds.size.height) resultWithValue1:WDYValueMake(KShopHeaderViewMinHeight, 0.4) andValue2:WDYValueMake(KShopHeaderViewMaxHeight, 1)];
+    
+    // 根据计算出的白色值，给分享按钮赋值
+    self.meiTuanNavigationBar.tintColor = [UIColor colorWithWhite:white alpha:1];
+    
+    // 根据头部视图高度设置状态栏样式
+    // 判断头部视图的高度是不是最大的高度并且状态栏样式是不是白色
+    if (_shopHeaderView.bounds.size.height == KShopHeaderViewMaxHeight && self.statusBarStyle != UIStatusBarStyleLightContent) {
+        
+        // 如果两个条件都满足，将状态栏样式改为白色
+        self.statusBarStyle = UIStatusBarStyleLightContent;
+        
+    }else if(_shopHeaderView.bounds.size.height == KShopHeaderViewMinHeight && self.statusBarStyle != UIStatusBarStyleDefault){// 判断头部视图的高度是不是最小的高度并且状态栏样式是不是黑色
+        
+        // 如果两个条件都满足，将状态栏样式改为默认的黑色
+        self.statusBarStyle = UIStatusBarStyleDefault;
+    }
+    
+    
     
     
     
@@ -157,16 +208,16 @@
     
 }
 
-// 计算二元一次方程组
-- (CGFloat)resultWithConsult:(CGFloat)consult andConsult1:(CGFloat)consult1 andResult1:(CGFloat)result1 andConsult2:(CGFloat)consult2 andresult2:(CGFloat)result2{
-
-    CGFloat a = (result2 - result1) / (consult2 - consult1);
-    
-    CGFloat b = result1 - (consult1 * ((result2 - result1) / (consult2 - consult1)));
-    
-    return consult * a + b;
-
-}
+//// 计算二元一次方程组
+//- (CGFloat)resultWithConsult:(CGFloat)consult andConsult1:(CGFloat)consult1 andResult1:(CGFloat)result1 andConsult2:(CGFloat)consult2 andresult2:(CGFloat)result2{
+//
+//    CGFloat a = (result2 - result1) / (consult2 - consult1);
+//    
+//    CGFloat b = result1 - (consult1 * ((result2 - result1) / (consult2 - consult1)));
+//    
+//    return consult * a + b;
+//
+//}
 
 
 
@@ -182,19 +233,5 @@
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

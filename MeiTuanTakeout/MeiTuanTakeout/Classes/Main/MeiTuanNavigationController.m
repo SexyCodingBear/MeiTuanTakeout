@@ -28,6 +28,8 @@
     
 }
 
+
+#pragma mark - 重写pushViewController:方法
 // 将系统的UIViewController *换成MeiTuanBaseController *
 -(void)pushViewController:(MeiTuanBaseController *)viewController animated:(BOOL)animated{
 
@@ -58,6 +60,8 @@
 
 }
 
+
+#pragma mark - 左侧返回按钮点击方法
 // 左侧返回按钮
 - (void)backBarButtomClick{
     
@@ -66,6 +70,14 @@
     
 }
 
+
+#pragma mark - 状态栏样式权限转换
+// 实现此方法让子控制器去设置状态栏的样式
+- (UIViewController *)childViewControllerForStatusBarStyle{
+    
+    return self.topViewController;
+
+}
 
 
 - (void)didReceiveMemoryWarning {

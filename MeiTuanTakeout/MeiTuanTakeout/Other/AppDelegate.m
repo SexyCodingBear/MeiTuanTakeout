@@ -20,7 +20,7 @@
     // 创建Window并给属性赋值
     _window = [[UIWindow alloc] init];
     
-    // 创建店铺控制器
+    // 创建商家控制器
     MeiTuanShopController * shopController = [[MeiTuanShopController alloc] init];
     
     // 创建导航控制器
@@ -31,11 +31,6 @@
     
     // 使window成位置窗口并可视
     [_window makeKeyAndVisible];
-    
-    
-    
-    
-    
     
     
     return YES;

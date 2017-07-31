@@ -10,7 +10,7 @@
 
 @interface MeiTuanNavigationBar : UINavigationBar
 
-
+// 背景图片
 @property (weak, nonatomic) UIImageView *backgroundImageView;
 
 @end

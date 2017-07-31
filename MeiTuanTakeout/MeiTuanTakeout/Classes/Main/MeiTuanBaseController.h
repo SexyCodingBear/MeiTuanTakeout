@@ -21,4 +21,7 @@
 @property (strong,nonatomic) UINavigationItem *meiTuanNavigationItem;
 
 
+// 状态栏样式
+@property (assign,nonatomic) UIStatusBarStyle statusBarStyle;
+
 @end
