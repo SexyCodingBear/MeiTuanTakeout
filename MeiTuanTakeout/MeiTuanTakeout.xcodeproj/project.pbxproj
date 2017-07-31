@@ -53,6 +53,7 @@
 		D885673B1F2E519100E4FC2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D88567111F2E519100E4FC2A /* AppDelegate.m */; };
 		D885673F1F2E53A700E4FC2A /* MeiTuanShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = D885673E1F2E53A700E4FC2A /* MeiTuanShopController.m */; };
 		D88567421F2EA06800E4FC2A /* MeiTuanBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88567411F2EA06800E4FC2A /* MeiTuanBaseController.m */; };
+		D88567461F2EF49400E4FC2A /* MeiTuanNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D88567451F2EF49400E4FC2A /* MeiTuanNavigationBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +156,8 @@
 		D88567401F2EA06800E4FC2A /* MeiTuanBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanBaseController.h; sourceTree = "<group>"; };
 		D88567411F2EA06800E4FC2A /* MeiTuanBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanBaseController.m; sourceTree = "<group>"; };
 		D88567431F2EB15D00E4FC2A /* MeiTuanTakeoutPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeiTuanTakeoutPrefixHeader.pch; sourceTree = "<group>"; };
+		D88567441F2EF49400E4FC2A /* MeiTuanNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanNavigationBar.h; sourceTree = "<group>"; };
+		D88567451F2EF49400E4FC2A /* MeiTuanNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanNavigationBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,8 @@
 				D88566B21F2E519100E4FC2A /* MeiTuanNavigationController.m */,
 				D88567401F2EA06800E4FC2A /* MeiTuanBaseController.h */,
 				D88567411F2EA06800E4FC2A /* MeiTuanBaseController.m */,
+				D88567441F2EF49400E4FC2A /* MeiTuanNavigationBar.h */,
+				D88567451F2EF49400E4FC2A /* MeiTuanNavigationBar.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -471,6 +476,7 @@
 				D88567341F2E519100E4FC2A /* UIImage+GIF.m in Sources */,
 				D885673F1F2E53A700E4FC2A /* MeiTuanShopController.m in Sources */,
 				D88567271F2E519100E4FC2A /* ViewController+MASAdditions.m in Sources */,
+				D88567461F2EF49400E4FC2A /* MeiTuanNavigationBar.m in Sources */,
 				D885673B1F2E519100E4FC2A /* AppDelegate.m in Sources */,
 				D88566971F2E50C400E4FC2A /* main.m in Sources */,
 				D88567241F2E519100E4FC2A /* NSArray+MASAdditions.m in Sources */,

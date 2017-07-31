@@ -115,10 +115,59 @@
         
     }];
     
+    /**
+     
+     计算透明度线性变化公式：y为透明度，x为头部视图高度
+     y = a * x + b;
+     
+     x = 64,y = 1;
+     x = 180,y = 0;
+     
+     1 = 64a + b ;
+     0 = 180a + b;
+     
+     a = - 1 / 116.0;
+     b = 45 / 29.0
+     
+     y = -1 / 116.0 * x + 45 / 29.0;
+     
+     
+     公式推导：
+     result1 = consult1 * a + b;
+     result2 = consult2 * a + b;
+     
+     a = (result2 - result1) / (consult2 - consult1);
+     
+     b = result1 - (consult1 * ((result2 - result1) / (consult2 - consult1)));
+     
+     */
+#warning mark - 注意小数问题
+    // 设置透明度值，使透明度的值随头部视图高度的范围改变
+//    CGFloat alpha = (- 1 * (offset.y + _shopHeaderView.bounds.size.height) / 116.0) + (45 / 29.0);
+    
+    CGFloat alpha = [self resultWithConsult:(offset.y + _shopHeaderView.bounds.size.height) andConsult1:KShopHeaderViewMinHeight andResult1:1 andConsult2:KShopHeaderViewMaxHeight andresult2:0];
+    
+    // 设置导航条的背景图片的透明度
+    self.meiTuanNavigationBar.backgroundImageView.alpha = alpha;
+    
+    
+    
     //_shopHeaderView.bounds.size.height已经累加了上次移动的距离，计算offset使用的Translation就不应该累加之前的距离，所以应该在下一次调用之前将Translation恢复默认值。
     [panGesture setTranslation:CGPointZero inView:_shopHeaderView];
     
 }
+
+// 计算二元一次方程组
+- (CGFloat)resultWithConsult:(CGFloat)consult andConsult1:(CGFloat)consult1 andResult1:(CGFloat)result1 andConsult2:(CGFloat)consult2 andresult2:(CGFloat)result2{
+
+    CGFloat a = (result2 - result1) / (consult2 - consult1);
+    
+    CGFloat b = result1 - (consult1 * ((result2 - result1) / (consult2 - consult1)));
+    
+    return consult * a + b;
+
+}
+
 
 
 //-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

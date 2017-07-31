@@ -28,7 +28,7 @@
     if (self) {
         
         // 创建导航条
-        UINavigationBar *navigationBar = [[UINavigationBar alloc] init];
+        MeiTuanNavigationBar *navigationBar = [[MeiTuanNavigationBar alloc] init];
         
         // 创建导航条上的属性
         UINavigationItem *navigationItem = [[UINavigationItem alloc] init];
