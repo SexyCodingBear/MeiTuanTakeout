@@ -12,15 +12,20 @@
 
 @end
 
+
+
 @implementation MeiTuanFoodDetailController
 
 - (void)viewDidLoad {
+    
+    // 创建父类属性
     [super viewDidLoad];
     
-    
+    // 设置视图背景颜色
     self.view.backgroundColor = [UIColor greenColor];
     
-    self.meiTuanNavigationItem.title = @"冰淇淋";
+    // 设置导航条的标题
+    self.meiTuanNavigationItem.title = @"详情";
 }
 
 - (void)didReceiveMemoryWarning {
