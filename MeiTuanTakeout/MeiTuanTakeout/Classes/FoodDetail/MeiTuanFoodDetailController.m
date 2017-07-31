@@ -19,6 +19,8 @@
     
     
     self.view.backgroundColor = [UIColor greenColor];
+    
+    self.meiTuanNavigationItem.title = @"冰淇淋";
 }
 
 - (void)didReceiveMemoryWarning {

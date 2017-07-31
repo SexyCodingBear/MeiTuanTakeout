@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MeiTuanBaseController.h"
 
-@interface MeiTuanFoodDetailController : UIViewController
+@interface MeiTuanFoodDetailController : MeiTuanBaseController
 
 @end

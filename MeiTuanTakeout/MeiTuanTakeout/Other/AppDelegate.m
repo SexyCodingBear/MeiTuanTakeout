@@ -24,7 +24,7 @@
     MeiTuanShopController * shopController = [[MeiTuanShopController alloc] init];
     
     // 创建导航控制器
-    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:shopController];
+    MeiTuanNavigationController * navigationController = [[MeiTuanNavigationController alloc] initWithRootViewController:shopController];
     
     // 给window添加根控制器
     _window.rootViewController = navigationController;

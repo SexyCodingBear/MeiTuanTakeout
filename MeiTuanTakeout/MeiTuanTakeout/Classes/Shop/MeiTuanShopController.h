@@ -1,5 +1,5 @@
 //
-//  MeiTuanNavigationController.h
+//  MeiTuanShopController.h
 //  MeiTuanTakeout
 //
 //  Created by 温岱阳 on 2017/7/31.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MeiTuanBaseController.h"
+#import "MeiTuanFoodDetailController.h"
 
-@interface MeiTuanNavigationController : UINavigationController
+
+@interface MeiTuanShopController : MeiTuanBaseController
 
 @end

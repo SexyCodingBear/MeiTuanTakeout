@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MeiTuanShopController.h"
+#import "MeiTuanNavigationController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
