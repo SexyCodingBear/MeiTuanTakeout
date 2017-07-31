@@ -53,7 +53,8 @@
     
     // 添加右侧分享按钮
     _rightButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_share"] style:UIBarButtonItemStylePlain target:self action:nil];
-    
+
+#warning mark - 注意使用要使用自定义的meiTuanNavigationItem
     // 将右侧按钮赋值给navigationItem的rightBarButtonItem
     self.meiTuanNavigationItem.rightBarButtonItem = _rightButtonItem;
     
@@ -197,7 +198,8 @@
     // 根据头部视图高度设置状态栏样式
     // 判断头部视图的高度是不是最大的高度并且状态栏样式是不是白色
     if (_shopHeaderView.bounds.size.height == KShopHeaderViewMaxHeight && self.statusBarStyle != UIStatusBarStyleLightContent) {
-        
+
+#warning mark - statusBarStyle要在MeiTuanBaseController.h中声明，否则找不到变量
         // 如果两个条件都满足，将状态栏样式改为白色
         self.statusBarStyle = UIStatusBarStyleLightContent;
         
