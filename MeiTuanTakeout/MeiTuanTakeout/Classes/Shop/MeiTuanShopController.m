@@ -127,6 +127,10 @@
             // 头部视图的高度随手势偏移量和头部视图原来高度变化
             make.height.offset(offset.y + _shopHeaderView.bounds.size.height);
             
+#warning mark - 测试代码
+//            [self.view layoutIfNeeded];
+//            NSLog(@"高度：%f",_shopHeaderView.bounds.size.height);
+            
         }
         
     }];
@@ -168,7 +172,10 @@
     
     // 将线形方程计算方法抽取到分类之后直接调用方法
 //    CGFloat alpha = [@(offset.y + _shopHeaderView.bounds.size.height) resultWithValue1:WDYValueMake(KShopHeaderViewMinHeight,1) andValue2:WDYValueMake(KShopHeaderViewMaxHeight,0)];
-    
+
+#warning mark - 测试代码
+//    [self.view layoutIfNeeded];
+//    NSLog(@"透明度高度：%f",_shopHeaderView.bounds.size.height);
     
     // 将线形方程计算方法抽取到分类之后直接调用方法
     CGFloat alpha = [self resultWithConsult:(_shopHeaderView.bounds.size.height) andValue1:WDYValueMake(KShopHeaderViewMinHeight,1) andValue2:WDYValueMake(KShopHeaderViewMaxHeight,0)];
@@ -198,6 +205,8 @@
         
         // 如果两个条件都满足，将状态栏样式改为默认的黑色
         self.statusBarStyle = UIStatusBarStyleDefault;
+        
+        
     }
     
     
