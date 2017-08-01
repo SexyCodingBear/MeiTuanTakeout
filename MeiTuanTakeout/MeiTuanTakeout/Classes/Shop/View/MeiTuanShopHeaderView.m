@@ -13,6 +13,18 @@
 // 背景视图
 @property (weak, nonatomic) UIImageView *backgroundImageView;
 
+// 创建头像视图
+@property (weak, nonatomic) UIImageView *avatarImageView;
+
+// 店名文本标签
+@property (weak, nonatomic) UILabel *shopNameLabel;
+
+
+// 创建商家公告文本标签
+@property (weak, nonatomic) UILabel *bulletinLabel;
+
+
+
 
 @end
 
@@ -106,28 +118,28 @@
     
     
     // TODO:4、创建头像视图
-    UIImageView *avatarView = [[UIImageView alloc] init];
+    UIImageView *avatarImageView = [[UIImageView alloc] init];
     
     // 设置背景颜色
-    avatarView.backgroundColor = [UIColor lightGrayColor];
+    avatarImageView.backgroundColor = [UIColor lightGrayColor];
     
     // 设置圆角半径
-    avatarView.layer.cornerRadius = 32;
+    avatarImageView.layer.cornerRadius = 32;
     
     // 设置切边
-    avatarView.layer.masksToBounds = YES;
+    avatarImageView.layer.masksToBounds = YES;
     
     // 设置边框宽度
-    avatarView.layer.borderWidth = 2;
+    avatarImageView.layer.borderWidth = 2;
     
     // 设置边框颜色
-    avatarView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.7].CGColor;
+    avatarImageView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.7].CGColor;
     
     // 添加到父视图
-    [self addSubview:avatarView];
+    [self addSubview:avatarImageView];
     
     // 添加约束
-    [avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         
         make.left.equalTo(dashLineView.mas_left).offset(0);
@@ -136,6 +148,9 @@
         
         
     }];
+    
+    // 给属性赋值
+    _avatarImageView = avatarImageView;
     
     
     // TODO:5、创建店名文本标签
@@ -147,10 +162,13 @@
     // 添加约束
     [shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(avatarView.mas_right).offset(16);
-        make.centerY.equalTo(avatarView.mas_centerY).offset(-16);
+        make.left.equalTo(avatarImageView.mas_right).offset(16);
+        make.centerY.equalTo(avatarImageView.mas_centerY).offset(-16);
         
     }];
+    
+    // 给属性赋值
+    _shopNameLabel = shopNameLabel;
     
     
     // TODO:6、创建商家公告文本标签
@@ -164,11 +182,12 @@
         
         make.left.equalTo(shopNameLabel.mas_left).offset(0);
         make.right.offset(-16);
-        make.centerY.equalTo(avatarView.mas_centerY).offset(16);
+        make.centerY.equalTo(avatarImageView.mas_centerY).offset(16);
         
     }];
     
-    
+    // 给属性赋值
+    _bulletinLabel = bulletinLabel;
 
 }
 
@@ -179,6 +198,7 @@
     // 给属性赋值
     _headerViewModel = headerViewModel;
     
+    // TODO:1、设置背景图片
     // 删除模型中提取的URL字符串中的.webp后缀
     NSString *backgroundImageViewURL = [headerViewModel.poi_back_pic_url stringByDeletingPathExtension];
     
@@ -195,6 +215,20 @@
     
     // 使用第三方框架加载网络图片，自动给imageView中的image属性赋值
     [_backgroundImageView sd_setImageWithURL:[NSURL URLWithString:backgroundImageViewURL]];
+    
+    // TODO:2、设置头像
+    // 删除模型中提取的URL字符串中的.webp后缀
+    NSString *avatarImageViewURL = [headerViewModel.pic_url stringByDeletingPathExtension];
+    
+    //
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatarImageViewURL]];
+    
+    // TODO:3、设置店名
+    _shopNameLabel.text = _headerViewModel.name;
+    
+    // TODO:4、设置商家公告
+    _bulletinLabel.text = _headerViewModel.bulletin;
+    
      
 }
 

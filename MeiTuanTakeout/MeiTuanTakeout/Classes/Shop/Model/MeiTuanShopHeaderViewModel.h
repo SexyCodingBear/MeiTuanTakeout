@@ -14,6 +14,18 @@
 #warning mark - KVC要求模型中的属性值和字典中key必须一致！
 @property (copy,nonatomic) NSString *poi_back_pic_url;
 
+// 头像视图
+@property (copy, nonatomic) NSString *pic_url;
+
+// 店名
+@property (copy, nonatomic) NSString *name;
+
+
+// 商家公告
+@property (copy, nonatomic) NSString *bulletin;
+
+
+
 // 字典转模型方法
 + (instancetype)shopHeaderViewModelWithDictionary:(NSDictionary *)dict;
 
