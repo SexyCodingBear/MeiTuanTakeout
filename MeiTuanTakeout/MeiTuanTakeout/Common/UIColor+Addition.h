@@ -10,6 +10,15 @@
 
 @interface UIColor (Addition)
 
+
+
+/**
+ 获取主题色
+
+ @return 返回主题色（本例中是土黄色）
+ */
++ (instancetype)primaryColor;
+
 /// 使用 16 进制数字创建颜色，例如 0xFF0000 创建红色
 ///
 /// @param hex 16 进制无符号32位整数

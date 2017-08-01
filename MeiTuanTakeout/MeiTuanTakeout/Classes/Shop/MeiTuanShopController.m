@@ -7,7 +7,6 @@
 //
 
 #import "MeiTuanShopController.h"
-#import "MeiTuanBaseController.h"
 
 #define KShopHeaderViewMinHeight 64.0
 #define KShopHeaderViewMaxHeight 180.0
@@ -118,7 +117,7 @@
 // 设置头部视图下面的标签栏视图
 - (void)setupShopTagView {
     
-    // 创建标签栏视图
+    // 1、创建标签栏视图
     UIView *shopTagView = [[UIView alloc] init];
     
     // 设置标签视图背景颜色
@@ -139,8 +138,8 @@
     // 给属性赋值
     _shopTagView = shopTagView;
     
-    // 添加标签栏视图中的按钮
-    [self makeShopTagButtonWithTitle:@"点菜"];
+    // 2、添加标签栏视图中的按钮
+    UIButton *orderButton = [self makeShopTagButtonWithTitle:@"点菜"];
     [self makeShopTagButtonWithTitle:@"评价"];
     [self makeShopTagButtonWithTitle:@"商家"];
     
@@ -154,7 +153,29 @@
     // 给标签栏视图中的按钮添加 轴向 约束（MASAxisTypeHorizontal水平轴向）
     [_shopTagView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
     
-
+    // 3、添加标签栏指示器视图
+    // 创建标签栏指示器
+    UIView *shopTagIndicatorView = [[UIView alloc] init];
+    
+    // 设置标签栏指示器背景颜色为“主题色”（在UIColor+Addition中自定义的方法）
+    shopTagIndicatorView.backgroundColor = [UIColor primaryColor];
+    
+    // 添加到父视图
+    [_shopTagView addSubview:shopTagIndicatorView];
+    
+    // 给标签栏指示器添加约束
+    [shopTagIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.offset(50);
+        make.height.offset(4);
+        make.bottom.offset(0);
+#warning mark - 注意添加按钮指示器的约束的位置必须在按钮创建之后
+        // 参照点菜按钮，必须在点菜按钮创建之后再添加这个约束
+        make.centerX.equalTo(orderButton.mas_centerX).offset(0);
+        
+    }];
+    
+    
 }
 
 
