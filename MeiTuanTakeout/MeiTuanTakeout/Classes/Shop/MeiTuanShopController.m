@@ -15,8 +15,14 @@
 
 @interface MeiTuanShopController ()
 
-// 将头部视图声明为属性，方便数据传递
+// 将头部视图声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIView *shopHeaderView;
+
+// 将标签视图声明为属性，方便数据传递和兄弟控件添加约束
+@property (weak, nonatomic) UIView *shopTagView;
+
+
+
 
 // 右侧分享按钮
 @property (strong,nonatomic) UIBarButtonItem *rightButtonItem;
@@ -47,7 +53,12 @@
 
 }
 
-// 设置视图
+
+
+
+
+#pragma mark - 设置全局视图
+// 设置全局视图
 - (void)setupUI {
 
 
@@ -55,6 +66,8 @@
     // 为了防止头部视图遮盖住导航条，将头部视图的setupUI方法在[super viewDidLoad]之前调用，viewDidLoad中创建的导航条就在头部视图上面了。
     [self setupShopHeaderView];
     
+    // TODO:设置标签栏视图
+    [self setupShopTagView];
     
     
 }
@@ -62,9 +75,10 @@
 
 
 
+
 #pragma mark - 设置头部视图
 // 设置头部视图
-- (void)setupShopHeaderView{
+- (void)setupShopHeaderView {
 
     // 创建头部视图
     UIView *shopHeaderView = [[UIView alloc] init];
@@ -97,10 +111,41 @@
 
 
 
+#pragma mark - 设置标签栏视图
+// 设置头部视图下面的标签栏视图
+- (void)setupShopTagView {
+    
+    // 创建标签栏视图
+    UIView *shopTagView = [[UIView alloc] init];
+    
+    // 设置标签视图背景颜色
+    shopTagView.backgroundColor = [UIColor grayColor];
+    
+    // 添加到父视图
+    [self.view addSubview:shopTagView];
+    
+    // 设置约束
+    [shopTagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.offset(0);
+        make.top.equalTo(_shopHeaderView.mas_bottom).offset(0);
+        make.height.offset(44);
+        
+    }];
+    
+    // 给属性赋值
+    _shopTagView = shopTagView;
+
+
+}
+
+
+
+
 
 #pragma mark - 设置导航条
 // 设置导航条
-- (void)setupNavigationBar{
+- (void)setupNavigationBar {
     
     
     // 设置导航条和状态栏的颜色
@@ -148,9 +193,11 @@
 
 
 
+
+
 #pragma mark - 平移手势方法
 // 平移手势方法
-- (void)panGesture:(UIPanGestureRecognizer *)panGesture{
+- (void)panGesture:(UIPanGestureRecognizer *)panGesture {
     
     // TODO:1、设置头部视图高度跟随手指移动而改变
     
