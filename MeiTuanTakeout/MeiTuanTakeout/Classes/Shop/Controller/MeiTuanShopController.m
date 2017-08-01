@@ -14,8 +14,11 @@
 
 @interface MeiTuanShopController ()
 
+// 将 头部视图模型 声明为属性，方便数据传递
+@property (strong,nonatomic) MeiTuanShopHeaderViewModel * headerViewModel;
+
 // 将 头部视图 声明为属性，方便数据传递和兄弟控件添加约束
-@property (weak, nonatomic) UIView *shopHeaderView;
+@property (weak, nonatomic) MeiTuanShopHeaderView *shopHeaderView;
 
 // 将 标签视图 声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIView *shopTagView;
@@ -38,6 +41,10 @@
 #pragma mark - 生命周期方法
 - (void)viewDidLoad {
     
+    // TODO:加载数据
+    // setupUI中就创建了头部视图，所以数据要在头部视图创建完成之前加载
+    [self loadFoodData];
+    
     // TODO:设置视图
     [self setupUI];
     
@@ -54,8 +61,7 @@
     [self setupPanGesture];
     
     
-    // TODO:加载数据
-    [self loadFoodData];
+    
 
 }
 
@@ -89,10 +95,13 @@
 - (void)setupShopHeaderView {
 
     // 创建头部视图
-    UIView *shopHeaderView = [[UIView alloc] init];
+    MeiTuanShopHeaderView *shopHeaderView = [[MeiTuanShopHeaderView alloc] init];
     
     // 设置背景颜色
     shopHeaderView.backgroundColor = [UIColor orangeColor];
+    
+    // 给view的模型属性赋值
+    shopHeaderView.headerViewModel = _headerViewModel;
     
     // 添加到父视图
     [self.view addSubview:shopHeaderView];
@@ -646,6 +655,8 @@
     // 字典转模型
     MeiTuanShopHeaderViewModel * headerViewModel = [MeiTuanShopHeaderViewModel shopHeaderViewModelWithDictionary:headerViewDict];
     
+    // 给属性赋值
+    _headerViewModel = headerViewModel;
     
     // 打印取出的字典
     NSLog(@"%@",headerViewModel.poi_back_pic_url);

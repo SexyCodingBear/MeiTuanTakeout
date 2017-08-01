@@ -10,4 +10,5 @@
 
 #import "NSObject+LinearEquation.h"
 #import "UIColor+Addition.h"
+#import "UILabel+Addition.h"
 

@@ -13,6 +13,7 @@
 #import "MeiTuanShopCommentController.h"
 #import "MeiTuanShopInformationController.h"
 #import "MeiTuanShopHeaderViewModel.h"
+#import "MeiTuanShopHeaderView.h"
 
 
 @interface MeiTuanShopController : MeiTuanBaseController <UIScrollViewDelegate>
