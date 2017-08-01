@@ -142,6 +142,10 @@
     
     // TODO:2、添加标签栏视图中的按钮
     UIButton *orderButton = [self makeShopTagButtonWithTitle:@"点菜"];
+    
+    // 给点才按钮设置初始字体类型为加粗
+    orderButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    
     [self makeShopTagButtonWithTitle:@"评价"];
     [self makeShopTagButtonWithTitle:@"商家"];
     
@@ -210,6 +214,9 @@
     
     // 设置按钮标题
     [button setTitle:title forState:UIControlStateNormal];
+    
+    // 设置按钮标题标题文字的字体
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
     
     // 设置按钮文字颜色(按钮默认颜色是白色)
     [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -323,10 +330,65 @@
     // 计算标签指示器沿x轴的偏移量
     CGFloat offsetX = _shopTagView.bounds.size.width / (_shopTagView.subviews.count - 1);
     
+#warning mark - 控件加了约束后不要修改它的frame，但是可以修改它的transform，因为frame是由bounds，anchorPoint，position来确定的
     // 设置_shopTagIndicatorView的x方向形变
     _shopTagIndicatorView.transform = CGAffineTransformMakeTranslation(offsetX * pageNUmber, 0);
-    
 
+}
+
+
+
+
+
+#pragma mark - scrollView代理方法：监听ScrollView结束滚动
+// 监听ScrollView结束滚动
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    // 计算当前页数，整数
+    NSInteger pageNumber = _shopScrollView.contentOffset.x / _shopScrollView.bounds.size.width;
+    
+    // 循环遍历标签栏视图的子视图（按钮+标签栏指示器）
+//    for (NSInteger i = 0; i < _shopTagView.subviews.count; i++) {
+//        
+//        // 取出与索引相应的按钮
+//        UIButton *button = _shopTagView.subviews[i];
+//        
+//        // 判断button是不是UIButton或者其子类的实例对象
+//        if ([button isKindOfClass:[UIButton class]]) {
+//            
+//            //如果是并且页数和索引相等证明是要找的标签栏按钮
+//            if (pageNumber == i) {
+//                
+//                // 设置标签栏按钮的字体为粗体
+//                button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+//            }else {// 如果是并且页数和索引不相等证明不是要找的标签栏按钮
+//                
+//                // 设置标签栏按钮的字体为系统样式
+//                button.titleLabel.font = [UIFont systemFontOfSize:14];
+//            
+//            }
+//        }
+//    }
+    
+    
+    // 循环遍历标签栏视图的子视图（按钮+标签栏指示器）
+    for (NSInteger i = 0; i < _shopTagView.subviews.count - 1; i++) {
+        
+        // 取出与索引相应的按钮
+        UIButton *button = _shopTagView.subviews[i];
+        
+        //如果页数和索引相等证明是要找的标签栏按钮
+        if (pageNumber == i) {
+            
+            // 设置标签栏按钮的字体为粗体
+            button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        }else {// 如果是并且页数和索引不相等证明不是要找的标签栏按钮
+            
+            // 设置标签栏按钮的字体为系统样式
+            button.titleLabel.font = [UIFont systemFontOfSize:14];
+            
+        }
+    }
 }
 
 
