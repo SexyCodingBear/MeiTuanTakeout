@@ -21,7 +21,8 @@
 // 将标签视图声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIView *shopTagView;
 
-
+// 将滚动视图声明为属性，方便数据传递和兄弟控件添加约束
+@property (weak, nonatomic) UIScrollView *shopScrollView;
 
 
 // 右侧分享按钮
@@ -69,6 +70,8 @@
     // TODO:设置标签栏视图
     [self setupShopTagView];
     
+    // TODO:设置滚动视图
+    [self setupShopScrollView];
     
 }
 
@@ -135,6 +138,38 @@
     
     // 给属性赋值
     _shopTagView = shopTagView;
+
+
+}
+
+
+
+
+
+#pragma mark - 设置滚动视图
+// 设置标签栏视图下面的滚动视图
+- (void)setupShopScrollView {
+
+    // 创建滚动视图
+    UIScrollView *shopScrollView = [[UIScrollView alloc] init];
+    
+    // 设置滚动视图背景颜色
+    shopScrollView.backgroundColor = [UIColor orangeColor];
+    
+    // 添加到父视图
+    [self.view addSubview:shopScrollView];
+    
+    // 设置约束
+    [shopScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.bottom.right.offset(0);
+        make.top.equalTo(_shopTagView.mas_bottom).offset(0);
+        
+    }];
+    
+    // 给属性赋值
+    _shopScrollView = shopScrollView;
+
 
 
 }
