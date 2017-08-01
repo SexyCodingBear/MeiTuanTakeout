@@ -97,11 +97,17 @@
     
     
     
-    // TODO:3、虚线
+    // TODO:3、设置虚线
     UIView *dashLineView = [[UIView alloc] init];
     
     // 设置背景颜色
-    dashLineView.backgroundColor = [UIColor whiteColor];
+    
+    // contents拉伸缩放图片
+    //    dashLineView.layer.contents = (__bridge id _Nullable)([UIImage dashLineViewWithColor:[UIColor whiteColor]].CGImage);
+    
+    //colorWithPatternImage:平铺图片
+    dashLineView.backgroundColor = [UIColor colorWithPatternImage:[UIImage dashLineViewWithColor:[UIColor whiteColor]]];
+    
     
     // 添加到父视图
     [self addSubview:dashLineView];
@@ -220,7 +226,7 @@
     // 删除模型中提取的URL字符串中的.webp后缀
     NSString *avatarImageViewURL = [headerViewModel.pic_url stringByDeletingPathExtension];
     
-    //
+    // 使用第三方框架加载网络图片，自动给imageView中的image属性赋值
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatarImageViewURL]];
     
     // TODO:3、设置店名
