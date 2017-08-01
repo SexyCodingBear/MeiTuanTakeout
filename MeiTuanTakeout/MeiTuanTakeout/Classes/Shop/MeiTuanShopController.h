@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MeiTuanBaseController.h"
 #import "MeiTuanFoodDetailController.h"
+#import "MeiTuanShopOrderController.h"
+#import "MeiTuanShopCommentController.h"
+#import "MeiTuanShopInformationController.h"
 
 
 @interface MeiTuanShopController : MeiTuanBaseController

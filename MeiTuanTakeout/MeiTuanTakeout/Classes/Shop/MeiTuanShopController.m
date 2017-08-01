@@ -117,7 +117,7 @@
 // 设置头部视图下面的标签栏视图
 - (void)setupShopTagView {
     
-    // 1、创建标签栏视图
+    // TODO:1、创建标签栏视图
     UIView *shopTagView = [[UIView alloc] init];
     
     // 设置标签视图背景颜色
@@ -138,7 +138,7 @@
     // 给属性赋值
     _shopTagView = shopTagView;
     
-    // 2、添加标签栏视图中的按钮
+    // TODO:2、添加标签栏视图中的按钮
     UIButton *orderButton = [self makeShopTagButtonWithTitle:@"点菜"];
     [self makeShopTagButtonWithTitle:@"评价"];
     [self makeShopTagButtonWithTitle:@"商家"];
@@ -153,7 +153,7 @@
     // 给标签栏视图中的按钮添加 轴向 约束（MASAxisTypeHorizontal水平轴向）
     [_shopTagView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
     
-    // 3、添加标签栏指示器视图
+    // TODO:3、添加标签栏指示器视图
     // 创建标签栏指示器
     UIView *shopTagIndicatorView = [[UIView alloc] init];
     
@@ -225,11 +225,23 @@
 // 设置标签栏视图下面的滚动视图
 - (void)setupShopScrollView {
 
-    // 创建滚动视图
+    // TODO:1、创建滚动视图
     UIScrollView *shopScrollView = [[UIScrollView alloc] init];
     
     // 设置滚动视图背景颜色
     shopScrollView.backgroundColor = [UIColor orangeColor];
+    
+    // 设置分页效果
+    shopScrollView.pagingEnabled = YES;
+    
+    // 设置弹簧效果
+    shopScrollView.bounces = NO;
+    
+    // 设置滚动条隐藏
+    shopScrollView.showsVerticalScrollIndicator = NO;
+    shopScrollView.showsHorizontalScrollIndicator =NO;
+    
+    
     
     // 添加到父视图
     [self.view addSubview:shopScrollView];
@@ -245,8 +257,45 @@
     // 给属性赋值
     _shopScrollView = shopScrollView;
 
-
-
+    
+    // 2、创建三个子控制器
+    
+    MeiTuanShopOrderController * shopOrderController = [[MeiTuanShopOrderController alloc] init];
+    MeiTuanShopCommentController * shopCommentController = [[MeiTuanShopCommentController alloc] init];
+    MeiTuanShopInformationController * shopInformationController = [[MeiTuanShopInformationController alloc] init];
+    
+    // 将创建好的子控制器加入到数组
+    NSArray *viewControllerArray = @[shopOrderController,shopCommentController,shopInformationController];
+    
+    // 把控制器的View添加到ScrollView中
+    for (UIViewController * viewController in viewControllerArray) {
+        
+        // 将子控制器视图加入到shopScrollView中
+        [shopScrollView addSubview:viewController.view];
+        
+        // 将子控制器添加到父控制器中，建立父子控制器关系
+        [self addChildViewController:viewController];
+        
+        // 通知父控制器子控制器已经加入父控制器中
+        [viewController didMoveToParentViewController:self];
+    }
+    
+    
+    // 给每个View设置约束（由于ScrollView需要确定contentSize，所以约束需要给出四边边距和明确宽高）
+    
+    [shopScrollView.subviews mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        // 顶部底部约束
+        make.top.bottom.offset(0);
+        
+        // 设置宽高
+        make.width.height.equalTo(shopScrollView);
+        
+    }];
+    
+    // 添加水平轴向约束
+    [shopScrollView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
+    
 }
 
 
