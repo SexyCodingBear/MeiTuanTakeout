@@ -191,8 +191,8 @@
 
 
 
-#pragma mark - 设置标签栏视图中的按钮方法
-// 设置标签栏视图中的按钮方法
+#pragma mark - 创建标签栏视图中的按钮
+// 创建标签栏视图中的按钮
 - (UIButton *)makeShopTagButtonWithTitle:(NSString *)title {
     
     // 创建按钮
@@ -221,12 +221,32 @@
     // 设置按钮文字颜色(按钮默认颜色是白色)
     [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     
+    // 设置按钮的标签：使用标签视图子控件的个数当作按钮标签的值。
+    button.tag = _shopTagView.subviews.count;
+    
+    // 给按钮添加监听事件
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     // 添加到父视图
     [_shopTagView addSubview:button];
     
     // 返回设置好的按钮
     return button;
     
+}
+
+
+
+
+
+#pragma mark - 点击标签栏视图中按钮的监听方法，使滚动页面跟随按钮移动
+// 点击标签栏视图中按钮的监听方法，使滚动页面跟随按钮移动
+- (void)buttonClick:(UIButton *)button{
+    
+    // 使用scrollView的setContentOffset:方法动画效果使页面滚动
+    [_shopScrollView setContentOffset:CGPointMake(_shopScrollView.bounds.size.width * button.tag, 0) animated:YES];
+
+
 }
 
 
@@ -320,8 +340,8 @@
 
 
 
-#pragma mark - scrollView代理方法：监听ScrollView滚动
-// 监听ScrollView滚动
+#pragma mark - scrollView代理方法：监听ScrollView滚动，使标签指示器跟随页面滚动
+// scrollView代理方法：监听ScrollView滚动，使标签指示器跟随页面滚动
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     // 计算当前页数，值为小数
@@ -340,14 +360,14 @@
 
 
 
-#pragma mark - scrollView代理方法：监听ScrollView结束滚动
-// 监听ScrollView结束滚动
+#pragma mark - scrollView代理方法：监听ScrollView滚动结束，使当前标签指示器指示的按钮的标题文字变为粗体
+// scrollView代理方法：监听ScrollView滚动结束，使当前标签指示器指示的按钮的标题文字变为粗体
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     // 计算当前页数，整数
     NSInteger pageNumber = _shopScrollView.contentOffset.x / _shopScrollView.bounds.size.width;
     
-    // 循环遍历标签栏视图的子视图（按钮+标签栏指示器）
+    // 方法一：循环遍历标签栏视图的子视图（按钮+标签栏指示器，不限制取出的子控件类型，取出之后再循环内判断是不是需要的控件）
 //    for (NSInteger i = 0; i < _shopTagView.subviews.count; i++) {
 //        
 //        // 取出与索引相应的按钮
@@ -371,7 +391,7 @@
 //    }
     
     
-    // 循环遍历标签栏视图的子视图（按钮+标签栏指示器）
+    // 方法二：循环遍历标签栏视图的子视图（按钮+标签栏指示器，通过限制count，将最后添加的边前栏指示器排除）
     for (NSInteger i = 0; i < _shopTagView.subviews.count - 1; i++) {
         
         // 取出与索引相应的按钮
@@ -389,6 +409,18 @@
             
         }
     }
+}
+
+
+
+
+
+#pragma mark - scrollView代理方法：监听ScrollView动画滚动结束，使当前标签指示器指示的按钮的标题文字变为粗体
+// scrollView代理方法：监听ScrollView动画滚动结束，使当前标签指示器指示的按钮的标题文字变为粗体
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    
+    // 手动调用scrollViewDidEndDecelerating:方法，使当前标签指示器指示的按钮的标题文字变为粗体
+    [self scrollViewDidEndDecelerating:scrollView];
 }
 
 
