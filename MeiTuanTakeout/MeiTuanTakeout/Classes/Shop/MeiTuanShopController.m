@@ -122,7 +122,7 @@
     UIView *shopTagView = [[UIView alloc] init];
     
     // 设置标签视图背景颜色
-    shopTagView.backgroundColor = [UIColor grayColor];
+    shopTagView.backgroundColor = [UIColor whiteColor];
     
     // 添加到父视图
     [self.view addSubview:shopTagView];
@@ -138,8 +138,62 @@
     
     // 给属性赋值
     _shopTagView = shopTagView;
+    
+    // 添加标签栏视图中的按钮
+    [self makeShopTagButtonWithTitle:@"点菜"];
+    [self makeShopTagButtonWithTitle:@"评价"];
+    [self makeShopTagButtonWithTitle:@"商家"];
+    
+    // 给标签栏视图中的按钮 批量 添加约束
+    [_shopTagView.subviews mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.bottom.offset(0);
+        
+    }];
+    
+    // 给标签栏视图中的按钮添加 轴向 约束（MASAxisTypeHorizontal水平轴向）
+    [_shopTagView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
+    
+
+}
 
 
+
+
+
+#pragma mark - 设置标签栏视图中的按钮方法
+// 设置标签栏视图中的按钮方法
+- (UIButton *)makeShopTagButtonWithTitle:(NSString *)title {
+    
+    // 创建按钮
+    UIButton * button = [[UIButton alloc] init];
+    
+    /**
+     
+     typedef NS_OPTIONS(NSUInteger, UIControlState) {
+     UIControlStateNormal       = 0,
+     UIControlStateHighlighted  = 1 << 0,                  // used when UIControl isHighlighted is set
+     UIControlStateDisabled     = 1 << 1,
+     UIControlStateSelected     = 1 << 2,                  // flag usable by app (see below)
+     UIControlStateFocused NS_ENUM_AVAILABLE_IOS(9_0) = 1 << 3, // Applicable only when the screen supports focus
+     UIControlStateApplication  = 0x00FF0000,              // additional flags available for application use
+     UIControlStateReserved     = 0xFF000000               // flags reserved for internal framework use
+     };
+     
+     */
+    
+    // 设置按钮标题
+    [button setTitle:title forState:UIControlStateNormal];
+    
+    // 设置按钮文字颜色(按钮默认颜色是白色)
+    [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    
+    // 添加到父视图
+    [_shopTagView addSubview:button];
+    
+    // 返回设置好的按钮
+    return button;
+    
 }
 
 
