@@ -75,6 +75,7 @@
 // 实现此方法让子控制器去设置状态栏的样式
 - (UIViewController *)childViewControllerForStatusBarStyle{
     
+    // 把设置状态栏的权限交给自己的topViewController
     return self.topViewController;
 
 }

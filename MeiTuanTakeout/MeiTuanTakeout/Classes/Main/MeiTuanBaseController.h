@@ -21,7 +21,8 @@
 @property (strong,nonatomic) UINavigationItem *meiTuanNavigationItem;
 
 
-// 状态栏样式
+// 声明状态栏样式属性，用来保存每次调用setStatusBarStyle:方法所获得的状态栏样式，因为每次更改状态栏样式都要执行preferredStatusBarStyle方法来设置并显示状态栏样式，在preferredStatusBarStyle方法中通过self.statusBarStyle方法获取状态栏样式
 @property (assign,nonatomic) UIStatusBarStyle statusBarStyle;
+
 
 @end
