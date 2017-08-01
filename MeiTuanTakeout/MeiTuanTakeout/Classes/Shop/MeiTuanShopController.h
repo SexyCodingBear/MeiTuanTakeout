@@ -14,6 +14,6 @@
 #import "MeiTuanShopInformationController.h"
 
 
-@interface MeiTuanShopController : MeiTuanBaseController
+@interface MeiTuanShopController : MeiTuanBaseController <UIScrollViewDelegate>
 
 @end

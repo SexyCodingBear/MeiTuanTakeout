@@ -14,17 +14,19 @@
 
 @interface MeiTuanShopController ()
 
-// 将头部视图声明为属性，方便数据传递和兄弟控件添加约束
+// 将 头部视图 声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIView *shopHeaderView;
 
-// 将标签视图声明为属性，方便数据传递和兄弟控件添加约束
+// 将 标签视图 声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIView *shopTagView;
 
-// 将滚动视图声明为属性，方便数据传递和兄弟控件添加约束
+// 将 标签栏指示器 声明为属性，方便数据传递和兄弟控件添加约束
+@property (weak, nonatomic) UIView *shopTagIndicatorView;
+
+// 将 滚动视图 声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIScrollView *shopScrollView;
 
-
-// 右侧分享按钮
+// 将 右侧分享按钮 声明为属性，方便数据传递
 @property (strong,nonatomic) UIBarButtonItem *rightButtonItem;
 
 @end
@@ -175,6 +177,9 @@
         
     }];
     
+    // 给标签栏指示器属性赋值
+    _shopTagIndicatorView = shopTagIndicatorView;
+    
     
 }
 
@@ -254,8 +259,7 @@
         
     }];
     
-    // 给属性赋值
-    _shopScrollView = shopScrollView;
+    
 
     
     // 2、创建三个子控制器
@@ -296,6 +300,33 @@
     // 添加水平轴向约束
     [shopScrollView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
     
+    // 3、给shopScrollView设置代理
+    shopScrollView.delegate = self;
+    
+    
+    // 4、给属性赋值
+    _shopScrollView = shopScrollView;
+    
+}
+
+
+
+
+
+#pragma mark - scrollView代理方法：监听ScrollView滚动
+// 监听ScrollView滚动
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    // 计算当前页数，值为小数
+    CGFloat pageNUmber = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    
+    // 计算标签指示器沿x轴的偏移量
+    CGFloat offsetX = _shopTagView.bounds.size.width / (_shopTagView.subviews.count - 1);
+    
+    // 设置_shopTagIndicatorView的x方向形变
+    _shopTagIndicatorView.transform = CGAffineTransformMakeTranslation(offsetX * pageNUmber, 0);
+    
+
 }
 
 
