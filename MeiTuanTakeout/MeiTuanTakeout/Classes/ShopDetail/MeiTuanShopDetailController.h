@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MeiTuanShopHeaderViewModel.h"
 
 @interface MeiTuanShopDetailController : UIViewController
+
+// 声明头部视图模型
+@property (strong,nonatomic) MeiTuanShopHeaderViewModel *headerViewModel;
 
 @end

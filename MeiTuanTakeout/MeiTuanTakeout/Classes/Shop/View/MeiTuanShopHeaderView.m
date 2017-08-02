@@ -268,7 +268,17 @@
     
     // 给轮播视图添加手势
     [infoLoopView addGestureRecognizer:tap];
-
+    
+    
+    // TODO:让线程延迟0秒,可以理解为让线程卡顿一下，由于CPU数度极快，卡顿的时候CPU将其他线程的事情都做完了
+    // setupUI在初始化方法中，初始化的时候headerView还没有添加到shopController中，self.viewController（还没有添加到父控制器）还没有值，所以无法调用infoLoopViewClick
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        // TODO:测试代码，让程序启动就modal出商家详情界面
+        [self infoLoopViewClick];
+        
+    });
+    
 }
 
 
