@@ -40,6 +40,15 @@
         // 创建导航条背景视图
         UIImageView * backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_navigationBar_white"]];
         
+        /**
+         
+         注意要在Assets文件夹中找到bg_navigationBar_white.png的图片，然后选择Start Slicing,水平方向切。
+         
+         或者要代码剪切
+         
+         
+         */
+        
         // 添加到父视图
         [self addSubview:backgroundImageView];
         
