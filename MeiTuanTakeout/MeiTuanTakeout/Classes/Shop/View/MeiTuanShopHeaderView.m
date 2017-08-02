@@ -58,6 +58,29 @@
     // 设置图片填充模式，等比例缩放
     backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     
+    /**
+     
+     typedef NS_ENUM(NSInteger, UIViewContentMode) {
+     UIViewContentModeScaleToFill,
+     UIViewContentModeScaleAspectFit,      // contents scaled to fit with fixed aspect. remainder is transparent
+     UIViewContentModeScaleAspectFill,     // contents scaled to fill with fixed aspect. some portion of content may be clipped.
+     UIViewContentModeRedraw,              // redraw on bounds change (calls -setNeedsDisplay)
+     UIViewContentModeCenter,              // contents remain same size. positioned adjusted.
+     UIViewContentModeTop,
+     UIViewContentModeBottom,
+     UIViewContentModeLeft,
+     UIViewContentModeRight,
+     UIViewContentModeTopLeft,
+     UIViewContentModeTopRight,
+     UIViewContentModeBottomLeft,
+     UIViewContentModeBottomRight,
+     };
+     
+     
+     */
+    
+    
+    
     // 添加到父视图
     [self addSubview:backgroundImageView];
     
