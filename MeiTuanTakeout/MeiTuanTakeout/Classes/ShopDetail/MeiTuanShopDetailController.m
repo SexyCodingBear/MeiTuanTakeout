@@ -123,9 +123,50 @@
     
     
     
+    // TODO：3、添加滚动视图
+    // 创建滚动视图
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
     
+    // 添加到父视图
+    [self.view addSubview:scrollView];
     
+    // 添加约束
+    [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.left.right.offset(0);
+        make.bottom.equalTo(closeButton.mas_top).offset(-60);
+        
+    }];
+    
+    /**
+     
+     UISCrollView上加控件由于要计算contentSize必须要明确每个控件的宽高，加上UIView只需要明确UIView的宽高就可以了，里面的子控件不是直接加在ScrollView上的，不需要明确宽高。
 
+     
+     */
+    
+    // 创建滚动视图中的内容视图
+    UIView * contentView = [[UIView alloc] init];
+    
+    // 添加到父视图
+    [scrollView addSubview:contentView];
+    
+    // 添加约束
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.offset(0);
+        make.width.equalTo(scrollView);
+        make.height.offset(1000);
+        
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
 
