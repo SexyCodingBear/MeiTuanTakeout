@@ -53,11 +53,28 @@
 }
 
 
+
+
+
+#pragma mark - 关闭按钮点击方法
+// 关闭按钮点击方法
 - (void)closeButtonClick {
     
     // 动画方式关闭商家控制器
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+
+
+#pragma mark - 设置状态栏颜色
+// 设置状态栏颜色
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    
+    // 返回亮色状态栏
+    return UIStatusBarStyleLightContent;
+
+
 }
 
 
