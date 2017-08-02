@@ -23,8 +23,8 @@
 // 创建商家公告文本标签
 @property (weak, nonatomic) UILabel *bulletinLabel;
 
-
-
+// 创建一个优惠信息视图
+@property (weak, nonatomic) WDYInfoView *loopView;
 
 @end
 
@@ -77,10 +77,10 @@
     // TODO:2、轮播视图
     
     // 创建轮播视图
-    UIView *loopView = [[UIView alloc] init];
+    WDYInfoView *loopView = [[WDYInfoView alloc] init];
     
     // 设置背景颜色
-    loopView.backgroundColor = [UIColor yellowColor];
+//    loopView.backgroundColor = [UIColor grayColor];
     
     // 添加到父视图
     [self addSubview:loopView];
@@ -95,6 +95,8 @@
         
     }];
     
+    // 给属性赋值
+    _loopView = loopView;
     
     
     // TODO:3、设置虚线
@@ -234,6 +236,10 @@
     
     // TODO:4、设置商家公告
     _bulletinLabel.text = _headerViewModel.bulletin;
+    
+    
+    // TODO:4、设置一个轮播视图的数据
+    _loopView.infoModel = _headerViewModel.discounts[0];
     
      
 }

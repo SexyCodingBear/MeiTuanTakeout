@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WDYInfoView.h"
 #import "MeiTuanShopHeaderViewModel.h"
 
 @interface MeiTuanShopHeaderView : UIView
 
+// 声明头部视图模型
 @property (strong,nonatomic) MeiTuanShopHeaderViewModel *headerViewModel;
 
 
