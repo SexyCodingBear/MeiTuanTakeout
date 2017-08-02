@@ -24,7 +24,7 @@
 @property (weak, nonatomic) UILabel *bulletinLabel;
 
 // 创建一个优惠信息视图
-@property (weak, nonatomic) WDYInfoView *loopView;
+@property (weak, nonatomic) WDYInfoLoopView *infoLoopView;
 
 @end
 
@@ -74,19 +74,23 @@
     _backgroundImageView = backgroundImageView;
     
     
+    
+    
+    
+    
     // TODO:2、轮播视图
     
     // 创建轮播视图
-    WDYInfoView *loopView = [[WDYInfoView alloc] init];
+    WDYInfoLoopView *infoLoopView = [[WDYInfoLoopView alloc] init];
     
-    // 设置背景颜色
-//    loopView.backgroundColor = [UIColor grayColor];
+    // 裁剪超出显示范围区域
+    infoLoopView.clipsToBounds =YES;
     
     // 添加到父视图
-    [self addSubview:loopView];
+    [self addSubview:infoLoopView];
     
     // 添加约束
-    [loopView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [infoLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.offset(16);
         make.bottom.offset(-8);
@@ -96,7 +100,27 @@
     }];
     
     // 给属性赋值
-    _loopView = loopView;
+    _infoLoopView = infoLoopView;
+    
+    // 创建箭头视图
+    UIImageView *arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_arrow_white"]];
+    
+    // 添加到父控件
+    [infoLoopView addSubview:arrowView];
+    
+    // 设置约束，因为UIImageView初始化添加图片，图片自适应大小，所以宽高确定，不用给了，确定xy即可，右边约束确定下，中心Y对齐确定y。
+    [arrowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.offset(0);
+        make.centerY.offset(0);
+        
+    }];
+    
+    
+    
+    
+    
+    
     
     
     // TODO:3、设置虚线
@@ -117,12 +141,17 @@
     // 添加约束
     [dashLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(loopView.mas_left).offset(0);
-        make.bottom.equalTo(loopView.mas_top).offset(-8);
+        make.left.equalTo(infoLoopView.mas_left).offset(0);
+        make.bottom.equalTo(infoLoopView.mas_top).offset(-8);
         make.right.offset(0);
         make.height.offset(1);
         
     }];
+    
+    
+    
+    
+    
     
     
     // TODO:4、创建头像视图
@@ -161,6 +190,10 @@
     _avatarImageView = avatarImageView;
     
     
+    
+    
+    
+    
     // TODO:5、创建店名文本标签
     UILabel * shopNameLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:16] andText:@"粮新发现"];
     
@@ -177,6 +210,11 @@
     
     // 给属性赋值
     _shopNameLabel = shopNameLabel;
+    
+    
+    
+    
+    
     
     
     // TODO:6、创建商家公告文本标签
@@ -239,7 +277,7 @@
     
     
     // TODO:4、设置一个轮播视图的数据
-    _loopView.infoModel = _headerViewModel.discounts[0];
+    _infoLoopView.discounts = _headerViewModel.discounts;
     
      
 }

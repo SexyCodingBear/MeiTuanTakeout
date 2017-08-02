@@ -38,6 +38,8 @@
     return self;
 }
 
+#pragma mark - 创建视图
+// 创建视图
 - (void)setupUI{
     
     
@@ -98,7 +100,6 @@
     
     // 使用第三方框架加载网络图片，自动给imageView中的image属性赋值
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.icon_url]];
-    NSLog(@"%@",_iconImageView.image);
     
     // 给_infoLabel中的text属性赋值
     _infoLabel.text = infoModel.info;

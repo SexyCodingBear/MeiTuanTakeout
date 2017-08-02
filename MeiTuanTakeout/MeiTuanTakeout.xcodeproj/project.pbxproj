@@ -17,6 +17,7 @@
 		D86650D91F3147C500CA04FB /* UIImage+DashLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650D81F3147C500CA04FB /* UIImage+DashLine.m */; };
 		D86650DD1F31561100CA04FB /* WDYInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650DC1F31561100CA04FB /* WDYInfoModel.m */; };
 		D86650E01F315D4300CA04FB /* WDYInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650DF1F315D4300CA04FB /* WDYInfoView.m */; };
+		D86650E31F31928C00CA04FB /* WDYInfoLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650E21F31928C00CA04FB /* WDYInfoLoopView.m */; };
 		D88566971F2E50C400E4FC2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88566961F2E50C400E4FC2A /* main.m */; };
 		D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88566A11F2E50C400E4FC2A /* Assets.xcassets */; };
 		D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88566A31F2E50C400E4FC2A /* LaunchScreen.storyboard */; };
@@ -86,6 +87,8 @@
 		D86650DC1F31561100CA04FB /* WDYInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYInfoModel.m; sourceTree = "<group>"; };
 		D86650DE1F315D4300CA04FB /* WDYInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDYInfoView.h; sourceTree = "<group>"; };
 		D86650DF1F315D4300CA04FB /* WDYInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYInfoView.m; sourceTree = "<group>"; };
+		D86650E11F31928C00CA04FB /* WDYInfoLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDYInfoLoopView.h; sourceTree = "<group>"; };
+		D86650E21F31928C00CA04FB /* WDYInfoLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYInfoLoopView.m; sourceTree = "<group>"; };
 		D88566921F2E50C400E4FC2A /* MeiTuanTakeout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeiTuanTakeout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88566961F2E50C400E4FC2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D88566A11F2E50C400E4FC2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				D86650DC1F31561100CA04FB /* WDYInfoModel.m */,
 				D86650DE1F315D4300CA04FB /* WDYInfoView.h */,
 				D86650DF1F315D4300CA04FB /* WDYInfoView.m */,
+				D86650E11F31928C00CA04FB /* WDYInfoLoopView.h */,
+				D86650E21F31928C00CA04FB /* WDYInfoLoopView.m */,
 			);
 			path = LoopView;
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 				D88567391F2E519100E4FC2A /* UIView+WebCache.m in Sources */,
 				D88567281F2E519100E4FC2A /* MKAnnotationView+WebCache.m in Sources */,
 				D885672A1F2E519100E4FC2A /* NSImage+WebCache.m in Sources */,
+				D86650E31F31928C00CA04FB /* WDYInfoLoopView.m in Sources */,
 				D88567211F2E519100E4FC2A /* MASLayoutConstraint.m in Sources */,
 				D885672E1F2E519100E4FC2A /* SDWebImageDecoder.m in Sources */,
 				D88567361F2E519100E4FC2A /* UIImage+WebP.m in Sources */,

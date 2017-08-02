@@ -135,6 +135,9 @@
     // TODO:1、创建标签栏视图
     UIView *shopTagView = [[UIView alloc] init];
     
+    // TODO:此行是测试代码
+//    shopTagView.alpha = 0.2;
+    
     // 设置标签视图背景颜色
     shopTagView.backgroundColor = [UIColor whiteColor];
     
@@ -664,12 +667,6 @@
 
 
 }
-
-
-
-
-
-
 
 
 
