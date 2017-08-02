@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WDYInfoModel.h"
 
 @interface MeiTuanShopHeaderViewModel : NSObject
 
@@ -24,7 +25,8 @@
 // 商家公告
 @property (copy, nonatomic) NSString *bulletin;
 
-
+// 折扣信息数组(带有范型)
+@property (strong,nonatomic) NSArray <WDYInfoModel *>*discounts;
 
 // 字典转模型方法
 + (instancetype)shopHeaderViewModelWithDictionary:(NSDictionary *)dict;

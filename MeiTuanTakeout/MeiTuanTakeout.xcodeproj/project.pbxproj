@@ -15,6 +15,7 @@
 		D86650CD1F30CC7400CA04FB /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = D86650CC1F30CC7400CA04FB /* food.json */; };
 		D86650D31F30CE2400CA04FB /* MeiTuanShopHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650D21F30CE2400CA04FB /* MeiTuanShopHeaderView.m */; };
 		D86650D91F3147C500CA04FB /* UIImage+DashLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650D81F3147C500CA04FB /* UIImage+DashLine.m */; };
+		D86650DD1F31561100CA04FB /* WDYInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650DC1F31561100CA04FB /* WDYInfoModel.m */; };
 		D88566971F2E50C400E4FC2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88566961F2E50C400E4FC2A /* main.m */; };
 		D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88566A11F2E50C400E4FC2A /* Assets.xcassets */; };
 		D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88566A31F2E50C400E4FC2A /* LaunchScreen.storyboard */; };
@@ -80,6 +81,8 @@
 		D86650D21F30CE2400CA04FB /* MeiTuanShopHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopHeaderView.m; sourceTree = "<group>"; };
 		D86650D71F3147C500CA04FB /* UIImage+DashLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DashLine.h"; sourceTree = "<group>"; };
 		D86650D81F3147C500CA04FB /* UIImage+DashLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DashLine.m"; sourceTree = "<group>"; };
+		D86650DB1F31561100CA04FB /* WDYInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDYInfoModel.h; sourceTree = "<group>"; };
+		D86650DC1F31561100CA04FB /* WDYInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYInfoModel.m; sourceTree = "<group>"; };
 		D88566921F2E50C400E4FC2A /* MeiTuanTakeout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeiTuanTakeout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88566961F2E50C400E4FC2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D88566A11F2E50C400E4FC2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -249,6 +252,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D86650DA1F31543400CA04FB /* LoopView */ = {
+			isa = PBXGroup;
+			children = (
+				D86650DB1F31561100CA04FB /* WDYInfoModel.h */,
+				D86650DC1F31561100CA04FB /* WDYInfoModel.m */,
+			);
+			path = LoopView;
+			sourceTree = "<group>";
+		};
 		D88566891F2E50C400E4FC2A = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +358,7 @@
 		D88566BE1F2E519100E4FC2A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D86650DA1F31543400CA04FB /* LoopView */,
 				D88566BF1F2E519100E4FC2A /* AFNetworking */,
 				D88566CD1F2E519100E4FC2A /* Masonry */,
 				D88566E71F2E519100E4FC2A /* SDWebImage */,
@@ -589,6 +602,7 @@
 				D885671E1F2E519100E4FC2A /* MASCompositeConstraint.m in Sources */,
 				D88567291F2E519100E4FC2A /* NSData+ImageContentType.m in Sources */,
 				D885672F1F2E519100E4FC2A /* SDWebImageDownloader.m in Sources */,
+				D86650DD1F31561100CA04FB /* WDYInfoModel.m in Sources */,
 				D885671C1F2E519100E4FC2A /* AFURLResponseSerialization.m in Sources */,
 				D885671D1F2E519100E4FC2A /* AFURLSessionManager.m in Sources */,
 				D88567181F2E519100E4FC2A /* AFHTTPSessionManager.m in Sources */,
