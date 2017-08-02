@@ -296,6 +296,8 @@
     // 创建商家详情控制器
     MeiTuanShopDetailController *shopDetailController = [[MeiTuanShopDetailController alloc] init];
     
+    shopDetailController.headerViewModel = _headerViewModel;
+    
     // 使用商家控制器模态出商家详情控制器
     [self.viewController presentViewController:shopDetailController animated:YES completion:nil];
 
