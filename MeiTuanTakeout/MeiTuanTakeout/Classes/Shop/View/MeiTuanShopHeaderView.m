@@ -23,7 +23,7 @@
 // 创建商家公告文本标签
 @property (weak, nonatomic) UILabel *bulletinLabel;
 
-// 创建一个优惠信息视图
+// 创建轮播视图
 @property (weak, nonatomic) WDYInfoLoopView *infoLoopView;
 
 @end
@@ -257,12 +257,47 @@
     
     // 给属性赋值
     _bulletinLabel = bulletinLabel;
+    
+    
+    
+    
+    
+    // 给轮播视图添加点击／轻敲手势
+    // 创建点击手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(infoLoopViewClick)];
+    
+    // 给轮播视图添加手势
+    [infoLoopView addGestureRecognizer:tap];
 
 }
 
+
+
+
+
+#pragma mark - 轮播视图点击方法
+// 轮播视图点击方法
+- (void)infoLoopViewClick {
+
+    NSLog(@"---------");
+    // 使用模态呈现商家详情页面
+    // 1、拿到控制器才能modal：两种方法拿到控制器：1、使用代理：声明协议，声明代理对象，给代理对象赋值，代理类遵守协议，实现代理方法，使用代理对象调用代理方法 2、通过响应者链条获取控制器。找到响应者，判断是不是控制器类型，如果是就返回，如果到最后都没找到就返回nil
+    
+    // 创建商家详情控制器
+    MeiTuanShopDetailController *shopDetailController = [[MeiTuanShopDetailController alloc] init];
+    
+    // 使用商家控制器模态出商家详情控制器
+    [self.viewController presentViewController:shopDetailController animated:YES completion:nil];
+
+}
+
+
+
+
+
 #pragma mark - 重写模型属性的setter方法
 // 重写模型属性的setter方法
--(void)setHeaderViewModel:(MeiTuanShopHeaderViewModel *)headerViewModel{
+-(void)setHeaderViewModel:(MeiTuanShopHeaderViewModel *)headerViewModel {
     
     // 给属性赋值
     _headerViewModel = headerViewModel;

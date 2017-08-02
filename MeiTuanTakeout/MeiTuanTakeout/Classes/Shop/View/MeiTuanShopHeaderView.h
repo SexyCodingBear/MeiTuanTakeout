@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WDYInfoLoopView.h"
 #import "MeiTuanShopHeaderViewModel.h"
+#import "MeiTuanShopDetailController.h"
 
 @interface MeiTuanShopHeaderView : UIView
 

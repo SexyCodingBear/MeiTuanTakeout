@@ -18,6 +18,8 @@
 		D86650DD1F31561100CA04FB /* WDYInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650DC1F31561100CA04FB /* WDYInfoModel.m */; };
 		D86650E01F315D4300CA04FB /* WDYInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650DF1F315D4300CA04FB /* WDYInfoView.m */; };
 		D86650E31F31928C00CA04FB /* WDYInfoLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650E21F31928C00CA04FB /* WDYInfoLoopView.m */; };
+		D86650E71F31FE8D00CA04FB /* MeiTuanShopDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650E61F31FE8D00CA04FB /* MeiTuanShopDetailController.m */; };
+		D86650EA1F3204C400CA04FB /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650E91F3204C400CA04FB /* UIView+Addition.m */; };
 		D88566971F2E50C400E4FC2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88566961F2E50C400E4FC2A /* main.m */; };
 		D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88566A11F2E50C400E4FC2A /* Assets.xcassets */; };
 		D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88566A31F2E50C400E4FC2A /* LaunchScreen.storyboard */; };
@@ -89,6 +91,10 @@
 		D86650DF1F315D4300CA04FB /* WDYInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYInfoView.m; sourceTree = "<group>"; };
 		D86650E11F31928C00CA04FB /* WDYInfoLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDYInfoLoopView.h; sourceTree = "<group>"; };
 		D86650E21F31928C00CA04FB /* WDYInfoLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYInfoLoopView.m; sourceTree = "<group>"; };
+		D86650E51F31FE8D00CA04FB /* MeiTuanShopDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopDetailController.h; sourceTree = "<group>"; };
+		D86650E61F31FE8D00CA04FB /* MeiTuanShopDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopDetailController.m; sourceTree = "<group>"; };
+		D86650E81F3204C400CA04FB /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
+		D86650E91F3204C400CA04FB /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
 		D88566921F2E50C400E4FC2A /* MeiTuanTakeout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeiTuanTakeout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88566961F2E50C400E4FC2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D88566A11F2E50C400E4FC2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -271,6 +277,15 @@
 			path = LoopView;
 			sourceTree = "<group>";
 		};
+		D86650E41F31FE5500CA04FB /* ShopDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D86650E51F31FE8D00CA04FB /* MeiTuanShopDetailController.h */,
+				D86650E61F31FE8D00CA04FB /* MeiTuanShopDetailController.m */,
+			);
+			path = ShopDetail;
+			sourceTree = "<group>";
+		};
 		D88566891F2E50C400E4FC2A = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +332,7 @@
 			children = (
 				D88566B01F2E519100E4FC2A /* Main */,
 				D885673C1F2E53A700E4FC2A /* Shop */,
+				D86650E41F31FE5500CA04FB /* ShopDetail */,
 				D88566AD1F2E519100E4FC2A /* FoodDetail */,
 				D86650B71F308FE700CA04FB /* ShopOrder */,
 				D86650B51F308FE700CA04FB /* ShopComment */,
@@ -360,6 +376,8 @@
 				D88567491F2F031F00E4FC2A /* NSObject+LinearEquation.m */,
 				D86650D71F3147C500CA04FB /* UIImage+DashLine.h */,
 				D86650D81F3147C500CA04FB /* UIImage+DashLine.m */,
+				D86650E81F3204C400CA04FB /* UIView+Addition.h */,
+				D86650E91F3204C400CA04FB /* UIView+Addition.m */,
 				D88567471F2F016A00E4FC2A /* Additions.h */,
 			);
 			path = Common;
@@ -585,6 +603,8 @@
 				D88567221F2E519100E4FC2A /* MASViewAttribute.m in Sources */,
 				D88567371F2E519100E4FC2A /* UIImageView+HighlightedWebCache.m in Sources */,
 				D88567201F2E519100E4FC2A /* MASConstraintMaker.m in Sources */,
+				D86650EA1F3204C400CA04FB /* UIView+Addition.m in Sources */,
+				D86650E71F31FE8D00CA04FB /* MeiTuanShopDetailController.m in Sources */,
 				D885672B1F2E519100E4FC2A /* SDImageCache.m in Sources */,
 				D88567311F2E519100E4FC2A /* SDWebImageManager.m in Sources */,
 				D88567161F2E519100E4FC2A /* UIColor+Addition.m in Sources */,
