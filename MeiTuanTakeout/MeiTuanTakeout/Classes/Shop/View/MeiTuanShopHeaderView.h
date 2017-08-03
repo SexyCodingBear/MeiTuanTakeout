@@ -10,6 +10,7 @@
 #import "WDYInfoLoopView.h"
 #import "MeiTuanShopHeaderViewModel.h"
 #import "MeiTuanShopDetailController.h"
+#import "AnimatorTransitionDelegate.h"
 
 @interface MeiTuanShopHeaderView : UIView
 

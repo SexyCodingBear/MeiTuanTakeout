@@ -26,6 +26,11 @@
 // 创建轮播视图
 @property (weak, nonatomic) WDYInfoLoopView *infoLoopView;
 
+
+// 将转场动画代理声明为属性，强引用住
+@property (strong,nonatomic) AnimatorTransitionDelegate *animatorTransitionDelegate;
+
+
 @end
 
 
@@ -306,8 +311,11 @@
     // 设置展示后,后面控制器view的显示方式,展示样式为自定义
     shopDetailController.modalPresentationStyle = UIModalPresentationCustom;
     
+    // 创建转场代理
+    _animatorTransitionDelegate = [[AnimatorTransitionDelegate alloc] init];
+    
     // 设置转场代理
-    shopDetailController.transitioningDelegate = self;
+    shopDetailController.transitioningDelegate = _animatorTransitionDelegate;
     
     // 使用商家控制器模态出商家详情控制器
     [self.viewController presentViewController:shopDetailController animated:YES completion:nil];
