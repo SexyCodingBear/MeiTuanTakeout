@@ -296,7 +296,18 @@
     // 创建商家详情控制器
     MeiTuanShopDetailController *shopDetailController = [[MeiTuanShopDetailController alloc] init];
     
+    // 给商家详情属性赋值，传递数据
     shopDetailController.headerViewModel = _headerViewModel;
+
+    // 设置modal转场的动画样式
+    // shopDetailController.modalTransitionStyle;
+    
+    
+    // 设置展示后,后面控制器view的显示方式,展示样式为自定义
+    shopDetailController.modalPresentationStyle = UIModalPresentationCustom;
+    
+    // 设置转场代理
+    shopDetailController.transitioningDelegate = self;
     
     // 使用商家控制器模态出商家详情控制器
     [self.viewController presentViewController:shopDetailController animated:YES completion:nil];
