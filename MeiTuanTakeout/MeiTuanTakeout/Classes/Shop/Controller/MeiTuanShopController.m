@@ -17,6 +17,12 @@
 // 将 头部视图模型 声明为属性，方便数据传递
 @property (strong,nonatomic) MeiTuanShopHeaderViewModel * headerViewModel;
 
+@property (strong,nonatomic) NSMutableArray *shopOrderCategoryModelArray;
+
+
+// 将 右侧分享按钮 声明为属性，方便数据传递
+@property (strong,nonatomic) UIBarButtonItem *rightButtonItem;
+
 // 将 头部视图 声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) MeiTuanShopHeaderView *shopHeaderView;
 
@@ -29,8 +35,13 @@
 // 将 滚动视图 声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIScrollView *shopScrollView;
 
-// 将 右侧分享按钮 声明为属性，方便数据传递
-@property (strong,nonatomic) UIBarButtonItem *rightButtonItem;
+
+
+
+
+
+
+
 
 @end
 
@@ -310,6 +321,9 @@
     MeiTuanShopOrderController * shopOrderController = [[MeiTuanShopOrderController alloc] init];
     MeiTuanShopCommentController * shopCommentController = [[MeiTuanShopCommentController alloc] init];
     MeiTuanShopInformationController * shopInformationController = [[MeiTuanShopInformationController alloc] init];
+    
+    shopOrderController.shopOrderCategoryModelData = _shopOrderCategoryModelArray;
+    
     
     // 将创建好的子控制器加入到数组
     NSArray *viewControllerArray = @[shopOrderController,shopCommentController,shopInformationController];
@@ -677,26 +691,25 @@
     
     /********* 以下处理的是 食物模型数据 *********/
     
-    // 取出想要的poi_info（头部视图）对应的字典
-    NSDictionary *shopOrderViewDict = jsonDict[@"data"][@"food_spu_tags"];
+    // 取出想要的food_spu_tags（食物分类）对应的数组
+    NSArray *shopOrderCategoryData = jsonDict[@"data"][@"food_spu_tags"];
     
-    // 字典转模型
-//    MeiTuanShopOrderCategoryModel * shopOrderCategoryModel = [MeiTuanShopOrderCategoryModel shopHeaderViewModelWithDictionary:headerViewDict];
+    NSMutableArray *shopOrderCategoryModelArray = [NSMutableArray arrayWithCapacity:shopOrderCategoryData.count];
     
+    for (NSDictionary *dict in shopOrderCategoryData) {
+        
+        // 字典转模型
+        MeiTuanShopOrderCategoryModel * shopOrderCategoryModel = [MeiTuanShopOrderCategoryModel shopOrderCategoryModelWithDictionary:dict];
+        
+        
+        [shopOrderCategoryModelArray addObject:shopOrderCategoryModel];
+    }
     
-    
-    
-    
-    
-    
+    // 给属性赋值
+    _shopOrderCategoryModelArray = shopOrderCategoryModelArray;
     
 
 }
-
-
-
-
-
 
 
 @end

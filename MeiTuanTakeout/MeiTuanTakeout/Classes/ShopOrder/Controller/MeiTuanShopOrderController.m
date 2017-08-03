@@ -8,9 +8,9 @@
 
 #import "MeiTuanShopOrderController.h"
 
-@interface MeiTuanShopOrderController ()
+@interface MeiTuanShopOrderController () <UITableViewDataSource,UITableViewDelegate>
 
-
+// 将食物分类表格声明为属性，方便兄弟控件添加约束
 @property (weak, nonatomic) UITableView *categoryTableView;
 
 
@@ -19,6 +19,17 @@
 
 
 @end
+
+
+
+
+// 设置重用标识符
+static NSString *shopOrderCategoryTableViewCellID = @"shopOrderCategoryTableViewCell";
+
+static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
+
+
+
 
 @implementation MeiTuanShopOrderController
 
@@ -40,6 +51,7 @@
 
 
 
+
 #pragma mark - 搭建界面
 - (void)setupUI {
 
@@ -52,7 +64,6 @@
     
 
 }
-
 
 
 
@@ -78,7 +89,20 @@
     
     // 给属性赋值
     _categoryTableView = categoryTableView;
+    
+    // 设置数据源
+    categoryTableView.dataSource = self;
+    
+    // 设置代理
+    categoryTableView.delegate = self;
+    
+    // 注册单元格
+    [categoryTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:shopOrderCategoryTableViewCellID];
+    
+    
+    
 }
+
 
 
 
@@ -101,9 +125,107 @@
         
     }];
 
-
+    // 设置数据源
+    foodTableView.dataSource = self;
+    
+    // 设置代理
+    foodTableView.delegate = self;
+    
+    // 注册单元格
+    [foodTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:shopOrderFoodTableViewCellID];
 
 }
+
+
+
+
+#pragma mark - 数据源方法
+// 返回有多少组
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    
+    if (tableView == _categoryTableView) {
+        
+        return 1;
+    }
+    
+    
+    return _shopOrderCategoryModelData.count;
+
+}
+
+
+
+
+
+
+// 返回每组有多少行
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    
+    if (tableView == _categoryTableView) {
+        
+        return _shopOrderCategoryModelData.count;
+    }
+    
+    
+    return _shopOrderCategoryModelData[section].spus.count;
+}
+
+
+
+
+
+
+// 设置单元格
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    if (tableView == _categoryTableView) {
+        
+        
+        
+        UITableViewCell *shopOrderCategoryTableViewCell  = [tableView dequeueReusableCellWithIdentifier:shopOrderCategoryTableViewCellID forIndexPath:indexPath];
+        
+        
+        MeiTuanShopOrderCategoryModel * shopOrderCategoryModel =
+        _shopOrderCategoryModelData[indexPath.row];
+        
+        
+        shopOrderCategoryTableViewCell.textLabel.text = shopOrderCategoryModel.name;
+        
+        
+        return shopOrderCategoryTableViewCell;
+        
+        
+    }
+    
+    
+    UITableViewCell *shopOrderFoodTableViewCell  = [tableView dequeueReusableCellWithIdentifier:shopOrderFoodTableViewCellID forIndexPath:indexPath];
+    
+    
+    MeiTuanShopOrderCategoryModel * shopOrderCategoryModel =
+    _shopOrderCategoryModelData[indexPath.section];
+    
+    
+    MeiTuanShopOrderFoodModel * shopOrderFoodModel =
+    shopOrderCategoryModel.spus[indexPath.row];
+    
+    
+    shopOrderFoodTableViewCell.textLabel.text = shopOrderFoodModel.name;
+    
+    
+    return shopOrderFoodTableViewCell;
+    
+    
+}
+
+
+
+
+
+
+
 
 
 @end
