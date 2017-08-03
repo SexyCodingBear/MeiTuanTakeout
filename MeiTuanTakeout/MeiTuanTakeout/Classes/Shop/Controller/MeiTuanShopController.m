@@ -661,10 +661,35 @@
     // 给属性赋值
     _headerViewModel = headerViewModel;
     
-    // 打印取出的字典
-    NSLog(@"%@",headerViewModel.poi_back_pic_url);
     
-
+    // TODO:测试代码，打印取出的字典
+//    NSLog(@"%@",headerViewModel.poi_back_pic_url);
+    
+    
+    
+    /********* 以上处理的是 商家头部模型数据 *********/
+    
+    
+    
+    
+    
+    
+    
+    /********* 以下处理的是 食物模型数据 *********/
+    
+    // 取出想要的poi_info（头部视图）对应的字典
+    NSDictionary *shopOrderViewDict = jsonDict[@"data"][@"food_spu_tags"];
+    
+    // 字典转模型
+//    MeiTuanShopOrderCategoryModel * shopOrderCategoryModel = [MeiTuanShopOrderCategoryModel shopHeaderViewModelWithDictionary:headerViewDict];
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
 

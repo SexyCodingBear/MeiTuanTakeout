@@ -112,6 +112,7 @@ typedef enum : NSUInteger {
         [UIView animateWithDuration:[self transitionDuration:nil] animations:^{
             
 #warning mark - 动画方法去操作transform直接缩放到0时无效
+            // 此时，fromView是代表shopDetailController的View
             fromView.transform = CGAffineTransformMakeScale(0.01, 0.01);
             
             

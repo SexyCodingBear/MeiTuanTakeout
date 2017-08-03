@@ -14,6 +14,7 @@
 #import "MeiTuanShopInformationController.h"
 #import "MeiTuanShopHeaderViewModel.h"
 #import "MeiTuanShopHeaderView.h"
+#import "MeiTuanShopOrderCategoryModel.h"
 
 
 
