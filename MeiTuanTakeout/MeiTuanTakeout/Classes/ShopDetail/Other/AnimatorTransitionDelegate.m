@@ -8,10 +8,19 @@
 
 #import "AnimatorTransitionDelegate.h"
 
+// 使用枚举定义转场类型
+typedef enum : NSUInteger {
+    AnimatorTransitionDelegateTypeDismiss,
+    AnimatorTransitionDelegateTypePresent,
+} AnimatorTransitionDelegateType;
+
+
+
+
 
 @interface AnimatorTransitionDelegate () <UIViewControllerAnimatedTransitioning>// 遵守动画转场协议
 
-
+@property (assign,nonatomic) AnimatorTransitionDelegateType transitioningType;
 
 
 @end
@@ -26,6 +35,8 @@
 // 此方法是present时调用,谁来处理present及present动画
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     
+    _transitioningType = AnimatorTransitionDelegateTypePresent;
+    
     return self;
 }
 
@@ -35,7 +46,8 @@
 
 // 此方法是dismiss 时调用,谁来处理dismiss及dismiss动画
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-
+    
+    _transitioningType = AnimatorTransitionDelegateTypeDismiss;
 
     return self;
 }
@@ -67,13 +79,50 @@
     // 获取容器视图
     UIView *containerView = [transitionContext containerView];
     
-    // 将目标控制器添加到容器视图上，这样才能显示转场之后的界面
-    [containerView addSubview:toView];
-    
-    // 通知转场上下文装场结束
-    [transitionContext completeTransition:YES];
     
     
+    // 使用枚举定义转场类型
+    if (_transitioningType) {// 如果进入说明是present
+        
+        // 开始时让view小得看不见
+        toView.transform = CGAffineTransformMakeScale(0, 0);
+        
+        
+        // 将目标控制器添加到容器视图上，这样才能显示转场之后的界面
+        [containerView addSubview:toView];
+        
+        
+        // 添加动画效果,本方法中时间已经在上面方法中返回了，所以重新调用上面方法[self transitionDuration:nil]
+        [UIView animateWithDuration:[self transitionDuration:nil] animations:^{
+
+            // 动画让view恢复原始尺寸
+            toView.transform = CGAffineTransformIdentity;
+            
+            
+        } completion:^(BOOL finished) {
+            
+            // 通知转场上下文转场结束
+            [transitionContext completeTransition:YES];
+            
+        }];
+        
+    }else {// 如果进入else说明是dismiss
+    
+        // 添加动画效果,本方法中时间已经在上面方法中返回了，所以重新调用上面方法[self transitionDuration:nil]
+        [UIView animateWithDuration:[self transitionDuration:nil] animations:^{
+            
+#warning mark - 动画方法去操作transform直接缩放到0时无效
+            fromView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            
+            
+        } completion:^(BOOL finished) {
+            
+            // 通知转场上下文转场结束
+            [transitionContext completeTransition:YES];
+            
+        }];
+    
+    }
     
 }
 
