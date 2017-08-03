@@ -81,7 +81,7 @@ typedef enum : NSUInteger {
     
     
     
-    // 使用枚举定义转场类型
+    // 使用枚举定义转场类型，判断是present还是dismiss
     if (_transitioningType) {// 如果进入说明是present
         
         // 开始时让view小得看不见
@@ -101,7 +101,7 @@ typedef enum : NSUInteger {
             
         } completion:^(BOOL finished) {
             
-            // 通知转场上下文转场结束
+            // 通知转场上下文转场结束，必须在动画完成之后进行，因为放在外面，动画还没有结束，它就通知转场上下文转场结束
             [transitionContext completeTransition:YES];
             
         }];
@@ -117,7 +117,7 @@ typedef enum : NSUInteger {
             
         } completion:^(BOOL finished) {
             
-            // 通知转场上下文转场结束
+            // 通知转场上下文转场结束，必须在动画完成之后进行，因为放在外面，动画还没有结束，它就通知转场上下文转场结束
             [transitionContext completeTransition:YES];
             
         }];
