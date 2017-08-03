@@ -154,6 +154,12 @@
     // 创建滚动视图，MeiTuanScrollView写在本类里，不需要引入头文件
     MeiTuanScrollView *scrollView = [[MeiTuanScrollView alloc] init];
     
+    // 设置滚动条显示
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    
+    
+    
     // 添加到父视图
     [self.view addSubview:scrollView];
     
