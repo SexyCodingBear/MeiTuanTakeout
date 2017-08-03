@@ -314,7 +314,7 @@
     // 创建转场代理
     _animatorTransitionDelegate = [[AnimatorTransitionDelegate alloc] init];
     
-    // 设置转场代理
+    // 设置转场代理,代理属性本身是weak，无法强引用代理对象，所以要设置属性来强引用代理对象
     shopDetailController.transitioningDelegate = _animatorTransitionDelegate;
     
     // 使用商家控制器模态出商家详情控制器

@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AnimatorTransitionDelegate : NSObject <UIViewControllerTransitioningDelegate>
+@interface AnimatorTransitionDelegate : NSObject <UIViewControllerTransitioningDelegate>// 遵守转场代理协议
 
 @end
