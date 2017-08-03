@@ -23,6 +23,7 @@
 		D86651041F32F33900CA04FB /* MeiTuanShopOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651011F32F33900CA04FB /* MeiTuanShopOrderController.m */; };
 		D86651071F32F37100CA04FB /* MeiTuanShopOrderCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651061F32F37100CA04FB /* MeiTuanShopOrderCategoryModel.m */; };
 		D866510A1F32F39C00CA04FB /* MeiTuanShopOrderFoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651091F32F39C00CA04FB /* MeiTuanShopOrderFoodModel.m */; };
+		D866510D1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D866510C1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m */; };
 		D88566971F2E50C400E4FC2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88566961F2E50C400E4FC2A /* main.m */; };
 		D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88566A11F2E50C400E4FC2A /* Assets.xcassets */; };
 		D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88566A31F2E50C400E4FC2A /* LaunchScreen.storyboard */; };
@@ -104,6 +105,8 @@
 		D86651061F32F37100CA04FB /* MeiTuanShopOrderCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderCategoryModel.m; sourceTree = "<group>"; };
 		D86651081F32F39C00CA04FB /* MeiTuanShopOrderFoodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopOrderFoodModel.h; sourceTree = "<group>"; };
 		D86651091F32F39C00CA04FB /* MeiTuanShopOrderFoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderFoodModel.m; sourceTree = "<group>"; };
+		D866510B1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopOrderCategoryCell.h; sourceTree = "<group>"; };
+		D866510C1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderCategoryCell.m; sourceTree = "<group>"; };
 		D88566921F2E50C400E4FC2A /* MeiTuanTakeout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeiTuanTakeout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88566961F2E50C400E4FC2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D88566A11F2E50C400E4FC2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 		D86651031F32F33900CA04FB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D866510B1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.h */,
+				D866510C1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -696,6 +701,7 @@
 				D885671C1F2E519100E4FC2A /* AFURLResponseSerialization.m in Sources */,
 				D885671D1F2E519100E4FC2A /* AFURLSessionManager.m in Sources */,
 				D88567181F2E519100E4FC2A /* AFHTTPSessionManager.m in Sources */,
+				D866510D1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m in Sources */,
 				D885674A1F2F031F00E4FC2A /* NSObject+LinearEquation.m in Sources */,
 				D885671F1F2E519100E4FC2A /* MASConstraint.m in Sources */,
 			);

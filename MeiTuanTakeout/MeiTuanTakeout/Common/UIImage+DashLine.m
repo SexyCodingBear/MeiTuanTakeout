@@ -18,17 +18,17 @@
     // 获取当前上下文
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     
-    // 绘制起点
-    CGContextMoveToPoint(contextRef, 0, 1);
-    
-    // 绘制终点，终点不算在内
-    CGContextAddLineToPoint(contextRef, 4, 1);
-    
     // 设置长度间隔数组
     CGFloat lengths[] = {2,2};
     
     // 设置虚线参数，2代表使用长度间隔数组中的几个间隔
     CGContextSetLineDash(contextRef, 0, lengths, 2);
+    
+    // 绘制起点
+    CGContextMoveToPoint(contextRef, 0, 0);
+    
+    // 绘制终点，终点不算在内
+    CGContextAddLineToPoint(contextRef, 4, 0);
     
     // 设置填充和描边的颜色(默认颜色为黑色)
     [color set];
