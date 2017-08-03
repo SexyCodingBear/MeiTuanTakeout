@@ -11,7 +11,7 @@
 
 @interface MeiTuanShopOrderController : UIViewController
 
-// 分类模型数据
+// 食物分类模型数据
 @property (strong,nonatomic) NSArray <MeiTuanShopOrderCategoryModel *> *shopOrderCategoryModelData;
 
 
