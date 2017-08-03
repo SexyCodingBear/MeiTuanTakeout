@@ -10,9 +10,36 @@
 
 #define Kmargin 16 //间距
 
+
+// 写MeiTuanScrollView继承自UIScrollView
+@interface MeiTuanScrollView : UIScrollView
+
+@end
+
+
+@implementation MeiTuanScrollView
+
+// 触摸方法：触摸结束，将手指抬起时关闭商家控制器
+// 由于scrollView添加了pinch和pan手势，没有tap手势，没有touchEnd方法，这样就会屏蔽scrollView区域的触摸监听事件，所以在自定义的scrollView中重写此方法
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    // 动画方式关闭商家控制器,必须控制器调用，所以使用自己写的分类UIView+Addition中的viewController方法，找到当前控制器
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+    
+    
+}
+
+@end
+
+
+
+
+
+
 @interface MeiTuanShopDetailController ()
 
 @end
+
 
 @implementation MeiTuanShopDetailController
 
@@ -124,8 +151,8 @@
     
     
     // TODO:3、添加滚动视图
-    // 创建滚动视图
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    // 创建滚动视图，MeiTuanScrollView写在本类里，不需要引入头文件
+    MeiTuanScrollView *scrollView = [[MeiTuanScrollView alloc] init];
     
     // 添加到父视图
     [self.view addSubview:scrollView];
