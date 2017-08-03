@@ -62,8 +62,8 @@
      
      typedef NS_ENUM(NSInteger, UIViewContentMode) {
      UIViewContentModeScaleToFill,
-     UIViewContentModeScaleAspectFit,      // contents scaled to fit with fixed aspect. remainder is transparent
-     UIViewContentModeScaleAspectFill,     // contents scaled to fill with fixed aspect. some portion of content may be clipped.
+     UIViewContentModeScaleAspectFit,      // contents scaled to fit with fixed aspect. remainder is transparent保证图片不变形。但是不能完全填充
+     UIViewContentModeScaleAspectFill,     // contents scaled to fill with fixed aspect. some portion of content may be clipped.保证图片不变形且完全填充，但是会有超出部分，需要裁减掉。
      UIViewContentModeRedraw,              // redraw on bounds change (calls -setNeedsDisplay)
      UIViewContentModeCenter,              // contents remain same size. positioned adjusted.
      UIViewContentModeTop,

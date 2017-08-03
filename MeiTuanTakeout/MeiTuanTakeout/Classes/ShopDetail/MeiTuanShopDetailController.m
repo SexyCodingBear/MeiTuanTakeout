@@ -47,8 +47,8 @@
      
      typedef NS_ENUM(NSInteger, UIViewContentMode) {
      UIViewContentModeScaleToFill,
-     UIViewContentModeScaleAspectFit,      // contents scaled to fit with fixed aspect. remainder is transparent
-     UIViewContentModeScaleAspectFill,     // contents scaled to fill with fixed aspect. some portion of content may be clipped.
+     UIViewContentModeScaleAspectFit,      // contents scaled to fit with fixed aspect. remainder is transparent保证图片不变形。但是不能完全填充
+     UIViewContentModeScaleAspectFill,     // contents scaled to fill with fixed aspect. some portion of content may be clipped.保证图片不变形且完全填充，但是会有超出部分，需要裁减掉。
      UIViewContentModeRedraw,              // redraw on bounds change (calls -setNeedsDisplay)
      UIViewContentModeCenter,              // contents remain same size. positioned adjusted.
      UIViewContentModeTop,
@@ -420,6 +420,22 @@
 
 
 
+
+#pragma mark - 触摸方法
+// 触摸方法：触摸结束，将手指抬起时关闭商家控制器
+// 由于scrollView添加了pinch和pan手势，没有tap手势，这样就会屏蔽scrollView区域的触摸监听事件，所以此方法只能适用于非scrollView区域
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    // 动画方式关闭商家控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+
+}
+
+
+
+
+
 #pragma mark - 设置状态栏颜色
 // 设置状态栏颜色
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -429,6 +445,8 @@
 
 
 }
+
+
 
 
 
