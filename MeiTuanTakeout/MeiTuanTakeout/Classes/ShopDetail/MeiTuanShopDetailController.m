@@ -145,7 +145,7 @@
      
      */
     
-    // 创建滚动视图中的内容视图
+    // TODO：3.1 创建滚动视图中的内容视图
     UIView * contentView = [[UIView alloc] init];
     
     // 添加到父视图
@@ -165,7 +165,7 @@
     
 #warning mark - scrollView中的这些子控件都添加到contentView中
     
-    // TODO：4、店名文本标签
+    // TODO：3.2 店名文本标签
     UILabel *shopNameLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:14] andText:_headerViewModel.name];
     
     // 添加到父视图
@@ -183,7 +183,7 @@
     
     
     
-    // TODO：5、起送价文本标签
+    // TODO：3.3 起送价文本标签
     UILabel *shopTipsLabel = [UILabel makeLabelWithTitleColor:[UIColor colorWithWhite:1 alpha:0.9] andFont:[UIFont systemFontOfSize:12] andText:[NSString stringWithFormat:@"%@ | %@ | %@ ",_headerViewModel.min_price_tip,_headerViewModel.shipping_fee_tip,_headerViewModel.delivery_time_tip]];
     
     // 添加到父视图
@@ -202,7 +202,7 @@
     
     
     
-    // TODO：6、折扣信息文本标签
+    // TODO：3.4 折扣信息文本标签
     UILabel *shopDiscountsLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:16] andText:@"折扣信息"];
     
     // 添加到父视图
@@ -221,7 +221,7 @@
     
     
     
-    // TODO: 7、左侧折扣信息分割线
+    // TODO：3.5 左侧折扣信息分割线
     // 创建视图
     UIView * shopDiscountsLineLeftView = [[UIView alloc] init];
     
@@ -245,7 +245,7 @@
     
     
     
-    // TODO: 8、右侧折扣信息分割线
+    // TODO：3.6 右侧折扣信息分割线
     // 创建视图
     UIView * shopDiscountsLineRightView = [[UIView alloc] init];
     
@@ -269,7 +269,7 @@
     
     
     
-    // TODO: 9、展示商家优惠信息
+    // TODO：3.7 展示商家优惠信息
     // 创建优惠信息
     UIStackView * stackView = [[UIStackView alloc] init];
     
@@ -285,7 +285,7 @@
     // 根据优惠信息的模型个数for循环创建infoView
     for (WDYInfoModel *infoModel in _headerViewModel.discounts) {
         
-        // 创刊一条信息视图
+        // 创建一条信息视图
         WDYInfoView *infoView = [[WDYInfoView alloc] init];
         
         // 给信息视图模型赋值
@@ -311,8 +311,69 @@
     
     
     
-    // TODO: 10、展示商家优惠信息
+    // TODO：3.8 公告信息文本标签
+    // 创建公告信息文本标签
+    UILabel *shopBulletinLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:16] andText:@"公告信息"];
     
+    // 添加到父视图
+    [contentView addSubview:shopBulletinLabel];
+    
+    // 添加约束
+    [shopBulletinLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(stackView.mas_bottom).offset(Kmargin * 2.5);
+        make.centerX.offset(0);
+        
+    }];
+    
+    
+    
+    
+    
+    
+    // TODO：3.9 左侧公告信息分割线
+    // 创建视图
+    UIView * shopBulletinLineLeftView = [[UIView alloc] init];
+    
+    // 设置背景颜色
+    shopBulletinLineLeftView.backgroundColor = [UIColor whiteColor];
+    
+    // 添加到父视图
+    [contentView addSubview:shopBulletinLineLeftView];
+    
+    // 添加约束
+    [shopBulletinLineLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.offset(1);
+        make.left.offset(Kmargin);
+        make.right.equalTo(shopBulletinLabel.mas_left).offset(-Kmargin);
+        make.centerY.equalTo(shopBulletinLabel);
+        
+    }];
+    
+    
+    
+    
+    
+    // TODO：3.10 右侧公告信息分割线
+    // 创建视图
+    UIView * shopBulletinLineRightView = [[UIView alloc] init];
+    
+    // 设置背景颜色
+    shopBulletinLineRightView.backgroundColor = [UIColor whiteColor];
+    
+    // 添加到父视图
+    [contentView addSubview:shopBulletinLineRightView];
+    
+    // 添加约束
+    [shopBulletinLineRightView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.offset(1);
+        make.right.offset(-Kmargin);
+        make.left.equalTo(shopBulletinLabel.mas_right).offset(Kmargin);
+        make.centerY.equalTo(shopBulletinLabel);
+        
+    }];
     
     
     
