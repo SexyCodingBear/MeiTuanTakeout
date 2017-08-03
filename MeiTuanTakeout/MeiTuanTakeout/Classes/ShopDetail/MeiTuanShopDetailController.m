@@ -36,7 +36,7 @@
 
 - (void)setupUI {
     
-    // TODO：1、设置背景图片
+    // TODO:1、设置背景图片
     // 添加背景图片
     UIImageView *backgroundImageView = [[UIImageView alloc] init];
     
@@ -94,7 +94,7 @@
     
     
     
-    // TODO：2、关闭按钮
+    // TODO:2、关闭按钮
     // 创建关闭按钮
     UIButton * closeButton = [[UIButton alloc] init];
     
@@ -123,7 +123,7 @@
     
     
     
-    // TODO：3、添加滚动视图
+    // TODO:3、添加滚动视图
     // 创建滚动视图
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     
@@ -145,7 +145,7 @@
      
      */
     
-    // TODO：3.1 创建滚动视图中的内容视图
+    // TODO:3.1 创建滚动视图中的内容视图
     UIView * contentView = [[UIView alloc] init];
     
     // 添加到父视图
@@ -156,7 +156,7 @@
         
         make.edges.offset(0);
         make.width.equalTo(scrollView);
-        make.height.offset(1000);
+//        make.height.offset(1000);// 在没有设置最底部控件的底部约束的之前使用，给contentView一个高度。
         
     }];
     
@@ -165,7 +165,7 @@
     
 #warning mark - scrollView中的这些子控件都添加到contentView中
     
-    // TODO：3.2 店名文本标签
+    // TODO:3.2 店名文本标签
     UILabel *shopNameLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:14] andText:_headerViewModel.name];
     
     // 添加到父视图
@@ -183,7 +183,7 @@
     
     
     
-    // TODO：3.3 起送价文本标签
+    // TODO:3.3 起送价文本标签
     UILabel *shopTipsLabel = [UILabel makeLabelWithTitleColor:[UIColor colorWithWhite:1 alpha:0.9] andFont:[UIFont systemFontOfSize:12] andText:[NSString stringWithFormat:@"%@ | %@ | %@ ",_headerViewModel.min_price_tip,_headerViewModel.shipping_fee_tip,_headerViewModel.delivery_time_tip]];
     
     // 添加到父视图
@@ -202,7 +202,7 @@
     
     
     
-    // TODO：3.4 折扣信息文本标签
+    // TODO:3.4 折扣信息文本标签
     UILabel *shopDiscountsLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:16] andText:@"折扣信息"];
     
     // 添加到父视图
@@ -221,7 +221,7 @@
     
     
     
-    // TODO：3.5 左侧折扣信息分割线
+    // TODO:3.5 左侧折扣信息分割线
     // 创建视图
     UIView * shopDiscountsLineLeftView = [[UIView alloc] init];
     
@@ -245,7 +245,7 @@
     
     
     
-    // TODO：3.6 右侧折扣信息分割线
+    // TODO:3.6 右侧折扣信息分割线
     // 创建视图
     UIView * shopDiscountsLineRightView = [[UIView alloc] init];
     
@@ -269,7 +269,7 @@
     
     
     
-    // TODO：3.7 展示商家优惠信息
+    // TODO:3.7 展示商家优惠信息
     // 创建优惠信息
     UIStackView * stackView = [[UIStackView alloc] init];
     
@@ -311,7 +311,7 @@
     
     
     
-    // TODO：3.8 公告信息文本标签
+    // TODO:3.8 公告信息文本标签
     // 创建公告信息文本标签
     UILabel *shopBulletinLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:16] andText:@"公告信息"];
     
@@ -331,7 +331,7 @@
     
     
     
-    // TODO：3.9 左侧公告信息分割线
+    // TODO:3.9 左侧公告信息分割线
     // 创建视图
     UIView * shopBulletinLineLeftView = [[UIView alloc] init];
     
@@ -355,7 +355,7 @@
     
     
     
-    // TODO：3.10 右侧公告信息分割线
+    // TODO:3.10 右侧公告信息分割线
     // 创建视图
     UIView * shopBulletinLineRightView = [[UIView alloc] init];
     
@@ -380,16 +380,29 @@
     
     
     
+    // TODO:3.11 商家公告文本标签栏
+    // 创建公告信息文本标签
+    UILabel *shopBulletinInfoLabel = [UILabel makeLabelWithTitleColor:[UIColor colorWithWhite:1 alpha:0.9] andFont:[UIFont systemFontOfSize:12] andText:_headerViewModel.bulletin];
+    
+    // 设置自动换行
+    shopBulletinInfoLabel.numberOfLines = 0;
     
     
+    // 添加到父视图
+    [contentView addSubview:shopBulletinInfoLabel];
     
+    // 添加约束
+    [shopBulletinInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.offset(Kmargin);
+        make.right.offset(-Kmargin);
+        make.top.equalTo(shopBulletinLabel.mas_bottom).offset(Kmargin);
+        
+        // 多给最底部的控件添加一个距离父控件底部的约束 来处理高度 "有点自动计算行的意思"
+        make.bottom.offset(-Kmargin);
+        
+    }];
     
-    
-    
-    
-    
-    
-
 }
 
 
