@@ -183,7 +183,7 @@
     
     
     
-    // TODO：4、起送价文本标签
+    // TODO：5、起送价文本标签
     UILabel *shopTipsLabel = [UILabel makeLabelWithTitleColor:[UIColor colorWithWhite:1 alpha:0.9] andFont:[UIFont systemFontOfSize:12] andText:[NSString stringWithFormat:@"%@ | %@ | %@ ",_headerViewModel.min_price_tip,_headerViewModel.shipping_fee_tip,_headerViewModel.delivery_time_tip]];
     
     // 添加到父视图
@@ -197,6 +197,65 @@
         
     }];
     
+    
+    
+    
+    
+    
+    // TODO：6、折扣信息文本标签
+    UILabel *shopDiscountsLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:16] andText:@"折扣信息"];
+    
+    // 添加到父视图
+    [contentView addSubview:shopDiscountsLabel];
+    
+    // 添加约束
+    [shopDiscountsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(shopTipsLabel.mas_bottom).offset(Kmargin * 2.5);
+        make.centerX.offset(0);
+        
+    }];
+    
+    
+    
+    
+    
+    
+    // TODO: 7、左侧折扣信息分割线
+    UIView * shopDiscountsLineLeftView = [[UIView alloc] init];
+    
+    shopDiscountsLineLeftView.backgroundColor = [UIColor whiteColor];
+    
+    [contentView addSubview:shopDiscountsLineLeftView];
+    
+    [shopDiscountsLineLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.offset(1);
+        make.left.offset(Kmargin);
+        make.right.equalTo(shopDiscountsLabel.mas_left).offset(-Kmargin);
+        make.centerY.equalTo(shopDiscountsLabel);
+        
+    }];
+    
+    
+    
+    
+    
+    // TODO: 8、右侧折扣信息分割线
+    UIView * shopDiscountsLineRightView = [[UIView alloc] init];
+    
+    shopDiscountsLineRightView.backgroundColor = [UIColor whiteColor];
+    
+    [contentView addSubview:shopDiscountsLineRightView];
+    
+    [shopDiscountsLineRightView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.offset(1);
+        make.right.offset(-Kmargin);
+        make.left.equalTo(shopDiscountsLabel.mas_right).offset(Kmargin);
+        make.centerY.equalTo(shopDiscountsLabel);
+        
+    }];
     
     
     
