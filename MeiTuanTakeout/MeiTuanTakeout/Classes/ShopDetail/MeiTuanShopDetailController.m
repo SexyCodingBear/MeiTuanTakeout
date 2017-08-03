@@ -163,6 +163,39 @@
     
     
     
+#warning mark - scrollView中的这些子控件都添加到contentView中
+    
+    // TODO：4、店名文本标签
+    UILabel *shopNameLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:14] andText:_headerViewModel.name];
+    
+    // 添加到父视图
+    [contentView addSubview:shopNameLabel];
+    
+    // 添加约束
+    [shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.offset(64);
+        make.centerX.offset(0);
+        
+    }];
+    
+    
+    
+    
+    
+    // TODO：4、起送价文本标签
+    UILabel *shopTipsLabel = [UILabel makeLabelWithTitleColor:[UIColor colorWithWhite:1 alpha:0.9] andFont:[UIFont systemFontOfSize:12] andText:[NSString stringWithFormat:@"%@ | %@ | %@ ",_headerViewModel.min_price_tip,_headerViewModel.shipping_fee_tip,_headerViewModel.delivery_time_tip]];
+    
+    // 添加到父视图
+    [contentView addSubview:shopTipsLabel];
+    
+    // 添加约束
+    [shopTipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(shopNameLabel.mas_bottom).offset(Kmargin * 0.5);
+        make.centerX.offset(0);
+        
+    }];
     
     
     

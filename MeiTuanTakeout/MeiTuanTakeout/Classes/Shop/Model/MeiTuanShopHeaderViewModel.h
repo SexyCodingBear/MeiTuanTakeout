@@ -25,6 +25,18 @@
 // 商家公告
 @property (copy, nonatomic) NSString *bulletin;
 
+
+// 起送价
+@property (nonatomic, copy) NSString *min_price_tip;
+
+// 配送费
+@property (nonatomic, copy) NSString *shipping_fee_tip;
+
+// 配送时间
+@property (nonatomic, copy) NSString *delivery_time_tip;
+
+
+
 // 折扣信息数组(带有范型)
 @property (strong,nonatomic) NSArray <WDYInfoModel *>*discounts;
 
