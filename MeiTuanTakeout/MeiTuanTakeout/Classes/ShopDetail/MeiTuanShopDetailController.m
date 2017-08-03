@@ -222,12 +222,16 @@
     
     
     // TODO: 7、左侧折扣信息分割线
+    // 创建视图
     UIView * shopDiscountsLineLeftView = [[UIView alloc] init];
     
+    // 设置背景颜色
     shopDiscountsLineLeftView.backgroundColor = [UIColor whiteColor];
     
+    // 添加到父视图
     [contentView addSubview:shopDiscountsLineLeftView];
     
+    // 添加约束
     [shopDiscountsLineLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.height.offset(1);
@@ -242,12 +246,16 @@
     
     
     // TODO: 8、右侧折扣信息分割线
+    // 创建视图
     UIView * shopDiscountsLineRightView = [[UIView alloc] init];
     
+    // 设置背景颜色
     shopDiscountsLineRightView.backgroundColor = [UIColor whiteColor];
     
+    // 添加到父视图
     [contentView addSubview:shopDiscountsLineRightView];
     
+    // 添加约束
     [shopDiscountsLineRightView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.height.offset(1);
@@ -256,6 +264,67 @@
         make.centerY.equalTo(shopDiscountsLabel);
         
     }];
+    
+    
+    
+    
+    
+    // TODO: 9、展示商家优惠信息
+    // 创建优惠信息
+    UIStackView * stackView = [[UIStackView alloc] init];
+    
+    // 设置轴向
+    stackView.axis = UILayoutConstraintAxisVertical;
+    
+    // 设置控件分布方式：等分填充，每个控件大小一样
+    stackView.distribution = UIStackViewDistributionFillEqually;
+    
+    // 设置每个控件之间的间距
+    stackView.spacing = 10;
+    
+    // 根据优惠信息的模型个数for循环创建infoView
+    for (WDYInfoModel *infoModel in _headerViewModel.discounts) {
+        
+        // 创刊一条信息视图
+        WDYInfoView *infoView = [[WDYInfoView alloc] init];
+        
+        // 给信息视图模型赋值
+        infoView.infoModel = infoModel;
+        
+        // addArrangedSubview:将信息视图添加到父视图
+        [stackView addArrangedSubview:infoView];
+    }
+    
+    // 添加到父视图
+    [contentView addSubview:stackView];
+    
+    // 添加约束
+    [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.offset(Kmargin);
+        make.right.offset(-Kmargin);
+        make.top.equalTo(shopDiscountsLabel.mas_bottom).offset(Kmargin);
+        make.height.offset(30 * _headerViewModel.discounts.count);
+        
+    }];
+    
+    
+    
+    
+    // TODO: 10、展示商家优惠信息
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
