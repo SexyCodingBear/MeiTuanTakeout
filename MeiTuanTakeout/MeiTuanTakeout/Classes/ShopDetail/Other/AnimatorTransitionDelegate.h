@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AnimatorTransitionDelegate : NSObject
+@interface AnimatorTransitionDelegate : NSObject <UIViewControllerTransitioningDelegate>
 
 @end
