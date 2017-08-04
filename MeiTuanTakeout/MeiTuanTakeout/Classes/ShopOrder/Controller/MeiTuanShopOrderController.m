@@ -17,6 +17,8 @@
 @property (weak, nonatomic) UITableView *foodTableView;
 
 
+/// 是否手动选中食物分类列表
+@property (assign, nonatomic) BOOL isCategoryTableViewClick;
 
 @end
 
@@ -296,11 +298,26 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
 /// TODO:5、某一行被选中的时候会调用此方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    /// 判断选中的列表是不是食物列表
+    /// 判断选中的列表是不是食物列表表格
     if (tableView == _foodTableView) {
         
         /// 如果是就取消此行的选中效果
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    
+    /// 判断选中的列表是不是食物分类表格
+    if (tableView == _categoryTableView) {
+        
+        /// 如果是，将_isCategoryTableViewClick置为YES
+        _isCategoryTableViewClick = YES;
+        
+        /// 如果是，创建要滚动到_foodTableView的位置的索引
+        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
+        
+        /// 使_foodTableView动画形式滚动到指定索引位置，并尽量使该位置在视图顶部
+        [_foodTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        
+        
     }
 
 
@@ -310,11 +327,13 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
 
 
 
+#pragma mark - 滚动视图滚动时调用此方法
 /// 滚动视图滚动时调用此方法
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
-    /// 如果当前滚动的视图是食物列表视图
-    if (scrollView == _foodTableView) {
+    /// 如果当前滚动的视图是食物列表视图，
+    /// 当点击食物分类表格的时候,会滚动到指定索引位置，滚动时又会调用scrollViewDidScroll:方法，又会让食物分类表格在屏幕中间显示，会发生闪动。为了解决这个问题设置了_isCategoryTableViewClick变量进行判断
+    if (scrollView == _foodTableView && _isCategoryTableViewClick == NO) {
         
         /// 获取食物列表视图可视区域所有cell的索引，取出第一个索引
         NSIndexPath *indexPath = [[_foodTableView indexPathsForVisibleRows] firstObject];
@@ -345,6 +364,15 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
 
 
 
+#pragma mark - 滚动动画完成会调用此方法
+/// 滚动动画完成会调用此方法
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+
+    /// 点击_isCategoryTableView让视图自己滚动到要去的位置后，将_isCategoryTableViewClick标记重制为NO
+    _isCategoryTableViewClick = NO;
+
+
+}
 
 
 @end
