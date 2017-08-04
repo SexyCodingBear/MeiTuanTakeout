@@ -13,8 +13,8 @@
 // 将食物分类表格声明为属性，方便兄弟控件添加约束
 @property (weak, nonatomic) UITableView *categoryTableView;
 
-
-
+/// 将食物列表表格声明为属性，方便在代理方法中判断类型
+@property (weak, nonatomic) UITableView *foodTableView;
 
 
 
@@ -134,8 +134,11 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // 设置代理
     foodTableView.delegate = self;
     
+    // 加载XIB文件
+    UINib *nib = [UINib nibWithNibName:@"MeiTuanShopOrderFoodCell" bundle:nil];
+    
     // 注册单元格
-    [foodTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:shopOrderFoodTableViewCellID];
+    [foodTableView registerNib:nib forCellReuseIdentifier:shopOrderFoodTableViewCellID];
     
     // 注册每组头部视图
 #warning mark - 注册每组头部视图必须使用registerClass: forHeaderFooterViewReuseIdentifier:方法
@@ -144,6 +147,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // TODO:设置每组头部视图的统一行高
 #warning mark - 如果是代码创建的每组头部视图必须要指定每组头部视图的高度
     foodTableView.sectionHeaderHeight = 30;
+    
+    // 设置预估行高
+    foodTableView.estimatedRowHeight = 130;
 
 }
 
@@ -211,7 +217,7 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     }
     
     // 如果是食物列表表格，使用重用标识符创建食物列表表格单元格
-    UITableViewCell *shopOrderFoodTableViewCell  = [tableView dequeueReusableCellWithIdentifier:shopOrderFoodTableViewCellID forIndexPath:indexPath];
+    MeiTuanShopOrderFoodCell *shopOrderFoodTableViewCell  = [tableView dequeueReusableCellWithIdentifier:shopOrderFoodTableViewCellID forIndexPath:indexPath];
     
     // 取出食物分类模型
     MeiTuanShopOrderCategoryModel * shopOrderCategoryModel =
@@ -222,7 +228,7 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     shopOrderCategoryModel.spus[indexPath.row];
     
     // 使用食物模型的name给食物列表的单元格的文本标签赋值
-    shopOrderFoodTableViewCell.textLabel.text = shopOrderFoodModel.name;
+    shopOrderFoodTableViewCell.shopOrderFoodModel = shopOrderFoodModel;
     
     // 返回食物列表单元格
     return shopOrderFoodTableViewCell;
@@ -262,6 +268,23 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     
     // 返回表格每组头部视图
     return foodSectionHeaderView;
+}
+
+
+
+
+#pragma mark - 代理方法
+/// TODO:5、某一行被选中的时候会调用此方法
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    /// 判断选中的列表是不是食物列表
+    if (tableView == _foodTableView) {
+        
+        /// 如果是就取消此行的选中效果
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+
+
 }
 
 

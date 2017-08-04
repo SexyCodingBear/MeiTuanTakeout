@@ -48,14 +48,15 @@
      */
     
     // TODO:1、设置textLabel
-    // TODO:设置字体必须在颜色之前
+    
+    // 设置背景颜色
+    self.backgroundColor = [UIColor colorWithHex:0xefefef];
+    
+    // TODO:如果使用第一种方法方法添加虚线，设置字体必须在背景颜色之前
     self.textLabel.font = [UIFont systemFontOfSize:12];
     
     // 设置换行
     self.textLabel.numberOfLines = 2;
-    
-    // 设置背景颜色
-    self.backgroundColor = [UIColor colorWithHex:0xefefef];
     
     
     
@@ -72,13 +73,12 @@
      
      两种方法添加虚线：
      第一种：替换默认的backgroundView，
-     第二种：将虚线视图添加到最上层的contentView中
+     第二种：将虚线视图添加到最上层的contentView中，这种方法不受设置背景颜色代码书写位置的影响，设置txetLabel字体代码可以写在设置背景颜色代码之后。
      
      */
     
-    
 //    self.backgroundView = dashLineView;//第一种方法
-    [self.contentView addSubview:dashLineView];//
+    [self.contentView addSubview:dashLineView];//第二种方法
     
     // 设置约束
     [dashLineView mas_makeConstraints:^(MASConstraintMaker *make) {

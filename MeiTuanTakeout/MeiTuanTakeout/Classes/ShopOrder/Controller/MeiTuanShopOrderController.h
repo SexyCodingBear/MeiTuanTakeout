@@ -10,6 +10,7 @@
 #import "MeiTuanShopOrderCategoryModel.h"
 #import "MeiTuanShopOrderCategoryCell.h"
 #import "MeiTuanShopOrderFoodSectionHeaderView.h"
+#import "MeiTuanShopOrderFoodCell.h"
 
 
 @interface MeiTuanShopOrderController : UIViewController
