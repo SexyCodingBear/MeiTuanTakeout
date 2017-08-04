@@ -90,8 +90,7 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
         
     }];
     
-    // 给属性赋值
-    _categoryTableView = categoryTableView;
+    
     
     // 设置数据源
     categoryTableView.dataSource = self;
@@ -102,7 +101,25 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // 注册单元格
     [categoryTableView registerClass:[MeiTuanShopOrderCategoryCell class] forCellReuseIdentifier:shopOrderCategoryTableViewCellID];
     
+    /// 设置索引位置
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
+    /// 设置选中行：让cell一出现就选中某行
+    [categoryTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    /**
+     
+     typedef NS_ENUM(NSInteger, UITableViewScrollPosition) {
+     UITableViewScrollPositionNone,
+     UITableViewScrollPositionTop,
+     UITableViewScrollPositionMiddle,
+     UITableViewScrollPositionBottom
+     };
+     
+     */
+    
+    // 给属性赋值
+    _categoryTableView = categoryTableView;
     
 }
 
@@ -288,6 +305,44 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
 
 
 }
+
+
+
+
+
+/// 滚动视图滚动时调用此方法
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+    /// 如果当前滚动的视图是食物列表视图
+    if (scrollView == _foodTableView) {
+        
+        /// 获取食物列表视图可视区域所有cell的索引，取出第一个索引
+        NSIndexPath *indexPath = [[_foodTableView indexPathsForVisibleRows] firstObject];
+        
+        /// 设置要选中的食物分类的表格索引,只有一组，所以section = 0，食物列表视图可视区域第一个索引的组数就是对应食物分类的表格的行数
+        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:indexPath.section inSection:0];
+        
+        /// 选中_categoryTableView的索引位置的cell并使此cell尽量显示在视图中间
+        [_categoryTableView selectRowAtIndexPath:selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        
+        
+        /**
+         
+         typedef NS_ENUM(NSInteger, UITableViewScrollPosition) {
+         UITableViewScrollPositionNone,
+         UITableViewScrollPositionTop,
+         UITableViewScrollPositionMiddle,
+         UITableViewScrollPositionBottom
+         };
+         
+         */
+    }
+    
+
+}
+
+
+
 
 
 
