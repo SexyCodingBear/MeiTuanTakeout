@@ -150,7 +150,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     
     // 设置预估行高
     foodTableView.estimatedRowHeight = 130;
-
+    
+    /// 给属性赋值
+    _foodTableView = foodTableView;
 }
 
 
