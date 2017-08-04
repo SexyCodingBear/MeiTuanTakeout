@@ -29,9 +29,10 @@
 // 重写setValue: forUndefinedKey:方法可以解决模型中属性少于字典中的key时，kvc方法报错的问题
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
-    
+    /// 如果找到名为description的key
     if ([key isEqualToString:@"description"]) {
         
+        /// 将description对应的value赋值给_foodDescription属性
         _foodDescription = value;
         
     }

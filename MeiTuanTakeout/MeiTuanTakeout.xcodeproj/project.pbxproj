@@ -27,6 +27,8 @@
 		D86651101F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D866510F1F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m */; };
 		D86651141F340C4500CA04FB /* MeiTuanShopOrderFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651121F340C4500CA04FB /* MeiTuanShopOrderFoodCell.m */; };
 		D86651151F340C4500CA04FB /* MeiTuanShopOrderFoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86651131F340C4500CA04FB /* MeiTuanShopOrderFoodCell.xib */; };
+		D86651171F34689A00CA04FB /* MeiTuanShopOrderFoodCountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86651161F34689A00CA04FB /* MeiTuanShopOrderFoodCountView.xib */; };
+		D866511A1F346D0800CA04FB /* MeiTuanShopOrderFoodCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651191F346D0800CA04FB /* MeiTuanShopOrderFoodCountView.m */; };
 		D88566971F2E50C400E4FC2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88566961F2E50C400E4FC2A /* main.m */; };
 		D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88566A11F2E50C400E4FC2A /* Assets.xcassets */; };
 		D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88566A31F2E50C400E4FC2A /* LaunchScreen.storyboard */; };
@@ -115,6 +117,9 @@
 		D86651111F340C4500CA04FB /* MeiTuanShopOrderFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopOrderFoodCell.h; sourceTree = "<group>"; };
 		D86651121F340C4500CA04FB /* MeiTuanShopOrderFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderFoodCell.m; sourceTree = "<group>"; };
 		D86651131F340C4500CA04FB /* MeiTuanShopOrderFoodCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeiTuanShopOrderFoodCell.xib; sourceTree = "<group>"; };
+		D86651161F34689A00CA04FB /* MeiTuanShopOrderFoodCountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeiTuanShopOrderFoodCountView.xib; sourceTree = "<group>"; };
+		D86651181F346D0800CA04FB /* MeiTuanShopOrderFoodCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopOrderFoodCountView.h; sourceTree = "<group>"; };
+		D86651191F346D0800CA04FB /* MeiTuanShopOrderFoodCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderFoodCountView.m; sourceTree = "<group>"; };
 		D88566921F2E50C400E4FC2A /* MeiTuanTakeout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeiTuanTakeout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88566961F2E50C400E4FC2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D88566A11F2E50C400E4FC2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -355,6 +360,9 @@
 				D86651111F340C4500CA04FB /* MeiTuanShopOrderFoodCell.h */,
 				D86651121F340C4500CA04FB /* MeiTuanShopOrderFoodCell.m */,
 				D86651131F340C4500CA04FB /* MeiTuanShopOrderFoodCell.xib */,
+				D86651181F346D0800CA04FB /* MeiTuanShopOrderFoodCountView.h */,
+				D86651191F346D0800CA04FB /* MeiTuanShopOrderFoodCountView.m */,
+				D86651161F34689A00CA04FB /* MeiTuanShopOrderFoodCountView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -645,6 +653,7 @@
 			files = (
 				D86650CD1F30CC7400CA04FB /* food.json in Resources */,
 				D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */,
+				D86651171F34689A00CA04FB /* MeiTuanShopOrderFoodCountView.xib in Resources */,
 				D86651151F340C4500CA04FB /* MeiTuanShopOrderFoodCell.xib in Resources */,
 				D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */,
 			);
@@ -704,6 +713,7 @@
 				D88567281F2E519100E4FC2A /* MKAnnotationView+WebCache.m in Sources */,
 				D885672A1F2E519100E4FC2A /* NSImage+WebCache.m in Sources */,
 				D86650E31F31928C00CA04FB /* WDYInfoLoopView.m in Sources */,
+				D866511A1F346D0800CA04FB /* MeiTuanShopOrderFoodCountView.m in Sources */,
 				D88567211F2E519100E4FC2A /* MASLayoutConstraint.m in Sources */,
 				D885672E1F2E519100E4FC2A /* SDWebImageDecoder.m in Sources */,
 				D86651101F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m in Sources */,

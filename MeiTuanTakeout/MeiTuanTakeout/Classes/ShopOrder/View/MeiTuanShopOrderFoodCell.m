@@ -32,12 +32,56 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *foodDescriptionTopConstraint;
 
 
+/// 食物选购数量计数器视图
+@property (weak, nonatomic) MeiTuanShopOrderFoodCountView * foodCountView;
 
 
 @end
 
 
 @implementation MeiTuanShopOrderFoodCell
+
+// xib或者storyboard创建的视图加载完成会调用awakeFromNib方法
+-(void)awakeFromNib {
+    
+    [super awakeFromNib];
+    
+    [self setupUI];
+}
+
+// 代码创建的视图初始化方法
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setupUI];
+    }
+    return self;
+}
+
+// 搭建界面
+- (void)setupUI{
+    
+    /// 创建计数控件
+    MeiTuanShopOrderFoodCountView * foodCountView = [MeiTuanShopOrderFoodCountView shopOrderFoodCountView];
+    
+    /// 添加到单元格
+    [self addSubview:foodCountView];
+    
+    /// 添加约束
+    [foodCountView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.right.offset(-8);
+        make.size.mas_offset(foodCountView.bounds.size);
+        
+    }];
+    
+    /// 给属性赋值
+    _foodCountView = foodCountView;
+    
+}
+
+
 
 -(void)setShopOrderFoodModel:(MeiTuanShopOrderFoodModel *)shopOrderFoodModel {
 
@@ -65,6 +109,10 @@
     /// 更改食物描述的顶部约束的常量属性，当foodDescription字符串的长度不为0时（有描述文字时），约束为8；长度为0时（没有描述文字时），约束为0。
     /// stringByReplacingOccurrencesOfString:(NSString *)target withString:(NSString *)replacement方法，把target替换成replacement，去除字符串中的空格
     _foodDescriptionTopConstraint.constant = ([shopOrderFoodModel.foodDescription stringByReplacingOccurrencesOfString:@" " withString:@""].length) ? 8:0;
+    
+    /// 将模型传递给计数器视图
+    _foodCountView.shopOrderFoodModel = shopOrderFoodModel;
+    
 }
 
 @end
