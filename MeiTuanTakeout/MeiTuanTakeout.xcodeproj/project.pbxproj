@@ -24,6 +24,7 @@
 		D86651071F32F37100CA04FB /* MeiTuanShopOrderCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651061F32F37100CA04FB /* MeiTuanShopOrderCategoryModel.m */; };
 		D866510A1F32F39C00CA04FB /* MeiTuanShopOrderFoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651091F32F39C00CA04FB /* MeiTuanShopOrderFoodModel.m */; };
 		D866510D1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D866510C1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m */; };
+		D86651101F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D866510F1F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m */; };
 		D88566971F2E50C400E4FC2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88566961F2E50C400E4FC2A /* main.m */; };
 		D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88566A11F2E50C400E4FC2A /* Assets.xcassets */; };
 		D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88566A31F2E50C400E4FC2A /* LaunchScreen.storyboard */; };
@@ -107,6 +108,8 @@
 		D86651091F32F39C00CA04FB /* MeiTuanShopOrderFoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderFoodModel.m; sourceTree = "<group>"; };
 		D866510B1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopOrderCategoryCell.h; sourceTree = "<group>"; };
 		D866510C1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderCategoryCell.m; sourceTree = "<group>"; };
+		D866510E1F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopOrderFoodSectionHeaderView.h; sourceTree = "<group>"; };
+		D866510F1F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopOrderFoodSectionHeaderView.m; sourceTree = "<group>"; };
 		D88566921F2E50C400E4FC2A /* MeiTuanTakeout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeiTuanTakeout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88566961F2E50C400E4FC2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D88566A11F2E50C400E4FC2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 			children = (
 				D866510B1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.h */,
 				D866510C1F334CD900CA04FB /* MeiTuanShopOrderCategoryCell.m */,
+				D866510E1F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.h */,
+				D866510F1F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 				D86650E31F31928C00CA04FB /* WDYInfoLoopView.m in Sources */,
 				D88567211F2E519100E4FC2A /* MASLayoutConstraint.m in Sources */,
 				D885672E1F2E519100E4FC2A /* SDWebImageDecoder.m in Sources */,
+				D86651101F33F1F000CA04FB /* MeiTuanShopOrderFoodSectionHeaderView.m in Sources */,
 				D86651041F32F33900CA04FB /* MeiTuanShopOrderController.m in Sources */,
 				D88567361F2E519100E4FC2A /* UIImage+WebP.m in Sources */,
 				D885672D1F2E519100E4FC2A /* SDWebImageCompat.m in Sources */,

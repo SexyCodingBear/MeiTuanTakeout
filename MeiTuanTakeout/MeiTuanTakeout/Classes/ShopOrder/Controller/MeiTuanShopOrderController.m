@@ -28,7 +28,7 @@ static NSString *shopOrderCategoryTableViewCellID = @"shopOrderCategoryTableView
 
 static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
 
-
+static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeaderView";
 
 
 @implementation MeiTuanShopOrderController
@@ -55,11 +55,11 @@ static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
 #pragma mark - 搭建界面
 - (void)setupUI {
 
-    // 食物分类表格处理
+    // TODO:1、食物分类表格处理
     [self setupCategoryTableView];
     
     
-    // 食物列表表格处理
+    // TODO:2、食物列表表格处理
     [self setupFoodTableView];
     
 
@@ -136,6 +136,14 @@ static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
     
     // 注册单元格
     [foodTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:shopOrderFoodTableViewCellID];
+    
+    // 注册每组头部视图
+#warning mark - 注册每组头部视图必须使用registerClass: forHeaderFooterViewReuseIdentifier:方法
+    [foodTableView registerClass:[MeiTuanShopOrderFoodSectionHeaderView class] forHeaderFooterViewReuseIdentifier:shopOrderFoodSectionHeaderViewID];
+    
+    // TODO:设置每组头部视图的统一行高
+#warning mark - 如果是代码创建的每组头部视图必须要指定每组头部视图的高度
+    foodTableView.sectionHeaderHeight = 30;
 
 }
 
@@ -143,7 +151,7 @@ static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
 
 
 #pragma mark - 数据源方法
-// 返回有多少组
+// TODO:1、返回有多少组单元格
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     // 判断tableView的类型
@@ -163,7 +171,7 @@ static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
 
 
 
-// 返回每组有多少行
+// TODO:2、返回每组有多少行单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     // 判断tableView的类型
@@ -182,7 +190,7 @@ static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
 
 
 
-// 设置单元格
+// TODO:3、设置单元格
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // 判断tableView的类型
@@ -226,6 +234,35 @@ static NSString *shopOrderFoodTableViewCellID = @"shopOrderFoodTableViewCell";
 
 
 
+//#pragma mark - 设置食物列表表格头部标题
+//// 设置食物列表表格每组头部标题，不能更改组头标题的字体
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//
+//    // 如果是食物列表表格
+//    if (tableView != _categoryTableView) {
+//
+//        // 返回食物分类模型中的一组的名称
+//        return _shopOrderCategoryModelData[section].name;
+//    }
+//
+//    return nil;
+//
+//}
+
+
+
+// TODO:4、设置表格每组头部视图:自定义食物列表表格每组头部视图
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    // 使用重用标识符获取表格每组头部视图
+    MeiTuanShopOrderFoodSectionHeaderView *foodSectionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:shopOrderFoodSectionHeaderViewID];
+    
+    // 给表格每组头部视图传递模型数据
+    foodSectionHeaderView.shopOrderCategoryModel = _shopOrderCategoryModelData[section];
+    
+    // 返回表格每组头部视图
+    return foodSectionHeaderView;
+}
 
 
 
