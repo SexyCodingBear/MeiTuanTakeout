@@ -81,6 +81,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // 设置单元格行高
     categoryTableView.rowHeight = 60;
     
+    /// TODO:隐藏分割线?
+    categoryTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     // 添加到父控件
     [self.view addSubview:categoryTableView];
     
@@ -91,8 +94,6 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
         make.width.offset(100);
         
     }];
-    
-    
     
     // 设置数据源
     categoryTableView.dataSource = self;
@@ -106,7 +107,7 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     /// 设置索引位置
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
-    /// 设置选中行：让cell一出现就选中某行
+    /// 设置选中行：让cell一出现就选中第0行
     [categoryTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     /**
@@ -119,6 +120,10 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
      };
      
      */
+    
+    /// 因为自定义了分割线，所以隐藏系统原有的分割线
+    categoryTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
     // 给属性赋值
     _categoryTableView = categoryTableView;
@@ -303,6 +308,20 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
         
         /// 如果是就取消此行的选中效果
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        /// 创建食物详情控制器
+        MeiTuanFoodDetailController * foodDetailController = [[MeiTuanFoodDetailController alloc] init];
+        
+        /// 给模型赋值，数据传递
+        foodDetailController.shopOrderCategoryModelData = _shopOrderCategoryModelData;
+        
+        /// 将选中的行的索引值传给食物详情控制器
+        foodDetailController.indexPath = indexPath;
+        
+        /// 导航控制器跳转到食物详情控制器
+        [self.navigationController pushViewController:foodDetailController animated:YES];
+        
+        
     }
     
     /// 判断选中的列表是不是食物分类表格

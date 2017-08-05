@@ -28,6 +28,12 @@
 /// 价格
 @property (assign,nonatomic) float min_price;
 
+/// 差评
+@property (nonatomic, assign) CGFloat tread_num;
+
+/// 好评
+@property (nonatomic, assign) CGFloat praise_num;
+
 
 /// 当前食物的选购数量，每个模型中一个count属性，一个cell对应一个模型，一个cell中有一个计数器，每个计数器对应一个模型中的count属性
 @property (assign, nonatomic) NSInteger count;

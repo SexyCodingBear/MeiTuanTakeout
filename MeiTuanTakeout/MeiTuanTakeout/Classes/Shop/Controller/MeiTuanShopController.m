@@ -51,6 +51,7 @@
     [self loadFoodData];
     
     // TODO:设置视图
+    // 为了防止头部视图遮盖住导航条，将头部视图的setupUI方法在[super viewDidLoad]之前调用，viewDidLoad中创建的导航条就在头部视图上面了。
     [self setupUI];
     
     // TODO:创建父类中的属性（创建导航条）
@@ -80,7 +81,6 @@
 
 
     // TODO:设置头部视图
-    // 为了防止头部视图遮盖住导航条，将头部视图的setupUI方法在[super viewDidLoad]之前调用，viewDidLoad中创建的导航条就在头部视图上面了。
     [self setupShopHeaderView];
     
     // TODO:设置标签栏视图
@@ -316,6 +316,7 @@
     MeiTuanShopCommentController * shopCommentController = [[MeiTuanShopCommentController alloc] init];
     MeiTuanShopInformationController * shopInformationController = [[MeiTuanShopInformationController alloc] init];
     
+    /// 给模型赋值，传递数据
     shopOrderController.shopOrderCategoryModelData = _shopOrderCategoryModelArray;
     
     
@@ -460,7 +461,7 @@
     //    self.meiTuanNavigationBar.barTintColor = [UIColor greenColor];
     
     // 给导航条添加标题
-    self.meiTuanNavigationItem.title = @"香河肉饼";
+    self.meiTuanNavigationItem.title = @"粮新发现（上地店）";
     
     // 设置导航条标题颜色为完全透明
     self.meiTuanNavigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.4 alpha:0]};

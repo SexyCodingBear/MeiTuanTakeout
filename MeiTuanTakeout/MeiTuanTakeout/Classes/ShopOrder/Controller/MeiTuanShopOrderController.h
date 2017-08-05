@@ -11,6 +11,7 @@
 #import "MeiTuanShopOrderCategoryCell.h"
 #import "MeiTuanShopOrderFoodSectionHeaderView.h"
 #import "MeiTuanShopOrderFoodCell.h"
+#import "MeiTuanFoodDetailController.h"
 
 
 @interface MeiTuanShopOrderController : UIViewController
