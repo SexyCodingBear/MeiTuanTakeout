@@ -15,5 +15,9 @@
 /// 声明食物模型变量，传递数据
 @property (strong,nonatomic) MeiTuanShopOrderFoodModel *shopOrderFoodModel;
 
+/// 食物选购数量计数器视图
+@property (weak, nonatomic) MeiTuanShopOrderFoodCountView * foodCountView;
+
+
 
 @end

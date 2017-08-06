@@ -8,7 +8,7 @@
 
 #import "MeiTuanShopOrderController.h"
 
-@interface MeiTuanShopOrderController () <UITableViewDataSource,UITableViewDelegate>
+@interface MeiTuanShopOrderController () <UITableViewDataSource,UITableViewDelegate,MeiTuanShopOrderFoodCountViewDelegate>
 
 // 将食物分类表格声明为属性，方便兄弟控件添加约束
 @property (weak, nonatomic) UITableView *categoryTableView;
@@ -21,6 +21,9 @@
 
 /// 是否手动选中食物分类列表
 @property (assign, nonatomic) BOOL isCategoryTableViewClick;
+
+/// 保存所有选购的食物的模型
+@property (strong,nonatomic) NSMutableArray <MeiTuanShopOrderFoodModel *>*foodModelArray;
 
 @end
 
@@ -96,7 +99,8 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
         make.height.offset(shopCarView.bounds.size.height);
         
     }];
-
+    
+    
     /// 给属性赋值
     _shopCarView = shopCarView;
 }
@@ -292,6 +296,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // 使用食物模型的name给食物列表的单元格的文本标签赋值
     shopOrderFoodTableViewCell.shopOrderFoodModel = shopOrderFoodModel;
     
+    /// 给cell中的foodCountView的代理属性赋值
+    shopOrderFoodTableViewCell.foodCountView.delegate = self;
+    
     // 返回食物列表单元格
     return shopOrderFoodTableViewCell;
     
@@ -427,6 +434,66 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     _isCategoryTableViewClick = NO;
 
 
+}
+
+
+
+
+
+#pragma mark - 实现<MeiTuanShopOrderFoodCountViewDelegate>代理方法
+/// 实现<MeiTuanShopOrderFoodCountViewDelegate>代理方法
+-(void)shopOrderFoodCountViewValueChange:(MeiTuanShopOrderFoodCountView *)countView {
+
+//    NSLog(@"%s", __FUNCTION__);
+    switch (countView.buttonType) {
+        case MeiTuanShopOrderFoodCountViewButtonTypeAdd:
+            NSLog(@"多选了一个食物");
+            
+            [self.foodModelArray addObject:countView.shopOrderFoodModel];
+            NSLog(@"%@",_foodModelArray );
+            
+            break;
+        
+    /**
+     
+     注意：要坐购物车点击开看里面有多少行食物的时候，可以再定义一个NSSet属性，NSSet中没有重复的模型，NSSet.count就可以知道有多少行，因为购物车列表也是tableView，但是
+     
+     
+     */
+            
+            
+        case MeiTuanShopOrderFoodCountViewButtonTypeMinus:
+            NSLog(@"删除了一个食物");
+            
+            
+//            [self.foodModelArray removeObject:countView.shopOrderFoodModel];
+             
+             
+            /// 使用索引删除不会把所有地址相同的对象模型删除
+            [self.foodModelArray removeObjectAtIndex:[self.foodModelArray indexOfObject:countView.shopOrderFoodModel]];
+            break;
+            
+            
+        default:
+            break;
+    }
+
+
+}
+
+
+
+
+#pragma mark - 懒加载创建保存食物模型的数组
+/// 懒加载创建保存食物模型的数组
+-(NSMutableArray<MeiTuanShopOrderFoodModel *> *)foodModelArray  {
+
+    if (_foodModelArray == nil) {
+        
+        _foodModelArray = [NSMutableArray array];
+    }
+    
+    return _foodModelArray;
 }
 
 

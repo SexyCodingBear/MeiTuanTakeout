@@ -79,6 +79,24 @@
     /// 更新控件状态
     [self updateState];
     
+    /// 给属性赋值
+    _buttonType = MeiTuanShopOrderFoodCountViewButtonTypeMinus;
+    
+    /// 判断代理对象是否实现了代理方法
+    /**
+     判断委托者行为有两种方法：
+     1、把行为对象通过参数传递过去，在代理方法中判断参数的类型
+     2、定义枚举，判断委托者自身的属性来确定行为种类
+     
+     */
+    if ([self.delegate respondsToSelector:@selector(shopOrderFoodCountViewValueChange:)]) {
+        
+        /// 如果实现了代理方法就调用代理方法
+        [self.delegate shopOrderFoodCountViewValueChange:self];
+    }
+    
+    
+    
 }
 
 
@@ -96,6 +114,22 @@
     /// 更新控件状态
     [self updateState];
     
+    /// 给属性赋值
+    _buttonType = MeiTuanShopOrderFoodCountViewButtonTypeAdd;
+    
+    
+    /// 判断代理对象是否实现了代理方法
+    /**
+     判断委托者行为有两种方法：
+     1、把行为对象通过参数传递过去，在代理方法中判断参数的类型
+     2、定义枚举，判断委托者自身的属性来确定行为种类
+     
+     */
+    if ([self.delegate respondsToSelector:@selector(shopOrderFoodCountViewValueChange:)]) {
+        
+        /// 如果实现了代理方法就调用代理方法
+        [self.delegate shopOrderFoodCountViewValueChange:self];
+    }
 }
 
 
@@ -116,6 +150,14 @@
     
     /// 设置计数文本标签的文本
     _countLabel.text = @(_shopOrderFoodModel.count).description;
+    
+    
+    /**
+     
+     注意：不可以在这里设置代理，初始化的时候会调用，赋值的时候也会调用，会不停地调用，不能因为加号和减号都要调用这个方法就把代理赋值放在这里。
+     
+     */
+    
 }
 
 
@@ -130,7 +172,7 @@
     /// 更新控件状态
     [self updateState];
 
-
+    
 }
 
 

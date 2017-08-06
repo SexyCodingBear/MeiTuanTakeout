@@ -32,9 +32,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *foodDescriptionTopConstraint;
 
 
-/// 食物选购数量计数器视图
-@property (weak, nonatomic) MeiTuanShopOrderFoodCountView * foodCountView;
-
 
 @end
 
