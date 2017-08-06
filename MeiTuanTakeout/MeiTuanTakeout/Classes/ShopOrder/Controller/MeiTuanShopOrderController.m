@@ -22,8 +22,8 @@
 /// 是否手动选中食物分类列表
 @property (assign, nonatomic) BOOL isCategoryTableViewClick;
 
-/// 保存所有选购的食物的模型
-@property (strong,nonatomic) NSMutableArray <MeiTuanShopOrderFoodModel *>*foodModelArray;
+/// 购物车模型属性
+@property (strong,nonatomic) MeiTuanShopCarModel *shopCarModel;
 
 @end
 
@@ -444,13 +444,16 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
 /// 实现<MeiTuanShopOrderFoodCountViewDelegate>代理方法
 -(void)shopOrderFoodCountViewValueChange:(MeiTuanShopOrderFoodCountView *)countView {
 
-//    NSLog(@"%s", __FUNCTION__);
+//    NSLog(@"%s", __FUNCTION__);// 测试代码
     switch (countView.buttonType) {
+        
+        /// 如果点击的按钮类形是加号
         case MeiTuanShopOrderFoodCountViewButtonTypeAdd:
-            NSLog(@"多选了一个食物");
+//            NSLog(@"多选了一个食物");// 测试代码
             
-            [self.foodModelArray addObject:countView.shopOrderFoodModel];
-            NSLog(@"%@",_foodModelArray );
+            /// 将计数器视图的模型属性添加到点菜控制器购物车属性的模型数组中
+            [self.shopCarModel.foodModelArray addObject:countView.shopOrderFoodModel];
+//            NSLog(@"%@",_foodModelArray );
             
             break;
         
@@ -461,40 +464,48 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
      
      */
             
-            
+        /// 如果点击的按钮类形是减号
         case MeiTuanShopOrderFoodCountViewButtonTypeMinus:
-            NSLog(@"删除了一个食物");
+//            NSLog(@"删除了一个食物");// 测试代码
             
-            
+        /// 删除模型对象会把所有地址相同的对象模型全部删除
 //            [self.foodModelArray removeObject:countView.shopOrderFoodModel];
-             
-             
+            
+            /// 将计数器视图的模型属性从点菜控制器购物车属性的模型数组中删除
             /// 使用索引删除不会把所有地址相同的对象模型删除
-            [self.foodModelArray removeObjectAtIndex:[self.foodModelArray indexOfObject:countView.shopOrderFoodModel]];
+            [self.shopCarModel.foodModelArray removeObjectAtIndex:[self.shopCarModel.foodModelArray indexOfObject:countView.shopOrderFoodModel]];
             break;
             
             
         default:
             break;
     }
-
-
-}
-
-
-
-
-#pragma mark - 懒加载创建保存食物模型的数组
-/// 懒加载创建保存食物模型的数组
--(NSMutableArray<MeiTuanShopOrderFoodModel *> *)foodModelArray  {
-
-    if (_foodModelArray == nil) {
-        
-        _foodModelArray = [NSMutableArray array];
-    }
     
-    return _foodModelArray;
+    
+    /// 将购物车模型属性赋值给购物车视图
+    self.shopCarView.shopCarModel = self.shopCarModel;
 }
+
+
+
+
+
+#pragma mark - 懒加载创建购物车模型
+/// 懒加载创建购物车模型,给模型中的属性进行实例化
+- (MeiTuanShopCarModel *)shopCarModel {
+
+    if (_shopCarModel == nil) {
+        
+        _shopCarModel = [[MeiTuanShopCarModel alloc]init];
+        
+    }
+
+    return _shopCarModel;
+}
+
+
+
+
 
 
 @end

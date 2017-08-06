@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MeiTuanShopCarModel.h"
 
 @interface MeiTuanShopCarView : UIView
+
+
+/// 购物车模型属性
+@property (strong,nonatomic) MeiTuanShopCarModel *shopCarModel;
 
 
 /**

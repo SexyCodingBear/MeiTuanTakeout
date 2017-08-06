@@ -12,6 +12,7 @@
 #import "MeiTuanShopOrderFoodSectionHeaderView.h"
 #import "MeiTuanShopOrderFoodCell.h"
 #import "MeiTuanShopCarView.h"
+#import "MeiTuanShopCarModel.h"
 #import "MeiTuanFoodDetailController.h"
 
 
