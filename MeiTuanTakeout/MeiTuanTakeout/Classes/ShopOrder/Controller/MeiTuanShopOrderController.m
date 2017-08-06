@@ -16,6 +16,8 @@
 /// 将食物列表表格声明为属性，方便在代理方法中判断类型
 @property (weak, nonatomic) UITableView *foodTableView;
 
+// 将购物车控件声明为属性，方便兄弟控件添加约束
+@property (weak, nonatomic) MeiTuanShopCarView *shopCarView;
 
 /// 是否手动选中食物分类列表
 @property (assign, nonatomic) BOOL isCategoryTableViewClick;
@@ -56,15 +58,47 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
 
 #pragma mark - 搭建界面
 - (void)setupUI {
-
-    // TODO:1、食物分类表格处理
+    
+    /// TODO:1、添加购物车控件，先创建购物车，等食物分类表格和食物列表表格创建的时候，它们的底部约束参照购物车的顶端来设置，这样就不会被购物车盖住。
+    [self setupShopCarView];
+    
+    // TODO:2、食物分类表格处理
     [self setupCategoryTableView];
     
     
-    // TODO:2、食物列表表格处理
+    // TODO:3、食物列表表格处理
     [self setupFoodTableView];
     
+    /// TODO:4、将购物车视图插入到食物列表视图之上
+//    [self.view insertSubview:_shopCarView aboveSubview:_foodTableView];
+    
+    /// TODO:4、将购物车视图置顶
+    [self.view bringSubviewToFront:_shopCarView];
 
+}
+
+
+
+#pragma mark - 添加购物车控件
+/// 添加购物车控件
+- (void)setupShopCarView {
+    
+    /// 类方法获取xib文件的实例对象
+    MeiTuanShopCarView *shopCarView = [MeiTuanShopCarView shopCarView];
+    
+    /// 添加到父控件
+    [self.view addSubview:shopCarView];
+    
+    /// 添加约束，xib控件从文件加载出来以后是有尺寸的，加了约束就没有尺寸了，所以要加约束就要加全，加上xib文件的高
+    [shopCarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.bottom.right.offset(0);
+        make.height.offset(shopCarView.bounds.size.height);
+        
+    }];
+
+    /// 给属性赋值
+    _shopCarView = shopCarView;
 }
 
 
@@ -90,8 +124,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // 添加约束
     [categoryTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.left.bottom.offset(0);
+        make.top.left.offset(0);
         make.width.offset(100);
+        make.bottom.equalTo(_shopCarView.mas_top).offset(0);
         
     }];
     
@@ -147,8 +182,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // 添加约束
     [foodTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.right.bottom.offset(0);
+        make.top.right.offset(0);
         make.left.equalTo(_categoryTableView.mas_right).offset(0);
+        make.bottom.equalTo(_shopCarView.mas_top).offset(0);
         
     }];
 

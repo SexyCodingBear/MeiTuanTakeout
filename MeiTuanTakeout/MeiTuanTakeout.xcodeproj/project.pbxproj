@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8425C9A1F3727AE0018294D /* MeiTuanShopCarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8425C991F3727AE0018294D /* MeiTuanShopCarView.xib */; };
+		D8425C9D1F3727D50018294D /* MeiTuanShopCarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8425C9C1F3727D50018294D /* MeiTuanShopCarView.m */; };
 		D86650BD1F30914700CA04FB /* MeiTuanShopCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650BC1F30914700CA04FB /* MeiTuanShopCommentController.m */; };
 		D86650C01F30915E00CA04FB /* MeiTuanShopInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650BF1F30915E00CA04FB /* MeiTuanShopInformationController.m */; };
 		D86650CB1F30C21A00CA04FB /* MeiTuanShopHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D86650CA1F30C21A00CA04FB /* MeiTuanShopHeaderViewModel.m */; };
@@ -82,6 +84,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8425C991F3727AE0018294D /* MeiTuanShopCarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeiTuanShopCarView.xib; sourceTree = "<group>"; };
+		D8425C9B1F3727D50018294D /* MeiTuanShopCarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopCarView.h; sourceTree = "<group>"; };
+		D8425C9C1F3727D50018294D /* MeiTuanShopCarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopCarView.m; sourceTree = "<group>"; };
 		D86650BB1F30914700CA04FB /* MeiTuanShopCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopCommentController.h; sourceTree = "<group>"; };
 		D86650BC1F30914700CA04FB /* MeiTuanShopCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanShopCommentController.m; sourceTree = "<group>"; };
 		D86650BE1F30915E00CA04FB /* MeiTuanShopInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanShopInformationController.h; sourceTree = "<group>"; };
@@ -243,6 +248,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8425C981F37277F0018294D /* ShopCar */ = {
+			isa = PBXGroup;
+			children = (
+				D8425C9B1F3727D50018294D /* MeiTuanShopCarView.h */,
+				D8425C9C1F3727D50018294D /* MeiTuanShopCarView.m */,
+				D8425C991F3727AE0018294D /* MeiTuanShopCarView.xib */,
+			);
+			path = ShopCar;
+			sourceTree = "<group>";
+		};
 		D86650B51F308FE700CA04FB /* ShopComment */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +473,7 @@
 				D885673C1F2E53A700E4FC2A /* Shop */,
 				D86650E41F31FE5500CA04FB /* ShopDetail */,
 				D86650B71F308FE700CA04FB /* ShopOrder */,
+				D8425C981F37277F0018294D /* ShopCar */,
 				D88566AD1F2E519100E4FC2A /* FoodDetail */,
 				D86650B51F308FE700CA04FB /* ShopComment */,
 				D86650B61F308FE700CA04FB /* ShopInformation */,
@@ -699,6 +715,7 @@
 				D866512E1F35321000CA04FB /* MeiTuanFoodDetailCell.xib in Resources */,
 				D86650CD1F30CC7400CA04FB /* food.json in Resources */,
 				D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */,
+				D8425C9A1F3727AE0018294D /* MeiTuanShopCarView.xib in Resources */,
 				D86651171F34689A00CA04FB /* MeiTuanShopOrderFoodCountView.xib in Resources */,
 				D86651151F340C4500CA04FB /* MeiTuanShopOrderFoodCell.xib in Resources */,
 				D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */,
@@ -757,6 +774,7 @@
 				D88567421F2EA06800E4FC2A /* MeiTuanBaseController.m in Sources */,
 				D88567301F2E519100E4FC2A /* SDWebImageDownloaderOperation.m in Sources */,
 				D86651211F35277200CA04FB /* MeiTuanFoodDetailController.m in Sources */,
+				D8425C9D1F3727D50018294D /* MeiTuanShopCarView.m in Sources */,
 				D88567391F2E519100E4FC2A /* UIView+WebCache.m in Sources */,
 				D88567281F2E519100E4FC2A /* MKAnnotationView+WebCache.m in Sources */,
 				D885672A1F2E519100E4FC2A /* NSImage+WebCache.m in Sources */,
