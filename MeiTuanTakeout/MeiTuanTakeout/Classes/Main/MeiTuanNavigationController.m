@@ -53,7 +53,7 @@
         viewController.meiTuanNavigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_backItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backBarButtomClick)];
         
         // push的时候只创建了viewController，并没有创建View，要现实的时候才创建View，所以此时meiTuanNavigationItem为nil，要想此时meiTuanNavigationItem有值，必须提前调用view或者一创建控制器（初始化的时候）就创建meiTuanNavigationItem，所以在基类中将meiTuanNavigationItem创建放在initWithNibName:初始化方法中。
-        NSLog(@"%@",viewController.meiTuanNavigationItem);
+//        NSLog(@"%@",viewController.meiTuanNavigationItem);// 测试代码
         
         
     }
