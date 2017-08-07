@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MeiTuanShopCarModel.h"
 
-@interface MeiTuanShopCarView : UIView
+@interface MeiTuanShopCarView : UIView 
 
 
 /// 购物车模型属性
@@ -22,5 +22,14 @@
  @return 返回MeiTuanShopCarView实例对象
  */
 + (instancetype)shopCarView;
+
+
+
+/**
+ 根据指定的起点绘制贝塞尔曲线动画
+
+ @param startPoint CGPoint类型的起点
+ */
+- (void)animationWithStartPoint:(CGPoint)startPoint;
 
 @end

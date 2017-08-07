@@ -455,6 +455,20 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
             [self.shopCarModel.foodModelArray addObject:countView.shopOrderFoodModel];
 //            NSLog(@"%@",_foodModelArray );
             
+            /// 计数器控件调用convertPoint: toView:方法将加号按钮的中心点坐标（countView.addButton.center）转换成购物车按钮的坐标
+            CGPoint startPoint = [countView convertPoint:countView.addButton.center toView:_shopCarView];
+            
+            /**
+             
+            转换区域：转换的还是坐标，尺寸是不能改变的。
+            CGRect startRect = [countView convertRect:<#(CGRect)#> toView:<#(nullable UIView *)#>];
+            
+            */
+            
+            
+            /// 根据加号按钮的中心点坐标绘制贝塞尔曲线动画
+            [self.shopCarView animationWithStartPoint:startPoint];
+            
             break;
         
     /**

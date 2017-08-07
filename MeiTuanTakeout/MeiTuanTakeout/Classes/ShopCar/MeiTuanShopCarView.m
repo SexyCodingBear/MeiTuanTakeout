@@ -8,7 +8,7 @@
 
 #import "MeiTuanShopCarView.h"
 
-@interface MeiTuanShopCarView ()
+@interface MeiTuanShopCarView () <CAAnimationDelegate>// 遵守动画代理协议
 
 
 /// 购物车按钮
@@ -22,6 +22,10 @@
 
 /// 购物车内商品数量显示标签，方便在传递数据的时候更改文本标签是否隐藏的属性
 @property (weak, nonatomic) UILabel *foodCountLabel;
+
+
+/// 创建动画素材视图（红色圆点视图），方便其他方法使用
+@property (weak, nonatomic) UIImageView * animationImageView;
 
 @end
 
@@ -193,5 +197,127 @@
     _foodCountLabel.text = @(shopCarModel.foodModelArray.count).description;
     
 }
+
+
+
+
+
+
+/// 根据起点绘制贝塞尔曲线动画
+- (void)animationWithStartPoint:(CGPoint)startPoint {
+
+    /// 创建动画素材视图（红色圆点视图）
+    UIImageView * animationImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_common_point"]];
+    
+    /// 将视图添加到父视图
+    [self addSubview:animationImageView];
+    
+    /// 创建关键帧动画
+    CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animation];
+    
+    /// 设置关键路径（要对什么属性进行操作）
+    keyframeAnimation.keyPath = @"position";
+    
+    /// 创建动画路径
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    
+    
+    /// 创建动画路径起点
+    [bezierPath moveToPoint:startPoint];
+    
+    /// 创建动画路径终点
+    CGPoint endPoint = _carButton.center;
+    
+    /// 给终点添加一个贝塞尔曲线控制点
+    [bezierPath addQuadCurveToPoint:endPoint controlPoint:CGPointMake(startPoint.x - 150, startPoint.y - 100)];
+    
+    /// 将动画路径添加到关键帧动画的路径
+    keyframeAnimation.path = bezierPath.CGPath;
+    
+    /// 设置关键帧动画的单次持续时间
+    keyframeAnimation.duration = 0.25;
+    
+    /// 设置关键帧动画的重复次数
+    keyframeAnimation.repeatCount = 1;
+    
+    /// 动画完成后，停在动画完成的位置
+    /// 1、设置动画的填充模式：
+    keyframeAnimation.fillMode = kCAFillModeForwards;
+    /**
+     
+     动画的填充模式:
+     CA_EXTERN NSString * const kCAFillModeForwards
+     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
+     CA_EXTERN NSString * const kCAFillModeBackwards
+     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
+     CA_EXTERN NSString * const kCAFillModeBoth
+     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
+     CA_EXTERN NSString * const kCAFillModeRemoved
+     CA_AVAILABLE_STARTING (10.5, 2.0, 9.0, 2.0);
+     
+     */
+    /// 2、设置动画完成是否移除
+    keyframeAnimation.removedOnCompletion = NO;
+    
+    /// 设置动画代理,必须写在添加动画之前
+    keyframeAnimation.delegate = self;
+    
+    
+    /// 传递动画素材视图（红色圆点视图），a、b方法选一种
+    /// a、将动画素材视图（红色圆点视图）复制给属性保存起来
+//    _animationImageView = animationImageView;
+    
+    
+    /// b、将动画素材视图（红色圆点视图）保存到关键帧动画对象
+    
+    /**
+     
+     只有遵守了CAAction的协议的类的对象才可以保存对象,继承关系：CAKeyframeAnimation -> CAPropertyAnimation -> CAAnimation，CAAnimation对象遵守了CAAction协议，所以CAKeyframeAnimation对象keyframeAnimation可以保存对象
+     
+     CAAnimation : NSObject
+     <NSCoding, NSCopying, CAMediaTiming, CAAction>
+     
+     
+     
+     - (void)runActionForKey:(NSString *)event object:(id)anObject
+     arguments:(nullable NSDictionary *)dict;
+     
+     */
+    [keyframeAnimation setValue:animationImageView forKey:@"animationImageView"];
+    
+    
+    /// 将动画添加至动画视图的layer
+    [animationImageView.layer addAnimation:keyframeAnimation forKey:nil];
+    
+    
+ 
+}
+
+
+
+
+/// 动画的代理方法，动画停止时调用。
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+
+    /// TODO:1、动画停止之后将动画素材视图（红色圆点视图）从父控件上移除。
+    /// 需要拿到动画素材视图（红色圆点视图），a、可以定义一个属性，然后直接按拿过来用；b、也可以将动画素材视图通过KVC保存到动画对象中，然后从代理方法的参数anim动画对象中取出动画素材视图。
+    [[anim valueForKey:@"animationImageView"] removeFromSuperview];
+    
+    /// TODO:2、动画效果将购物车按钮放大一下，动画结束将购物车按钮恢复初始尺寸
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        /// 设置购物车按钮缩放形变
+        _carButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        
+    } completion:^(BOOL finished) {
+        
+        /// 设置购物车按钮缩放形变恢复初始值
+        _carButton.transform = CGAffineTransformIdentity;
+        
+    }];
+    
+    
+}
+
 
 @end

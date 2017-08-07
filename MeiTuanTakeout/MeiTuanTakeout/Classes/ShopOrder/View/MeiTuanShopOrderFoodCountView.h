@@ -42,6 +42,13 @@ typedef enum : NSUInteger {
 /// 设置代理属性
 @property (weak, nonatomic) id <MeiTuanShopOrderFoodCountViewDelegate> delegate;
 
+/// 加号按钮
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
+
+
+
+
+
 /**
  类方法创建并实例化xib视图
 

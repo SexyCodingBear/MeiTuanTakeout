@@ -48,6 +48,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addButton" destination="7c7-pf-pHA" id="VkU-Pr-n10"/>
                 <outlet property="countLabel" destination="KpM-wy-myd" id="Z2Z-DT-tRU"/>
                 <outlet property="minusButton" destination="TwV-Aj-9dG" id="BLN-6n-4zN"/>
             </connections>
