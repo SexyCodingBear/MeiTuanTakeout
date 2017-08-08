@@ -38,6 +38,9 @@ static NSString *foodDetailCellID = @"foodDetailCell";
     /// 设置视图自动适应滚动屏幕的内边距（内缩64）
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    /// 设置购物车视图
+    [self setupShopCarView];
+    
     
     
 }
@@ -158,6 +161,36 @@ static NSString *foodDetailCellID = @"foodDetailCell";
     /// 设置导航条文字按钮颜色
     self.meiTuanNavigationBar.tintColor = [UIColor whiteColor];
 }
+
+
+
+
+
+- (void)setupShopCarView {
+    
+    /// 创建购物车视图,
+#warning mark - 从xib加载需要调用在MeiTuanShopCarView类中封装好的shopCarView类方法
+    MeiTuanShopCarView *shopCarView = [MeiTuanShopCarView shopCarView];
+    
+    /// 添加到父视图
+    [self.view addSubview:shopCarView];
+    
+    /// 添加约束，xib控件从文件加载出来以后是有尺寸的，加了约束就没有尺寸了，所以要加约束就要加全，加上xib文件的高.
+    [shopCarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.bottom.right.offset(0);
+        make.height.offset(shopCarView.bounds.size.height);
+        
+    }];
+    
+    /// 给购物车模型属性赋值，传递
+    shopCarView.shopCarModel = _shopCarModel;
+
+
+}
+
+
+
 
 
 @end

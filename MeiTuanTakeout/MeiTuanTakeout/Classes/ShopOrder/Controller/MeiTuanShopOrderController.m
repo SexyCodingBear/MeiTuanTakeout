@@ -119,8 +119,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     // 设置单元格行高
     categoryTableView.rowHeight = 60;
     
-    /// TODO:隐藏分割线?
+    /// 设置分割线样式，因为使用自定义的虚线，所以要隐藏系统自带的分割线
     categoryTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
     // 添加到父控件
     [self.view addSubview:categoryTableView];
@@ -159,9 +160,6 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
      };
      
      */
-    
-    /// 因为自定义了分割线，所以隐藏系统原有的分割线
-    categoryTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
     // 给属性赋值
@@ -360,6 +358,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
         
         /// 将选中的行的索引值传给食物详情控制器
         foodDetailController.indexPath = indexPath;
+        
+        /// 给食物详情控制器的模型属性赋值，传递数据,此处赋值要用self，购物车如果是空的就没有购物车模型，会显示null，self懒加载之后就会变为0
+        foodDetailController.shopCarModel = self.shopCarModel;
         
         /// 导航控制器跳转到食物详情控制器
         [self.navigationController pushViewController:foodDetailController animated:YES];

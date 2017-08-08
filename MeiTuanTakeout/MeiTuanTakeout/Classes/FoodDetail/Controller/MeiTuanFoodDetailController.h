@@ -11,6 +11,10 @@
 #import "MeiTuanFoodDetailFlowLayout.h"
 #import "MeiTuanFoodDetailCell.h"
 #import "MeiTuanShopOrderCategoryModel.h"
+#import "MeiTuanShopCarView.h"
+#import "MeiTuanShopCarModel.h"
+
+
 
 @interface MeiTuanFoodDetailController : MeiTuanBaseController
 
@@ -19,6 +23,9 @@
 
 /// 储存要跳转到的界面的索引值
 @property (strong,nonatomic) NSIndexPath *indexPath;
+
+/// 购物车模型，方便传递数据
+@property (strong,nonatomic) MeiTuanShopCarModel *shopCarModel;
 
 
 @end

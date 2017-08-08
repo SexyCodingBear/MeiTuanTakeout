@@ -78,7 +78,7 @@
     
     /// 添加购物车视图购物车中的数量显示标签
 #warning mark - 使用图片样式做label的背景色的时候，label中的文字尽量不要给nil，nil会让图片不能自适应大小，导致图片变形，可以传@""字符串
-    UILabel *foodCountLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:12] andText:@"0"];
+    UILabel *foodCountLabel = [UILabel makeLabelWithTitleColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:12] andText:@""];
     
     /// 给数量显示标签添加背景图片，使用添加图片样式颜色的方法添加背景图片
     foodCountLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_food_count_bg"]];
@@ -148,7 +148,7 @@
 
 
 
-/// 重写模型的strer方法，给属性赋值
+/// 重写模型的setter方法，给属性赋值
 - (void)setShopCarModel:(MeiTuanShopCarModel *)shopCarModel {
     
     
@@ -157,7 +157,8 @@
     
     
     /// TODO:1、设置总价格文本标签
-    /// kvc计算价格总数,也可以使用For循环
+    /// kvc计算价格总数,也可以使用For循环。
+    /// 当shopCarMode.foodModelArray触发懒加载，创建foodModelArray调用valueForKeyPath:返回0；当shopCarModel = nil时，shopCarMode.foodModelArray，sumOfPrice = null。
     NSNumber *sumOfPrice = [shopCarModel.foodModelArray valueForKeyPath:@"@sum.min_price"];
     
     /// 显示总价格
