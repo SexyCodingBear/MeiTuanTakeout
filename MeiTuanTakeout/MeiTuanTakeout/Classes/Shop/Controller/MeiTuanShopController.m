@@ -800,7 +800,7 @@
 - (void)loadNetworkData {
     
     /// 使用第三方框架获取网络JSON数据，将success:代码块最后一个参数id  _Nullable responseObject改成我们需要的 NSDictionary * jsonDict，jsonDict是我们之前加载本地JSON文件使用的变量，这样可以顺利完成改造迁移工作，后面的代码都不用改动
-    [[AFHTTPSessionManager manager]GET:@"https://raw.githubusercontent.com/SexyCodingBear/NetworkData/master/food.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * jsonDict) {
+    [[AFHTTPSessionManager manager]GET:@"https://raw.githubusercontent.com/SexyCodingBear/MeiTuanTakeout/Day05/MeiTuanTakeout/MeiTuanTakeout/food.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * jsonDict) {
         
         // 取出想要的poi_info（头部视图）对应的字典
         NSDictionary *headerViewDict = jsonDict[@"data"][@"poi_info"];
