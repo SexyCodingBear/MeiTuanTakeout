@@ -757,9 +757,65 @@
 
 
 
+#pragma mark - 加载网络数据
+// 加载数据
+- (void)loadNetworkData {
+    
+    //  加载JSON文件，找到JSON文件的URL路径，将JSON文件读取成NSData类型的数据
+    NSData *data = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"food.json" withExtension:nil]];
+    
+    // 将包含JSON文件格式的NSData数据转换成字典
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    // 取出想要的poi_info（头部视图）对应的字典
+    NSDictionary *headerViewDict = jsonDict[@"data"][@"poi_info"];
+    
+    // 字典转模型
+    MeiTuanShopHeaderViewModel * headerViewModel = [MeiTuanShopHeaderViewModel shopHeaderViewModelWithDictionary:headerViewDict];
+    
+    // 给属性赋值
+    _headerViewModel = headerViewModel;
+    
+    
+    // TODO:测试代码，打印取出的字典
+    //    NSLog(@"%@",headerViewModel.poi_back_pic_url);
+    
+    
+    
+    /********* 以上处理的是 商家头部模型数据 *********/
+    
+    
+    
+    
+    
+    
+    
+    /********* 以下处理的是 食物模型数据 *********/
+    
+    // 取出想要的food_spu_tags（食物分类）对应的数组
+    NSArray *shopOrderCategoryData = jsonDict[@"data"][@"food_spu_tags"];
+    
+    NSMutableArray *shopOrderCategoryModelArray = [NSMutableArray arrayWithCapacity:shopOrderCategoryData.count];
+    
+    for (NSDictionary *dict in shopOrderCategoryData) {
+        
+        // 字典转模型
+        MeiTuanShopOrderCategoryModel * shopOrderCategoryModel = [MeiTuanShopOrderCategoryModel shopOrderCategoryModelWithDictionary:dict];
+        
+        
+        [shopOrderCategoryModelArray addObject:shopOrderCategoryModel];
+    }
+    
+    // 给属性赋值
+    _shopOrderCategoryModelArray = shopOrderCategoryModelArray;
+    
+    
+}
 
 
-#pragma mark - 加载数据
+
+
+#pragma mark - 加载模拟数据
 // 加载数据
 - (void)loadFoodData {
     
