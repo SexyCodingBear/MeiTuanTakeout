@@ -18,6 +18,6 @@
 
 
 
-@interface MeiTuanShopController : MeiTuanBaseController <UIScrollViewDelegate>
+@interface MeiTuanShopController : MeiTuanBaseController <UIScrollViewDelegate,UIGestureRecognizerDelegate> /// 遵守滚动视图代理协议、手势识别代理协议
 
 @end

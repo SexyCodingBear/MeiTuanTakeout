@@ -35,6 +35,9 @@
 // 将 滚动视图 声明为属性，方便数据传递和兄弟控件添加约束
 @property (weak, nonatomic) UIScrollView *shopScrollView;
 
+/// 将 点菜控制器 声明为属性，方便数据传递
+@property (weak, nonatomic) MeiTuanShopOrderController * shopOrderController;
+
 
 
 @end
@@ -316,6 +319,9 @@
     MeiTuanShopCommentController * shopCommentController = [[MeiTuanShopCommentController alloc] init];
     MeiTuanShopInformationController * shopInformationController = [[MeiTuanShopInformationController alloc] init];
     
+    /// 给属性赋值
+    _shopOrderController = shopOrderController;
+    
     /// 给模型赋值，传递数据
     shopOrderController.shopOrderCategoryModelData = _shopOrderCategoryModelArray;
     
@@ -496,7 +502,10 @@
     
     // 给controller的view添加手势
     [self.view addGestureRecognizer:pan];
-
+    
+    
+    /// 给手势添加代理对象（遵守代理协议，开启多手势）
+    pan.delegate = self;
 
 }
 
@@ -508,39 +517,124 @@
 // 平移手势方法
 - (void)panGesture:(UIPanGestureRecognizer *)panGesture {
     
+    /// 判断当前的滚动视图是不是在拖拽，如果是，就不执行平移手势
+    if (_shopScrollView.isDragging) {///
+        
+        return ;
+    }
+    
+    
+    
+    
+    
+    
+    /// 遍历点菜控制器的tableView数组
+    for (UITableView *tableView in _shopOrderController.tableViews) {
+        
+        /// 判断取出的每一个tableView的contentOffset值是不是小于0（向下滑动），如果是则屏蔽平移手势
+        if (tableView.contentOffset.y < 0) {
+            
+            return ;
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     // TODO:1、设置头部视图高度跟随手指移动而改变
     
     // 1.1计算手势偏移量
     CGPoint offset = [panGesture translationInView:panGesture.view];
     
+    /// 通过判断平移手势的状态解决左右滑动scrollView之后停顿几秒（手指不离开屏幕），之后向上滑，视图会将头部视图移到最顶端的问题，问题核心就是处理头部视图的位置，当手势开始和改变的时候，让头部视图高度随手势移动；当手势结束、被迫取消和失败的时候，使头部视图自动回到顶端或者展开（现在的美团外卖没有做这个判断了，头部视图停在松手的位置）
     
-    // 1.2根据手势偏移量更新_shopHeaderView约束
-    [_shopHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
-        
-        // 如果手势偏移量+头部视图原来高度小于等于最小高度
-        if ((offset.y + _shopHeaderView.bounds.size.height) <= KShopHeaderViewMinHeight ) {
+    switch (panGesture.state) {
             
-            // 将头部视图的高度固定在最小高度
-            make.height.offset(KShopHeaderViewMinHeight);
-            
-            
-        }else if ((offset.y + _shopHeaderView.bounds.size.height) >= KShopHeaderViewMaxHeight ) {// 如果手势偏移量+头部视图原来高度小大于等于最大高度
-            
-            // 将头部视图的高度固定在最大高度
-            make.height.offset(KShopHeaderViewMaxHeight);
-            
-        }else{// 如果手势偏移量+头部视图原来高度在最小高度和最大高度之间
-            
-            // 头部视图的高度随手势偏移量和头部视图原来高度变化
-            make.height.offset(offset.y + _shopHeaderView.bounds.size.height);
-            
+        /// 让头部视图在手势开始和改变的时候随手势移动
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+        {
+            // 1.2根据手势偏移量更新_shopHeaderView约束
+            [_shopHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
+
+#warning mark - bug所在:(offset.y + _shopHeaderView.bounds.size.height) <=  KShopHeaderViewMinHeight,应该将<=改成<
+                // 如果手势偏移量+头部视图原来高度小于等于最小高度
+                if ((offset.y + _shopHeaderView.bounds.size.height) <  KShopHeaderViewMinHeight ) {
+                    
+                    // 将头部视图的高度固定在最小高度
+                    make.height.offset(KShopHeaderViewMinHeight);
+                    
+                }else if ((offset.y + _shopHeaderView.bounds.size.height) >= KShopHeaderViewMaxHeight ) {// 如果手势偏移量+头部视图原来高度小大于等于最大高度
+                    
+                    // 将头部视图的高度固定在最大高度
+                    make.height.offset(KShopHeaderViewMaxHeight);
+                    
+                }else{// 如果手势偏移量+头部视图原来高度在最小高度和最大高度之间
+                    
+                    // 头部视图的高度随手势偏移量和头部视图原来高度变化
+                    make.height.offset(offset.y + _shopHeaderView.bounds.size.height);
+                    
+                    
 #warning mark - 测试代码
-//            [self.view layoutIfNeeded];
-//            NSLog(@"高度：%f",_shopHeaderView.bounds.size.height);
-            
+//                    [self.view layoutIfNeeded];
+//                    NSLog(@"高度：%f",_shopHeaderView.bounds.size.height);
+                    
+                }
+                
+            }];
         }
+            break;
         
-    }];
+            
+        /// 让头部视图在手势结束、被迫取消和失败的时候自动回到顶端或者展开（现在的美团外卖没有做这个判断了，头部视图停在松手的位置）。
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateFailed:
+        {
+            
+            /// 计算头部视图高度的中点，高度实际位置高于中点就让它回到顶部，高度实际位置低于于中点就让它回到最大高度
+            CGFloat shopHeaderViewMiddleHeight = KShopHeaderViewMinHeight + (KShopHeaderViewMaxHeight - KShopHeaderViewMinHeight) * 0.5;
+            
+            // 1.2根据手势偏移量更新_shopHeaderView约束
+            [_shopHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
+                
+                // 如果头部视图高度大于中点高度
+                if (_shopHeaderView.bounds.size.height > shopHeaderViewMiddleHeight ) {
+                    
+                    // 将头部视图的高度固定在最大高度
+                    make.height.offset(KShopHeaderViewMaxHeight);
+                    
+                }else {// 如果头部视图高度小于等于中点高度
+                    
+                    // 将头部视图的高度固定在最小高度
+                    make.height.offset(KShopHeaderViewMinHeight);
+                    
+                }
+                
+            }];
+            
+            /// 添加动画效果
+            [UIView animateWithDuration:0.25 animations:^{
+                
+                /// 更新约束
+                [self.view layoutIfNeeded];
+                
+            }];
+        
+        }
+            break;
+            
+        
+        default:
+            break;
+    }
+    
+    
+    
     
     
     
@@ -646,6 +740,20 @@
     [panGesture setTranslation:CGPointZero inView:_shopHeaderView];
     
 }
+
+
+
+
+#pragma mark - 手势识别代理方法
+/// 使平移手势和TableView的滚动同时执行
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    return YES;
+
+
+}
+
+
 
 
 

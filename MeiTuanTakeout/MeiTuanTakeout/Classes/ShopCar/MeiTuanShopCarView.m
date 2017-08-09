@@ -158,7 +158,7 @@
     
     /// TODO:1、设置总价格文本标签
     /// kvc计算价格总数,也可以使用For循环。
-    /// 当shopCarMode.foodModelArray触发懒加载，创建foodModelArray调用valueForKeyPath:返回0；当shopCarModel = nil时，shopCarMode.foodModelArray，sumOfPrice = null。
+    /// 当shopCarMode不为空时shopCarMode.foodModelArray触发懒加载，创建foodModelArray，foodModelArray中没有模型，但数组存在，调用valueForKeyPath:，kvc回去范型指向的对象中去找属性，返回0，sumOfPrice = 0；当shopCarModel = nil时，shopCarMode.foodModelArray懒加载返回nil，nil调用valueForKeyPath:，kvc返回nil，sumOfPrice = null。
     NSNumber *sumOfPrice = [shopCarModel.foodModelArray valueForKeyPath:@"@sum.min_price"];
     
     /// 显示总价格

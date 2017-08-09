@@ -77,6 +77,9 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
     
     /// TODO:4、将购物车视图置顶
     [self.view bringSubviewToFront:_shopCarView];
+    
+    /// TODO:5、将表格传入数组，给属性赋值
+    _tableViews = @[_categoryTableView,_foodTableView];
 
 }
 
@@ -359,7 +362,8 @@ static NSString *shopOrderFoodSectionHeaderViewID = @"shopOrderFoodSectionHeader
         /// 将选中的行的索引值传给食物详情控制器
         foodDetailController.indexPath = indexPath;
         
-        /// 给食物详情控制器的模型属性赋值，传递数据,此处赋值要用self，购物车如果是空的就没有购物车模型，会显示null，self懒加载之后就会变为0
+        /// 给食物详情控制器的模型属性赋值，传递数据
+        /// 注意：此处赋值要用self，self懒加载之后就会创建购物车模型，初始化模型数组属性为nil。如果没有使用self.shopCarModel而是使用_shopCarModel，购物车为nil。
         foodDetailController.shopCarModel = self.shopCarModel;
         
         /// 导航控制器跳转到食物详情控制器

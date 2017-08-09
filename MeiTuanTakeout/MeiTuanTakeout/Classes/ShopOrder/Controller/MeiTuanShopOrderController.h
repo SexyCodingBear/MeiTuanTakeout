@@ -21,5 +21,8 @@
 // 食物分类模型数据
 @property (strong,nonatomic) NSArray <MeiTuanShopOrderCategoryModel *> *shopOrderCategoryModelData;
 
+/// 将两个表格添加到数组，方便其他类调用
+@property (strong,nonatomic) NSArray *tableViews;
+
 
 @end
