@@ -50,18 +50,16 @@
 - (void)viewDidLoad {
     
     // TODO:加载数据
-    // setupUI中就创建了头部视图，所以数据要在头部视图创建完成之前加载
-    [self loadFoodData];
+    // setupUI中就创建了头部视图，所以数据要在头部视图创建完成之前加载数据，创建头部视图的时候，才有数据显示。如果是网络加载的话，网络加载是延迟的，所以setupUI要放在loadNetworkData方法的最后执行才能保证创建头部视图的时候有数据显示。
+//    [self loadFoodData];
+    [self loadNetworkData];
     
-    // TODO:设置视图
-    // 为了防止头部视图遮盖住导航条，将头部视图的setupUI方法在[super viewDidLoad]之前调用，viewDidLoad中创建的导航条就在头部视图上面了。
-    [self setupUI];
     
     // TODO:创建父类中的属性（创建导航条）
     [super viewDidLoad];
     
-    // 设置控制器view背景颜色
-    self.view.backgroundColor = [UIColor whiteColor];
+    // 测试代码，设置控制器view背景颜色
+//    self.view.backgroundColor = [UIColor whiteColor];
     
     // TODO:设置导航条
     [self setupNavigationBar];
@@ -69,8 +67,45 @@
     // TODO:设置平移手势
     [self setupPanGesture];
     
+    /// 线程间通信
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//
+//
+//
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            
+//            
+//            
+//        });
+//        
+//    });
     
     
+    /// 同步任务
+//    /// 获取全局队列
+//    dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
+//    
+//    /// 异步任务，并行队列。代码块中的所有代码是一个任务，异步任务会分配一个子线程来执行代码块中的所有代码
+//    dispatch_async(globalQueue, ^{
+//        
+//        /// 耗时操作，同步任务是在当前线程（子线程）中依次执行任务，“登录”是线程中第一个任务,按次序第一个执行。虽然是全局队列（并行队列）但是执行方式是同步执行，也要按顺序执行
+//        dispatch_sync(globalQueue, ^{
+//            
+//            
+//            
+//        });
+//        
+//        
+//        
+//        /// 异步任务，开启子线程执行，主队列会在主线程执行任务。
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            
+//            
+//        });
+//        
+//        
+//    });
 
 }
 
@@ -91,6 +126,9 @@
     
     // TODO:设置滚动视图
     [self setupShopScrollView];
+    
+    // TODO:将导航条置顶
+    [self.view bringSubviewToFront:self.meiTuanNavigationBar];
     
 }
 
@@ -761,53 +799,68 @@
 // 加载数据
 - (void)loadNetworkData {
     
-    //  加载JSON文件，找到JSON文件的URL路径，将JSON文件读取成NSData类型的数据
-    NSData *data = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"food.json" withExtension:nil]];
-    
-    // 将包含JSON文件格式的NSData数据转换成字典
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
-    // 取出想要的poi_info（头部视图）对应的字典
-    NSDictionary *headerViewDict = jsonDict[@"data"][@"poi_info"];
-    
-    // 字典转模型
-    MeiTuanShopHeaderViewModel * headerViewModel = [MeiTuanShopHeaderViewModel shopHeaderViewModelWithDictionary:headerViewDict];
-    
-    // 给属性赋值
-    _headerViewModel = headerViewModel;
-    
-    
-    // TODO:测试代码，打印取出的字典
-    //    NSLog(@"%@",headerViewModel.poi_back_pic_url);
-    
-    
-    
-    /********* 以上处理的是 商家头部模型数据 *********/
-    
-    
-    
-    
-    
-    
-    
-    /********* 以下处理的是 食物模型数据 *********/
-    
-    // 取出想要的food_spu_tags（食物分类）对应的数组
-    NSArray *shopOrderCategoryData = jsonDict[@"data"][@"food_spu_tags"];
-    
-    NSMutableArray *shopOrderCategoryModelArray = [NSMutableArray arrayWithCapacity:shopOrderCategoryData.count];
-    
-    for (NSDictionary *dict in shopOrderCategoryData) {
+    /// 使用第三方框架获取网络JSON数据，将success:代码块最后一个参数id  _Nullable responseObject改成我们需要的 NSDictionary * jsonDict，jsonDict是我们之前加载本地JSON文件使用的变量，这样可以顺利完成改造迁移工作，后面的代码都不用改动
+    [[AFHTTPSessionManager manager]GET:@"https://raw.githubusercontent.com/SexyCodingBear/NetworkData/master/food.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * jsonDict) {
+        
+        // 取出想要的poi_info（头部视图）对应的字典
+        NSDictionary *headerViewDict = jsonDict[@"data"][@"poi_info"];
         
         // 字典转模型
-        MeiTuanShopOrderCategoryModel * shopOrderCategoryModel = [MeiTuanShopOrderCategoryModel shopOrderCategoryModelWithDictionary:dict];
+        MeiTuanShopHeaderViewModel * headerViewModel = [MeiTuanShopHeaderViewModel shopHeaderViewModelWithDictionary:headerViewDict];
+        
+        // 给属性赋值
+        _headerViewModel = headerViewModel;
         
         
-        [shopOrderCategoryModelArray addObject:shopOrderCategoryModel];
-    }
+        // TODO:测试代码，打印取出的字典
+        //    NSLog(@"%@",headerViewModel.poi_back_pic_url);
+        
+        
+        
+        /********* 以上处理的是 商家头部模型数据 *********/
+        
+        
+        
+        
+        
+        
+        
+        /********* 以下处理的是 食物模型数据 *********/
+        
+        // 取出想要的food_spu_tags（食物分类）对应的数组
+        NSArray *shopOrderCategoryData = jsonDict[@"data"][@"food_spu_tags"];
+        
+        NSMutableArray *shopOrderCategoryModelArray = [NSMutableArray arrayWithCapacity:shopOrderCategoryData.count];
+        
+        for (NSDictionary *dict in shopOrderCategoryData) {
+            
+            // 字典转模型
+            MeiTuanShopOrderCategoryModel * shopOrderCategoryModel = [MeiTuanShopOrderCategoryModel shopOrderCategoryModelWithDictionary:dict];
+            
+            
+            [shopOrderCategoryModelArray addObject:shopOrderCategoryModel];
+        }
+        
+        // 给属性赋值
+        _shopOrderCategoryModelArray = shopOrderCategoryModelArray;
+        
+        
+        // TODO:设置视图
+        // 为了防止头部视图遮盖住导航条，将头部视图的setupUI方法在[super viewDidLoad]之前调用，viewDidLoad中创建的导航条就在头部视图上面了。但是网络数据是延迟的，搭建界面的setupUI方法需要等网络数据加载出来之后再执行，所以必须放在网络数据加载的最后执行，但是这样viewDidLoad就会先执行（先创建导航条），setupUI方法在它之后执行，创建的头部视图就会遮盖住导航条，所以要在setupUI方法的最后将导航条视图置顶！
+        [self setupUI];
+        
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        
+        if (error) {
+            NSLog(@"%@",error);
+        }
+        
+    } ];
     
-    // 给属性赋值
-    _shopOrderCategoryModelArray = shopOrderCategoryModelArray;
+    
     
     
 }
