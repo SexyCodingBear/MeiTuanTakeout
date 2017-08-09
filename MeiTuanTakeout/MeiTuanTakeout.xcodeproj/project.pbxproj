@@ -35,7 +35,6 @@
 		D86651241F352B1300CA04FB /* MeiTuanFoodDetailFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D86651231F352B1300CA04FB /* MeiTuanFoodDetailFlowLayout.m */; };
 		D866512D1F35321000CA04FB /* MeiTuanFoodDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D866512B1F35321000CA04FB /* MeiTuanFoodDetailCell.m */; };
 		D866512E1F35321000CA04FB /* MeiTuanFoodDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D866512C1F35321000CA04FB /* MeiTuanFoodDetailCell.xib */; };
-		D8709FC61F3B748E004B0B96 /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = D8709FC51F3B748E004B0B96 /* food.json */; };
 		D88566971F2E50C400E4FC2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88566961F2E50C400E4FC2A /* main.m */; };
 		D88566A21F2E50C400E4FC2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88566A11F2E50C400E4FC2A /* Assets.xcassets */; };
 		D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88566A31F2E50C400E4FC2A /* LaunchScreen.storyboard */; };
@@ -137,7 +136,6 @@
 		D866512A1F35321000CA04FB /* MeiTuanFoodDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeiTuanFoodDetailCell.h; sourceTree = "<group>"; };
 		D866512B1F35321000CA04FB /* MeiTuanFoodDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeiTuanFoodDetailCell.m; sourceTree = "<group>"; };
 		D866512C1F35321000CA04FB /* MeiTuanFoodDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeiTuanFoodDetailCell.xib; sourceTree = "<group>"; };
-		D8709FC51F3B748E004B0B96 /* food.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = food.json; sourceTree = "<group>"; };
 		D88566921F2E50C400E4FC2A /* MeiTuanTakeout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeiTuanTakeout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88566961F2E50C400E4FC2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D88566A11F2E50C400E4FC2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 			isa = PBXGroup;
 			children = (
 				D88566961F2E50C400E4FC2A /* main.m */,
-				D8709FC51F3B748E004B0B96 /* food.json */,
 				D88566A61F2E50C400E4FC2A /* Info.plist */,
 				D88567431F2EB15D00E4FC2A /* MeiTuanTakeoutPrefixHeader.pch */,
 				D88566A11F2E50C400E4FC2A /* Assets.xcassets */,
@@ -719,7 +716,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D866512E1F35321000CA04FB /* MeiTuanFoodDetailCell.xib in Resources */,
-				D8709FC61F3B748E004B0B96 /* food.json in Resources */,
 				D88566A51F2E50C400E4FC2A /* LaunchScreen.storyboard in Resources */,
 				D8425C9A1F3727AE0018294D /* MeiTuanShopCarView.xib in Resources */,
 				D86651171F34689A00CA04FB /* MeiTuanShopOrderFoodCountView.xib in Resources */,
