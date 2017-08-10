@@ -566,7 +566,7 @@
     
     
     
-    /// 当头部视图的高度
+    /// 当头部视图的高度为最大高度时，取出每一个tableView，判断其contentOffset值是不是小于0（向下滑动），如果是则屏蔽平移手势
     if (self.shopHeaderView.bounds.size.height == KShopHeaderViewMaxHeight) {
     
         /// 遍历点菜控制器的tableView数组
