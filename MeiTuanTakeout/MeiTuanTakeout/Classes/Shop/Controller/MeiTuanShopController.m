@@ -566,18 +566,20 @@
     
     
     
-    /// 遍历点菜控制器的tableView数组
-    for (UITableView *tableView in _shopOrderController.tableViews) {
-        
-        /// 判断取出的每一个tableView的contentOffset值是不是小于0（向下滑动），如果是则屏蔽平移手势
-        if (tableView.contentOffset.y < 0) {
+    /// 当头部视图的高度
+    if (self.shopHeaderView.bounds.size.height == KShopHeaderViewMaxHeight) {
+    
+        /// 遍历点菜控制器的tableView数组
+        for (UITableView *tableView in _shopOrderController.tableViews) {
             
-            return ;
+            /// 判断取出的每一个tableView的contentOffset值是不是小于0（向下滑动），如果是则屏蔽平移手势
+            if (tableView.contentOffset.y < 0) {
+                
+                return ;
+            }
+            
         }
-        
     }
-    
-    
     
     
     
