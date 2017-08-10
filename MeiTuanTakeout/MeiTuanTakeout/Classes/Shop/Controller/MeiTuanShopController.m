@@ -67,45 +67,7 @@
     // TODO:设置平移手势
     [self setupPanGesture];
     
-    /// 线程间通信
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//
-//
-//
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//            
-//            
-//            
-//        });
-//        
-//    });
     
-    
-    /// 同步任务
-//    /// 获取全局队列
-//    dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
-//    
-//    /// 异步任务，并行队列。代码块中的所有代码是一个任务，异步任务会分配一个子线程来执行代码块中的所有代码
-//    dispatch_async(globalQueue, ^{
-//        
-//        /// 耗时操作，同步任务是在当前线程（子线程）中依次执行任务，“登录”是线程中第一个任务,按次序第一个执行。虽然是全局队列（并行队列）但是执行方式是同步执行，也要按顺序执行
-//        dispatch_sync(globalQueue, ^{
-//            
-//            
-//            
-//        });
-//        
-//        
-//        
-//        /// 异步任务，开启子线程执行，主队列会在主线程执行任务。
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            
-//            
-//            
-//        });
-//        
-//        
-//    });
 
 }
 
