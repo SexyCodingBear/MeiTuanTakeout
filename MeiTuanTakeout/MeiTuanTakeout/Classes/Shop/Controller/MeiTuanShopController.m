@@ -6,6 +6,16 @@
 //  Copyright © 2017年 DaiyangWen. All rights reserved.
 //
 
+
+/**
+ 
+ 
+ setupUI单独版本，直接搭建界面setupUI，在setupUI中更新数据
+ 
+ 
+ */
+
+
 #import "MeiTuanShopController.h"
 
 #define KShopHeaderViewMinHeight 64.0
